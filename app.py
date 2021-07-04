@@ -1,5 +1,10 @@
 import os
-from flask import Flask
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 
 if os.path.exists("env.py"):
     import env
@@ -10,9 +15,15 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+mongo = PyMongo(app)
+
+
+# create a new landing page but for now use games list page
 @app.route("/")
-def hello():
-    return "Hello Meeple"
+@app.route("/get_games")
+def get_games():
+    games = mongo.db.games.find()
+    return render_template("games.html", games=games)
 
 
 if __name__ == "__main__":

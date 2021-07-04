@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 center-align">Games List</h3>
+
+        {% for game in games %}
+            {{game.bg_name}}
+            {{game.bg_description}}
+            {{game.bg_type}}
+            {{game.age}}
+            {{game.player_count}}
+            {{game.bg_publisher}}
+            {{game.playing_time}}
+            {{game.mechanisms}}
+        {% endfor %}
+    
+{% endblock %}
