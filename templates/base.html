@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
     <title>Meeple Finder</title>
@@ -14,7 +15,7 @@
 <body>
     <header>
         <!--Nav bar-->
-        <nav>
+        <nav class="nav-extended text-shadow teal"> 
             <div class="nav-wrapper">
                 <a href="{{ url_for('get_games') }}" class="brand-logo">Meeple Finder</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
@@ -31,7 +32,7 @@
         </nav>
         
         <!--mobile sidenav-->
-        <ul class="sidenav" id="mobile-demo">
+        <ul class="sidenav teal lighten-3" id="mobile-demo">
             <li><a href="{{ url_for('get_games') }}">Home</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="{{ url_for('get_games') }}">Games</a></li>
@@ -41,8 +42,6 @@
             <li><a href="#">Register</a></li>
         </ul>
     </header>
-
-
     <main class="container">
         {% block content %}
         {% endblock %}

@@ -1,17 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Games List</h3>
+<div class="row">
 
+    <div class="col s3 filter-bar">
+        <!-- will be filter games panel -->
+        
+    </div>
+
+    <div class="col s9">
+        <!-- Teal page content  -->
+        <h3 class="teal-text text-darken-3">Games List:</h3>
+        
         {% for game in games %}
-            {{game.bg_name}}
-            {{game.bg_description}}
-            {{game.bg_type}}
-            {{game.age}}
-            {{game.player_count}}
-            {{game.bg_publisher}}
-            {{game.playing_time}}
-            {{game.mechanisms}}
-        {% endfor %}
+            <div class="col s12 m7">
+                <div class="card horizontal">
+                <div class="card-image image-margin">
+                    <img src="{{game.image}}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h4 class="header">{{game.bg_name}}</h4>
+                        <p>{{game.bg_description}}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    <div class="card-action">
+                    <a href="#" class="teal-text"><i class="fas fa-plus-circle"></i> Add to Collection </a>
+                    <br>
+                    <a href="#" class="teal-text"><i class="fas fa-heart"></i>Add to Wishlist</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+    </div>
+
+  </div>
+    
     
 {% endblock %}
