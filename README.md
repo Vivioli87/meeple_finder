@@ -1,102 +1,138 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Meeple Finder
+## Meeting Meeples is easy...
 
-Welcome USER_NAME,
+*Developed and designed for Code Institue, Milestone Project 3: Backend Development (Python and Data Centric Development)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+[Please view the live project here](#)
 
-## Gitpod Reminders
+![Mockups]()
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Table of Contents
 
-`python3 -m http.server`
+1. [Overview](#overview)
+2. [User Experience](#ux-(user-experience))
+    - [User Stories](#user-stories)
+        - Visitor Stories
+        - Business Stories
+    - [Structure](#structure)
+    - [Skeleton](#skeleton)
+        - Wireframes
+    - [Design](#design)
+        - Colour Scheme
+        - Fonts
+        - Imagery
+        - Audio
+3. [Features](#features)
+    - Current Features
+    - Future Implementation
+4. [Technologies](#technologies)
+    - Languages
+    - Frameworks, Libraries and Tools
+    - Validation
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+    - GitHub pages
+7. [Credits](#credits)
+    - Code
+    - Media
+    - Content
+8. [Acknowledgements](#acknowledgements)
+9. [Disclaimer](#disclaimer)
 
-A blue button should appear to click: _Make Public_,
+## Overview
 
-Another blue button should appear to click: _Open Browser_.
+The purpose of this site is to act as Board Games Community where users can search for new board games based on various criteria and learn more about them based on user reviews. 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+A registered user has access to their own profile page that contains a personalised collection and wishlist and can also leave reviews on games they have played to help other users.
 
-A blue button should appear to click: _Make Public_,
+[Back to table of contents](#table-of-contents)
 
-Another blue button should appear to click: _Open Browser_.
+## UX (User Experience)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+The user types for this website would be for Board Game Fans (entry level or established) to find more Board Games that they would enjoy, 
 
-To log into the Heroku toolbelt CLI:
+### Visitor Stories
+1. As a site visitor, I would like to search a list of board games based on different criteria e.g. number of players, game type, game manufactorer, age level etc.
+2. As a site visitor, I would like to register an account that is secure and private.
+3. As a site visitor, I would like a personalised dashboard to show board games I have in my collection, a wishlist for games I would like to have in my collection and reviews that I have made.
+4. As a site visitor, I would like to be able to add reviews but also to edit and delete the reviews if required. I should also be the only user who can edit or delete my reviews, other users can only view them.
+5. As a site visitor, I would like to be able to add or request to add a game to the board game list if it is not currently listed on the site.
+6. As a site visitor, I would like to have games that are suggested to me based on the board games in my collection. (*potential future*)
+7. As a site visitor, I would like to find board game retailers or cafe's where I can buy or try out new board games on my wishlist.  (*potential future*)
+8. As a site visitor, I would like a website that is intuitive, easy to navigate and provides clear feedback on any actions I make (e.g when adding reviews, games etc)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Business Stories
+1. As a site owner, I would like to create a commuinty website where board game enthusiasts (new and old) can share their reviews and seek reccomendations on different board games.
+2. As a site owner, I would like a site that's easy to navigate, is intuitive and has eye-catching design.
+3. As a site owner, I would like for visitors to sign up to the community and add their reviews or reccomendations of board games to help fellow enthusiasts.
+4. As a site owner, I would like adding reviews to be accessed by registered users only. Non registered users can only view board game listings and their reviews.
+5. As a site owner, I would like users to be able to edit and/or delete their own reviews only.
+6. As a site owner, I would like users to be able to add or request to add a game to the board game list if it is not currently listed on the site.
+7. As a site owner, I would like to have admin access to be able to view, edit and delete any records that may be inappropriate for the website.
+8. As a site owner, I would like to support local board games shops and cafes by having a google maps API for users to find shops/cafes local to them. (*potential future*)
 
-------
+[Back to table of contents](#table-of-contents)
 
-## Release History
+## Structure
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+[Back to table of contents](#table-of-contents)
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+## Skeleton
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+[Back to table of contents](#table-of-contents)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## Design
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Colour Scheme
+### Fonts
+### Imagery
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+[Back to table of contents](#table-of-contents)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Features
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Current Features
+### Future Implementation
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+[Back to table of contents](#table-of-contents)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Technologies
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Languages
+### Frameworks, Libraries and Tools
+### Validation
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+See further information on results found during validation on the separate [Testing document]().
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+[Back to table of contents](#table-of-contents)
 
-------
+## Testing
 
-## FAQ about the uptime script
+Testing process was written in a separate document [Testing document]()
 
-**Why have you added this script?**
+[Back to table of contents](#table-of-contents)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+## Deployment
 
-**How will this affect me?**
+### Github/Heroku
+### How to run this project locally
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+[Back to table of contents](#table-of-contents)
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Credits
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Code
+### Media
 
-**So….?**
+[Back to table of contents](#table-of-contents)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Acknowledgements
 
-**Can I opt out?**
+[Back to table of contents](#table-of-contents)
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+## Disclaimer
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+The information provided on this website is for educational purposes only.
 
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+[Back to table of contents](#table-of-contents)
