@@ -1,7 +1,14 @@
 
 /* base template/general styling*/
+
+
+/* style container differently?  70% of page width*/
 body{
     background-color: #edf6f9;
+}
+
+.flashes h4{
+    line-height: 2;
 }
 
 .text-shadow{
@@ -11,7 +18,6 @@ body{
 a.brand-logo{
     padding-left: 10px;
 }
-
 
 .game-detail-image{
     max-width: 100%;
