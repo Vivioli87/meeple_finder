@@ -12,10 +12,9 @@ a.brand-logo{
     padding-left: 10px;
 }
 
-.filter-bar{
-    background-color: #ffddd2;
-}
 
-/*.image-margin{
-    margin: 5px;
-}*/
+.game-detail-image{
+    max-width: 100%;
+    height: auto;
+    margin-top: 50px;
+}

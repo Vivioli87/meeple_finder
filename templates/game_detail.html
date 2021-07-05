@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="row">
 
-    <h2>{{game.bg_name}}</h2>
-    <P>{{game.bg_description}}</P>
-    <ul>
-        <li>Publisher: {{game.bg_publisher}}</li>
-        <li>Type: {{game.bg_type}}</li>
-        <li>Age: {{game.age}}</li>
-        <li>Number of players: {{game.player_count}}</li>
-        <li>Playing time:{{game.playing_time}}</li>
-        <li>Game Mechanisms: {{game.mechanisms}}</li>
+        <div class="col s3 ">
+            <img class="game-detail-image" src="{{game.image}}">
+        </div>
 
+        <div class="col s9 center-align">
+
+            <h2>{{game.bg_name}}</h2>
+            <P>{{game.bg_description}}</P>
+            <ul>
+                <li>Publisher: {{game.bg_publisher}}</li>
+                <li>Type: {{game.bg_type}}</li>
+                <li>Age: {{game.age}}</li>
+                <li>Number of players: {{game.player_count.min_player}} to {{game.player_count.max_player}}</li>
+                <li>Playing time: {{game.playing_time}}</li>
+                <ul>
+                    <h4>Game Mechanisms:</h4>
+                    {% for mech in game.mechanisms %}
+                        <li> {{mech}} </li>
+                    {% endfor %}
+                </ul>
+                
+            </ul>
+        </div>
+    </div>
 {% endblock %}
