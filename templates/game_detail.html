@@ -9,20 +9,19 @@
         <div class="col s9 center-align">
 
             <h2>{{game.bg_name}}</h2>
-            <P>{{game.bg_description}}</P>
+            <p>{{game.bg_description}}</p>
             <ul>
                 <li>Publisher: {{game.bg_publisher}}</li>
                 <li>Type: {{game.bg_type}}</li>
                 <li>Age: {{game.age}}</li>
                 <li>Number of players: {{game.player_count.min_player}} to {{game.player_count.max_player}}</li>
                 <li>Playing time: {{game.playing_time}}</li>
-                <ul>
-                    <h4>Game Mechanisms:</h4>
-                    {% for mech in game.mechanisms %}
-                        <li> {{mech}} </li>
-                    {% endfor %}
-                </ul>
-                
+            </ul>
+            <h4>Game Mechanisms:</h4>
+            <ul class="mech-list">
+                {% for mech in game.mechanisms %}
+                    <li> {{mech}} </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
