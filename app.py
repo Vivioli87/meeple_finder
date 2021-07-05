@@ -26,6 +26,13 @@ def get_games():
     return render_template("games.html", games=games)
 
 
+@app.route("/get_game_detail/<game_id>")
+def get_game_detail(game_id):
+
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+    return render_template("game_detail.html", game=game)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

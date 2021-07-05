@@ -22,7 +22,7 @@
                     <div class="card-content">
                         <h4 class="header">{{game.bg_name}}</h4>
                         <p>{{game.bg_description}}</p>
-                        <a href="#">More Info</a>
+                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}">More Info</a>
                     </div>
                     <div class="card-action">
                     <a href="#" class="teal-text"><i class="fas fa-plus-circle"></i> Add to Collection </a>

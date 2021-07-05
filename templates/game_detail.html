@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>{{game.bg_name}}</h2>
+    <P>{{game.bg_description}}</P>
+    <ul>
+        <li>Publisher: {{game.bg_publisher}}</li>
+        <li>Type: {{game.bg_type}}</li>
+        <li>Age: {{game.age}}</li>
+        <li>Number of players: {{game.player_count}}</li>
+        <li>Playing time:{{game.playing_time}}</li>
+        <li>Game Mechanisms: {{game.mechanisms}}</li>
+
+{% endblock %}
