@@ -37,7 +37,7 @@ def get_game_detail(game_id):
 def register():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"username":request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             flash("Username already exists")
