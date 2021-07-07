@@ -37,3 +37,8 @@ ul.mech-list > li {
     font-size: smaller;
     background-color: white;
 }
+
+.card.profile-size{
+    max-width: 20em;
+    height: auto;
+}

@@ -85,15 +85,19 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the sessions user's username from db
-    # ["username"] at end indicates we only want to return the
-    # username from the database i.e not password also.
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+
+    # grab the session user's profile from db...
+    profile = mongo.db.users.find_one({"username": session["user"]})
+    # ...and immediately drop password from result object for security
+    del profile["password"]
 
     if session["user"]:
-        return render_template("profile.html", username=username)
-
+        return render_template("profile.html",
+                                username=profile["username"],
+                                collection=profile["my_collection"],
+                                wishlist=profile["my_wishlist"]
+                                )
+    
     return redirect(url_for("login"))
 
 
