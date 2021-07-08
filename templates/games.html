@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="col s12 m8 offset-m2">
+    <div class="card-panel teal-text text-darken-3 center-align">
+        <h1>Welcome to Meeple Finder</h1>
+        <h4>Where meeting Meeples is easy....</h4>
+        <br>
+        <p>Meeple finder is an online community for board game enthusiasts</p>
+        <p><a href="{{ url_for('register') }}" class="teal-text text-darken-3"><strong>Register</strong></a> to be able to join the community and review your favourtie games, add your favourite games to your own personalised collection or add games you would like to purchase to a wishlist.</p>
+        <p>Already Registered? <a href="{{ url_for('login') }}" class="teal-text text-darken-3"><strong>Log In</strong></a></p>
+    </div>
+</div>
+
 <div class="row">
 
     <div class="col s3 filter-bar">
