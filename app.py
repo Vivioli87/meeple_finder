@@ -97,7 +97,7 @@ def profile(username):
                                 collection=profile["my_collection"],
                                 wishlist=profile["my_wishlist"]
                                 )
-    
+
     return redirect(url_for("login"))
 
 
