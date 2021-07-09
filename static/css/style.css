@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Merriweather&display=swap');
 
 /* base template/general styling*/
-
-
-/* style container differently?  70% of page width*/
 body {
-    background-color: #edf6f9;
+    background-color: #0d636b24;
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4{
+    font-family: 'Merriweather', serif;
 }
 
 .flashes h4 {
@@ -16,29 +19,61 @@ body {
 }
 
 a.brand-logo {
-    padding-left: 10px;
+    padding-left: 30px;
+    font-size: 2rem;
+    font-family: 'Merriweather', serif;
+    letter-spacing: 1.5px;
 }
 
-.game-detail-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 50px;
+.card-panel {
+    background-color: #f9e4de;
+    padding: 10px 10px 20px;
 }
 
-ul.mech-list > li {
-    display: block;
-    border-color: darkgray;
-    border-style: solid;
-    border-width: thin;
-    width: fit-content;
-    float: left;
-    margin: 0 0.25em;
-    padding: 0.25em;
-    font-size: smaller;
-    background-color: white;
+.custom-teal{
+    background-color: #006d77 ;
 }
 
-.card.profile-size{
-    max-width: 20em;
-    height: auto;
+.custom-teal-text{
+    color: #006d77;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.page-divider{
+    border-top: 2px solid #006d77;
+    margin-top: 8px;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: 992px) {
+    a.brand-logo {
+        padding-left: 0;
+    }
+    h2.welcome-text{
+        font-size: 2.8rem;
+    }
+    h4.welcome-text{
+        font-size: 1.8rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    h2.welcome-text{
+        font-size: 2rem;
+    }
+    h4.welcome-text{
+        font-size: 1.2rem;
+    }
+}
+
+
+/*to sort out lack of responsiveness on materialize nav bar "brand-logo" on small screens*/
+@media only screen and (max-width: 450px) {
+    a.brand-logo {
+        font-size: 1.2rem;
+    }
 }
