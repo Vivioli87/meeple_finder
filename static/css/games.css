@@ -18,6 +18,11 @@ ul.mech-list > li {
 }
 
 .card.profile-size{
-    max-width: 20em;
-    height: auto;
+    height: 30em;
+    width: 20em;
+}
+
+.card .card-image{
+    height: 20em;
+    overflow: hidden;
 }

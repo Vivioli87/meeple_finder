@@ -8,10 +8,15 @@ body {
 
 h1, h2, h3, h4{
     font-family: 'Merriweather', serif;
+    letter-spacing: 1.5px;
 }
 
 .flashes h4 {
     line-height: 2;
+}
+
+h4.padding{
+    padding-left: 30px;
 }
 
 .text-shadow {
