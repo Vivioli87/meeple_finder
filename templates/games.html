@@ -6,6 +6,7 @@
 
 {% block content %}
 
+<!--Home page message, more detailed if not logged in-->
     {% if session.user %}
         <div class="row">
             <div class="col s12">
@@ -32,7 +33,6 @@
 
 <div class="row">
     <div class="col s12">
-        <!-- Teal page content  -->
         <h3 class="custom-teal-text">Games List:</h3>
         
         {% for game in games %}
@@ -47,8 +47,9 @@
                         <p>{{game.description}}</p>
                         <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
                     </div>
-                    <div class="card-action center-align">
+                    <div class="card-action">
                     <a href="#" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Add to Collection </a>
+                    <br>
                     <a href="#" class="teal-text darken-2"><i class="fas fa-heart"></i>  Add to Wishlist</a>
                     </div>
                 </div>

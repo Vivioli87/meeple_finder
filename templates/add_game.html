@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h4 class="custom-teal-text underline padding">Add Game:</h4>
+    <div class="custom-teal-text padding center-align">
+        <p>Please include as much detail as possible, the board game box should provide all this detail itself.</p>
+        <p><em>*Any games added will be reviewd and may be edited by admin to include an image and more detail or to correct any inaccurate detail.</em></p>
+    </div>
+
+    <div class="row custom-form-container">
+        <form class="col s8 offset-s2" method="POST" action="{{url_for('add_game') }}">
+            <!--game name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="name" name="name" type="text" 
+                        maxlength="50" class="validate" required></input>
+                    <label for="name">Name of Board Game:</label>
+                </div>
+            </div>
+            <!--game description -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="description" name="description" minlength="5" 
+                        maxlength="300" class="materialize-textarea validate" required></textarea>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+            <!-- publisher -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="publisher" name="publisher" type="text" 
+                        maxlength="50" class="validate" required></input>
+                    <label for="publisher">Publisher:</label>
+                </div>
+            </div>
+            <!-- type -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="type" name="type">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="base game">Base Game</option>
+                      <option value="base expansion">Expansion (requires base game to play)</option>
+                      <option value="standalone expansion">Standalone Expansion</option>
+                    </select>
+                    <label for="type">Game Type</label>
+                </div>
+            </div>
+            <!--player count - 2 dropdowns: min-player & max_player -->
+            <div class="row">
+                <div class="input-field col s5">
+                    <select id="min_player" name="min_player">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                    <label for="min_player">Minimun Player(s)</label>
+                </div>
+                <div class="input-field col s6">
+                    <select id="max_player" name="max_player">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="+">No maximum</option>
+                    </select>
+                    <label for="max_player">Maximum Player(s)</label>
+                </div>
+            </div>
+                <p class="custom-teal-text"><em>*if minimum & maximum player is the same, please select the same numbers for both 
+                    (e.g. for a 2 player game, minimum and maximum players = 2 ) </em></p>
+            <!--playing time -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="playing_time" name="playing_time">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="short">Short: Less than 1 hour</option>
+                        <option value="medium">Medium: 1-2 hours</option>
+                        <option value="long">Long: More than 2 hours</option>
+                    </select>
+                    <label for="playing_time">Playing Time</label>
+                </div>
+            </div>
+            <!--playing age -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="age" name="age" type="number" class="validate" required></input>
+                    <label for="age">Age:</label>
+                </div>
+                <p class="custom-teal-text"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
+            </div>
+            <!--submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large teal text-shadow">
+                        Add Game <i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

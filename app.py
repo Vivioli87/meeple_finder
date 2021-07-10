@@ -33,6 +33,30 @@ def get_game_detail(game_id):
     return render_template("game_detail.html", game=game)
 
 
+@app.route("/add_game", methods=["GET", "POST"])
+def add_game():
+    if request.method == "POST":
+        player_count = {
+                "min_player": request.form.get("min_player"),
+                "max_player": request.form.get("max_player")
+            },
+        game = {
+            "name": request.form.get("name"),
+            "description": request.form.get("description"),
+            "image": "null",
+            "publisher": request.form.get("publisher"),
+            "type": request.form.get("type"),
+            "player_count":player_count,
+            "age": request.form.get("age"),
+            "mechanisms": []
+            }
+        mongo.db.games.insert_one(game)
+        flash("Game Successfully Added")
+        return render_template("games.html")
+
+    return render_template("add_game.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -107,6 +131,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
 
 
 if __name__ == "__main__":
