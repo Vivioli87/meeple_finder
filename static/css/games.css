@@ -22,7 +22,15 @@ ul.mech-list > li{
     width: 20em;
 }
 
+.card.game-list-size{
+    height: 40em;
+    width: 20em;
+    margin-left: 15px;
+    
+}
+
 .card .card-image{
     height: 20em;
     overflow: hidden;
 }
+

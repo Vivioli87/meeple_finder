@@ -3,7 +3,9 @@ $(document).ready(function(){
     $('.sidenav').sidenav({edge: "right"});
 
   /*dropdowns on forms */
-      $('select').formSelect();
+    $('select').formSelect();
+  /*tool tip helpers */
+    $('.tooltipped').tooltip();
   });
 
   /* tags - need to change data if using */

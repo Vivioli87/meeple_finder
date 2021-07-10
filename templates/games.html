@@ -31,35 +31,28 @@
         </div>
     {% endif %}
 
-<div class="row">
-    <div class="col s12">
-        <h3 class="custom-teal-text">Games List:</h3>
-        
+    <h3 class="custom-teal-text padding underline">Games List:</h3>
+    <div class="row">
         {% for game in games %}
-            <div class="col s12 m6 l4">
-                <div class="card horizontal">
-                <div class="card-image">
-                    <img src="{{game.image}}">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <h4 class="header custom-teal-text">{{game.name|capitalize}}</h4>
-                        <p>{{game.description}}</p>
-                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
+            <div class="col s12 m4 l3">
+                <div class="card game-list-size">
+                    <div class="card-image">
+                        <img src="{{game.image}}">
                     </div>
-                    <div class="card-action">
-                    <a href="#" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Add to Collection </a>
-                    <br>
-                    <a href="#" class="teal-text darken-2"><i class="fas fa-heart"></i>  Add to Wishlist</a>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h5 class="custom-teal-text underline">{{game.name|upper}}</h5>
+                            <p>{{game.description|truncate(120)}}</p>
+                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Add to Collection </a>
+                            <br>
+                            <a href="#" class="teal-text darken-2"><i class="fas fa-heart"></i>  Add to Wishlist</a>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             {% endfor %}
-
     </div>
-
-  </div>
-    
-    
 {% endblock %}
