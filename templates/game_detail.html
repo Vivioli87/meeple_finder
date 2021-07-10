@@ -14,19 +14,23 @@
 
         <div class="col s9 center-align custom-teal-text">
 
-            <h2>{{game.name}}</h2>
+            <h2>{{game.name|capitalize}}</h2>
             <p>{{game.description}}</p>
             <ul>
-                <li>Publisher: {{game.publisher}}</li>
-                <li>Type: {{game.type}}</li>
+                <li>Publisher: {{game.publisher|capitalize}}</li>
+                <li>Type: {{game.type|capitalize}}</li>
                 <li>Age: {{game.age}} +</li>
-                <li>Number of players: {{game.player_count.min_player}} to {{game.player_count.max_player}}</li>
-                <li>Playing time: {{game.playing_time}}</li>
+                    {% if game.min_player == game.max_player %}
+                        <li>Number of players: {{game.min_player}}</li>
+                    {% else %}
+                        <li>Number of players: {{game.min_player}} to {{game.max_player}}</li>
+                    {% endif %}
+                <li>Playing time: {{game.playing_time|capitalize}}</li>
             </ul>
             <h4>Game Mechanisms:</h4>
             <ul class="mech-list">
                 {% for mech in game.mechanisms %}
-                    <li> {{mech}} </li>
+                    <li> {{mech|capitalize}} </li>
                 {% endfor %}
             </ul>
         </div>

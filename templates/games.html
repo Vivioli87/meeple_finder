@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <h4 class="header custom-teal-text">{{game.name}}</h4>
+                        <h4 class="header custom-teal-text">{{game.name|capitalize}}</h4>
                         <p>{{game.description}}</p>
                         <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
                     </div>

@@ -36,23 +36,22 @@ def get_game_detail(game_id):
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
-        player_count = {
-                "min_player": request.form.get("min_player"),
-                "max_player": request.form.get("max_player")
-            },
         game = {
             "name": request.form.get("name"),
             "description": request.form.get("description"),
-            "image": "null",
+            "image": "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg",
             "publisher": request.form.get("publisher"),
             "type": request.form.get("type"),
-            "player_count":player_count,
+            "min_player": request.form.get("min_player"),
+            "max_player": request.form.get("max_player"),
             "age": request.form.get("age"),
+            "playing_time": request.form.get("playing_time"),
             "mechanisms": []
             }
         mongo.db.games.insert_one(game)
         flash("Game Successfully Added")
-        return render_template("games.html")
+        games = mongo.db.games.find()
+        return render_template("games.html", games=games)
 
     return render_template("add_game.html")
 

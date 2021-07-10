@@ -1,10 +1,10 @@
-.game-detail-image {
+.game-detail-image{
     max-width: 100%;
     height: auto;
     margin-top: 50px;
 }
 
-ul.mech-list > li {
+ul.mech-list > li{
     display: block;
     border-color: darkgray;
     border-style: solid;
