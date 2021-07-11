@@ -36,7 +36,6 @@ def get_game_detail(game_id):
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
-        mechanisms = M.Chips
         game = {
             "name": request.form.get("name"),
             "description": request.form.get("description"),
@@ -121,12 +120,17 @@ def profile(username):
     # ...and immediately drop password from result object for security
     del profile["password"]
 
+    games = mongo.db.games.find(
+                {"image" : "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg"} )
+
     if session["user"]:
         return render_template("profile.html",
                                 username=profile["username"],
                                 collection=profile["my_collection"],
-                                wishlist=profile["my_wishlist"]
+                                wishlist=profile["my_wishlist"],
+                                games=games
                                 )
+                
 
     return redirect(url_for("login"))
 
