@@ -36,6 +36,7 @@ def get_game_detail(game_id):
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
+        mechanisms = M.Chips
         game = {
             "name": request.form.get("name"),
             "description": request.form.get("description"),
@@ -46,7 +47,7 @@ def add_game():
             "max_player": request.form.get("max_player"),
             "age": request.form.get("age"),
             "playing_time": request.form.get("playing_time"),
-            "mechanisms": []
+            # "mechanisms": request.form.getlist("mechanisms")
             }
         mongo.db.games.insert_one(game)
         flash("Game Successfully Added")
@@ -68,12 +69,18 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "my_collection": [],
+            "my_wishlist": []
         }
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
+        return redirect(url_for(
+            "profile", username=session["user"]))
+
+
     return render_template("register.html")
 
 

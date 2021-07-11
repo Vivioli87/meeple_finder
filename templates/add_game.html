@@ -33,7 +33,7 @@
                     <label for="publisher">Publisher:</label>
                 </div>
             </div>
-            <!-- type -->
+            <!-- board game type -->
             <div class="row">
                 <div class="input-field col s12">
                     <select id="type" name="type">
@@ -54,6 +54,7 @@
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
+                      <option value="5">5</option>
                     </select>
                     <label for="min_player">Minimun Player(s)</label>
                 </div>
@@ -95,6 +96,15 @@
                 </div>
                 <p class="custom-teal-text"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
             </div>
+            <!--mechanisms - tags -->
+            <div class="row custom-teal-text">
+                <h7>Game Mechanisms</h7>
+                <p><em>*All available game mechanisms have been pre-populated, click close to remove non-applicable mechanisms for the game. You can also type your own if any are missing!</em></p>
+            
+                <div id="mechanisms" name="mechanisms" class="chips chips-initial"> 
+                </div>
+            </div>
+
             <!--submit button -->
             <div class="row">
                 <div class="col s12 center-align">
@@ -105,5 +115,8 @@
             </div>
         </form>
     </div>
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/tags.js') }}"></script>
+    {% endblock %}
 
 {% endblock %}
