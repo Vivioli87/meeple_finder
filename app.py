@@ -120,6 +120,7 @@ def profile(username):
     # ...and immediately drop password from result object for security
     del profile["password"]
 
+    # finds all games with the 'coming soon' image for admin profile
     games = mongo.db.games.find(
                 {"image" : "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg"} )
 
