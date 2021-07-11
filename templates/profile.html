@@ -14,38 +14,46 @@
         </div>
     </div>
 
-    <div class="row">
-        <h4 class="custom-teal-text underline padding">My Collection:</h4>
-        {% for game in collection %}
-            <div class="col s12 m6 l4">
-                <div class="card profile-size">
-                    <div class="card-image">
-                        <img src="{{game.image}}">
-                    </div>
-                    <div class="card-content custom-teal-text">
-                        <span class="card-title">{{game.name}}</span>
-                        <p>Added to Collection: {{game.date_added}}</p>
+    <div class="row custom-teal-text">
+        <h4 class="underline padding">My Collection:</h4>
+        {% if game is defined %}
+            {% for game in collection %}
+                <div class="col s12 m6 l4">
+                    <div class="card profile-size">
+                        <div class="card-image">
+                            <img src="{{game.image}}">
+                        </div>
+                        <div class="card-content custom-teal-text">
+                            <span class="card-title">{{game.name}}</span>
+                            <p>Added to Collection: {{game.date_added}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h6 class="center-align">Oh dear, your games collection is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your collection</h6>
+        {% endif %}
     </div>   
     <br>
-    <div class="row">
-        <h4 class="custom-teal-text underline padding">My Wishlist:</h4>
-        {% for game in wishlist %}
-            <div class="col s12 m6 l4">
-                <div class="card profile-size">
-                    <div class="card-image">
-                        <img src="{{game.image}}">
-                    </div>
-                    <div class="card-content custom-teal-text">
-                        <span class="card-title">{{game.name}}</span>
-                        <p>Added to Collection: {{game.date_added}}</p>
+    <div class="row custom-teal-text">
+        <h4 class="underline padding">My Wishlist:</h4>
+        {% if game is defined %}
+            {% for game in wishlist %}
+                <div class="col s12 m6 l4">
+                    <div class="card profile-size">
+                        <div class="card-image">
+                            <img src="{{game.image}}">
+                        </div>
+                        <div class="card-content custom-teal-text">
+                            <span class="card-title">{{game.name}}</span>
+                            <p>Added to Wishlist: {{game.date_added}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h6 class="center-align">Oh dear, your games wishlist is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your wishlist</h6>
+        {% endif %}
     </div>
 
 {% endblock %}
