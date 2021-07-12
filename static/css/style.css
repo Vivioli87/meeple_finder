@@ -60,6 +60,21 @@ a.brand-logo {
     color: #006d77;
 }
 
+.tags > label{
+
+    color: #006d77;
+    margin-right: 40px;
+}
+
+.tags > h6 {
+    margin-bottom: 20px;
+}
+
+.tags{
+    margin-bottom: 20px;
+}
+
+
 /*media queries*/
 
 @media only screen and (max-width: 992px){

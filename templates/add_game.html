@@ -22,7 +22,7 @@
                 <div class="input-field col s12">
                     <textarea id="description" name="description" minlength="5" 
                         maxlength="300" class="materialize-textarea validate" required></textarea>
-                    <label for="description">Description</label>
+                    <label for="description">Description:</label>
                 </div>
             </div>
             <!-- publisher -->
@@ -42,7 +42,7 @@
                       <option value="base expansion">Expansion (requires base game to play)</option>
                       <option value="standalone expansion">Standalone Expansion</option>
                     </select>
-                    <label for="type">Game Type</label>
+                    <label for="type">Game Type:</label>
                 </div>
             </div>
             <!--player count - 2 dropdowns: min-player & max_player -->
@@ -56,7 +56,7 @@
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
-                    <label for="min_player">Minimun Player(s)</label>
+                    <label for="min_player">Minimun Player(s):</label>
                 </div>
                 <div class="input-field col s6">
                     <select id="max_player" name="max_player">
@@ -71,7 +71,7 @@
                         <option value="8">8</option>
                         <option value="+">No maximum</option>
                     </select>
-                    <label for="max_player">Maximum Player(s)</label>
+                    <label for="max_player">Maximum Player(s):</label>
                 </div>
             </div>
                 <p class="custom-teal-text"><em>*if minimum & maximum player is the same, please select the same numbers for both 
@@ -85,7 +85,7 @@
                         <option value="medium">Medium: 1-2 hours</option>
                         <option value="long">Long: More than 2 hours</option>
                     </select>
-                    <label for="playing_time">Playing Time</label>
+                    <label for="playing_time">Playing Time:</label>
                 </div>
             </div>
             <!--playing age -->
@@ -97,14 +97,26 @@
                 <p class="custom-teal-text"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
             </div>
             <!--mechanisms - tags -->
-            <div class="row custom-teal-text">
-                <h7>Game Mechanisms</h7>
-                <p><em>*All available game mechanisms have been pre-populated, click close to remove non-applicable mechanisms for the game. You can also type your own if any are missing!</em></p>
-            
-                <div id="mechanisms" name="mechanisms" class="chips chips-initial"> 
-                </div>
+            <div class="custom-teal-text tags">
+                <h6 class="underline">Mechanisms:</h6>
+                {% for mech in mechanisms %}
+                    <label for="mech{{loop.index}}">
+                        <input type="checkbox" class="filled-in" id="mech{{loop.index}}" name="mechanisms" value="{{mech.name}}"/>
+                        <span>{{mech.name|capitalize}}</span>
+                    </label>
+                {% endfor %}
             </div>
-
+            <!--themes - tags -->
+            <div class="custom-teal-text tags">
+                <h6 class="underline">Themes:</h6>
+                {% for theme in themes %}
+                <label for="theme{{loop.index}}">
+                    <input type="checkbox" class="filled-in" id="theme{{loop.index}}" name="themes" value="{{theme.name}}"/>
+                    <span>{{theme.name|capitalize}}</span>
+                </label>
+                {% endfor %}
+            </div>
+            <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
             <!--submit button -->
             <div class="row">
                 <div class="col s12 center-align">
@@ -115,8 +127,4 @@
             </div>
         </form>
     </div>
-    {% block scripts %}
-    <script src="{{ url_for('static', filename='js/tags.js') }}"></script>
-    {% endblock %}
-
 {% endblock %}

@@ -46,14 +46,20 @@ def add_game():
             "max_player": request.form.get("max_player"),
             "age": request.form.get("age"),
             "playing_time": request.form.get("playing_time"),
-            # "mechanisms": request.form.getlist("mechanisms")
+            "mechanisms": request.form.getlist("mechanisms"),
+            "themes": request.form.getlist("themes")
             }
+
         mongo.db.games.insert_one(game)
         flash("Game Successfully Added")
         games = mongo.db.games.find()
         return render_template("games.html", games=games)
-
-    return render_template("add_game.html")
+    else:
+        mechanisms = mongo.db.tags.find({"use":"mechanisms"})
+        themes = mongo.db.tags.find({"use":"themes"})
+        return render_template("add_game.html",
+                                mechanisms=mechanisms,
+                                themes=themes)  
 
 
 @app.route("/register", methods=["GET", "POST"])
