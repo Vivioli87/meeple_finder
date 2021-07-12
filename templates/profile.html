@@ -25,7 +25,7 @@
                         </div>
                         <div class="card-content custom-teal-text">
                             <span class="card-title">{{game.name}}</span>
-                            <a href="#"> Update game information</a>
+                            <a href="{{ url_for('edit_game', game_id=game._id) }}"> Update game information</a>
                         </div>
                     </div>
                 </div>

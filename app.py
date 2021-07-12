@@ -22,8 +22,14 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_games")
 def get_games():
+    # grab the session user's profile from db...
+    profile = mongo.db.users.find_one({"username": session["user"]})
+    # ...and immediately drop password from result object for security
+    del profile["password"]
+
     games = mongo.db.games.find()
-    return render_template("games.html", games=games)
+    return render_template("games.html", games=games,
+                            username=profile["username"])
 
 
 @app.route("/get_game_detail/<game_id>")
@@ -39,7 +45,8 @@ def add_game():
         game = {
             "name": request.form.get("name"),
             "description": request.form.get("description"),
-            "image": "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg",
+            "image":
+            "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg",
             "publisher": request.form.get("publisher"),
             "type": request.form.get("type"),
             "min_player": request.form.get("min_player"),
@@ -52,14 +59,43 @@ def add_game():
 
         mongo.db.games.insert_one(game)
         flash("Game Successfully Added")
-        games = mongo.db.games.find()
-        return render_template("games.html", games=games)
-    else:
-        mechanisms = mongo.db.tags.find({"use":"mechanisms"})
-        themes = mongo.db.tags.find({"use":"themes"})
-        return render_template("add_game.html",
-                                mechanisms=mechanisms,
-                                themes=themes)  
+        return redirect(url_for("get_games"))
+
+    mechanisms = mongo.db.tags.find({"use": "mechanisms"}).sort("name", 1)
+    themes = mongo.db.tags.find({"use": "themes"}).sort("name", 1)
+    return render_template("add_game.html",
+                            mechanisms=mechanisms,
+                            themes=themes)
+
+
+@app.route("/edit_game/<game_id>", methods=["GET", "POST"])
+def edit_game(game_id):
+
+    if request.method == "POST":
+        submit = {
+            "name": request.form.get("name"),
+            "description": request.form.get("description"),
+            "image": request.form.get("image"),
+            "publisher": request.form.get("publisher"),
+            "type": request.form.get("type"),
+            "min_player": request.form.get("min_player"),
+            "max_player": request.form.get("max_player"),
+            "age": request.form.get("age"),
+            "playing_time": request.form.get("playing_time"),
+            "mechanisms": request.form.getlist("mechanisms"),
+            "themes": request.form.getlist("themes")
+            }
+
+        mongo.db.games.update({"_id": ObjectId(game_id)}, submit)
+        flash("Game Succesfully Updated")
+        return redirect(url_for("get_games"))
+
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+    mechanisms = mongo.db.tags.find({"use": "mechanisms"}).sort("name", 1)
+    themes = mongo.db.tags.find({"use": "themes"}).sort("name", 1)
+    return render_template("edit_game.html", game=game,
+                            mechanisms=mechanisms,
+                            themes=themes)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -84,7 +120,6 @@ def register():
         flash("Registration Successful")
         return redirect(url_for(
             "profile", username=session["user"]))
-
 
     return render_template("register.html")
 
@@ -128,16 +163,16 @@ def profile(username):
 
     # finds all games with the 'coming soon' image for admin profile
     games = mongo.db.games.find(
-                {"image" : "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg"} )
+                {"image":
+                ("https://www.logolynx.com/images/logolynx/",
+                "s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg")})
 
     if session["user"]:
         return render_template("profile.html",
                                 username=profile["username"],
                                 collection=profile["my_collection"],
                                 wishlist=profile["my_wishlist"],
-                                games=games
-                                )
-                
+                                games=games)
 
     return redirect(url_for("login"))
 
@@ -148,7 +183,6 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
-
 
 
 if __name__ == "__main__":
