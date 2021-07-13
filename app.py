@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date
 
 if os.path.exists("env.py"):
     import env
@@ -16,6 +17,8 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+TODAY = date.today().strftime("%d/%m/%y")
 
 
 # create a new landing page but for now use games list page
@@ -186,6 +189,40 @@ def profile(username):
                                games=games)
 
     return redirect(url_for("login"))
+
+
+@app.route("/add_to_collection/<game_id>")
+def add_to_collection(game_id):
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+
+    details = {
+        "id": game["_id"],
+        "image": game["image"],
+        "name": game["name"],
+        "date_added": TODAY
+        }
+
+    mongo.db.users.update_one({"username": session["user"]},
+                            {"$push": {"my_collection": details}})
+    flash("Game successfully added to your collection")
+    return redirect(url_for("get_games"))
+
+
+@app.route("/add_to_wishlist/<game_id>")
+def add_to_wishlist(game_id):
+    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+
+    details = {
+        "id": game["_id"],
+        "image": game["image"],
+        "name": game["name"],
+        "date_added": TODAY
+        }
+
+    mongo.db.users.update_one({"username": session["user"]},
+                            {"$push": {"my_wishlist": details}})
+    flash("Game successfully added to your wishlist")
+    return redirect(url_for("get_games"))
 
 
 @app.route("/logout")

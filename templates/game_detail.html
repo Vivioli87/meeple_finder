@@ -16,9 +16,16 @@
             {% endif %}
             <br>
             <h4 class="underline">Game Mechanisms:</h4>
-            <ul class="mech-list">
+            <ul class="tag-list">
                 {% for mech in game.mechanisms %}
                     <li> {{mech|capitalize}} </li>
+                {% endfor %}
+            </ul>
+            <br>
+            <h4 class="underline">Game Themes:</h4>
+            <ul class="tag-list">
+                {% for theme in game.themes %}
+                    <li> {{theme|capitalize}} </li>
                 {% endfor %}
             </ul>
         </div>
