@@ -108,7 +108,7 @@
                 <h6 class="underline">Mechanisms:</h6>
                 {% for mech in mechanisms %}
                         <label for="mech{{loop.index}}">
-                            <input type="checkbox" class="filled-in" id="mech{{loop.index}}" name="mechanisms" value="{{mech.name}}"/>
+                            <input type="checkbox" class="filled-in" id="mech{{loop.index}}" name="mechanisms" value="{{mech.name}}" {% if mech.selected %} checked="checked" {% endif %} />
                             <span>{{mech.name|capitalize}}</span>
                         </label>
                 {% endfor %}
@@ -118,7 +118,7 @@
                 <h6 class="underline">Themes:</h6>
                 {% for theme in themes %}
                 <label for="theme{{loop.index}}">
-                    <input type="checkbox" class="filled-in" id="theme{{loop.index}}" name="themes" value="{{theme.name}}"/>
+                    <input type="checkbox" class="filled-in" id="theme{{loop.index}}" name="themes" value="{{theme.name}}" {% if theme.selected %} checked="checked" {% endif %}/>
                     <span>{{theme.name|capitalize}}</span>
                 </label>
                 {% endfor %}

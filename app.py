@@ -29,7 +29,7 @@ def get_games():
 
     games = mongo.db.games.find()
     return render_template("games.html", games=games,
-                            username=profile["username"])
+                           username=profile["username"])
 
 
 @app.route("/get_game_detail/<game_id>")
@@ -45,8 +45,7 @@ def add_game():
         game = {
             "name": request.form.get("name"),
             "description": request.form.get("description"),
-            "image":
-            "https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg",
+            "image": "",
             "publisher": request.form.get("publisher"),
             "type": request.form.get("type"),
             "min_player": request.form.get("min_player"),
@@ -64,8 +63,8 @@ def add_game():
     mechanisms = mongo.db.tags.find({"use": "mechanisms"}).sort("name", 1)
     themes = mongo.db.tags.find({"use": "themes"}).sort("name", 1)
     return render_template("add_game.html",
-                            mechanisms=mechanisms,
-                            themes=themes)
+                           mechanisms=mechanisms,
+                           themes=themes)
 
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
@@ -91,11 +90,25 @@ def edit_game(game_id):
         return redirect(url_for("get_games"))
 
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    mechanisms = mongo.db.tags.find({"use": "mechanisms"}).sort("name", 1)
-    themes = mongo.db.tags.find({"use": "themes"}).sort("name", 1)
+    mechanisms = list(mongo.db.tags.find(
+                                        {"use": "mechanisms"}).sort("name", 1))
+    themes = list(mongo.db.tags.find({"use": "themes"}).sort("name", 1))
+
+    # iterate through list of all mechanisms,
+    # set selected if in game's mechanism list
+    for mech in mechanisms:
+        if mech["name"] in game["mechanisms"]:
+            mech["selected"] = True
+
+    # iterate through list of all themes,
+    # set selected if in game's themes list
+    for theme in themes:
+        if theme["name"] in game["themes"]:
+            theme["selected"] = True
+
     return render_template("edit_game.html", game=game,
-                            mechanisms=mechanisms,
-                            themes=themes)
+                           mechanisms=mechanisms,
+                           themes=themes)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -133,13 +146,12 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("profile",
+                                        username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -161,18 +173,16 @@ def profile(username):
     # ...and immediately drop password from result object for security
     del profile["password"]
 
-    # finds all games with the 'coming soon' image for admin profile
-    games = mongo.db.games.find(
-                {"image":
-                ("https://www.logolynx.com/images/logolynx/",
-                "s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg")})
+    # finds all games with no explicit image
+    # (the 'coming soon' image) for admin profile
+    games = mongo.db.games.find({"image": ""})
 
     if session["user"]:
         return render_template("profile.html",
-                                username=profile["username"],
-                                collection=profile["my_collection"],
-                                wishlist=profile["my_wishlist"],
-                                games=games)
+                               username=profile["username"],
+                               collection=profile["my_collection"],
+                               wishlist=profile["my_wishlist"],
+                               games=games)
 
     return redirect(url_for("login"))
 
