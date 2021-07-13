@@ -9,7 +9,11 @@
     <div class="row custom-teal-text">
 
         <div class="col s3">
-            <img class="game-detail-image" src="{{game.image}}">
+            {% if game.image == "" %}
+                <img class="game-detail-image" src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+            {% else %}
+                <img class="game-detail-image" src="{{game.image}}">
+            {% endif %}
             <br>
             <h4 class="underline">Game Mechanisms:</h4>
             <ul class="mech-list">
