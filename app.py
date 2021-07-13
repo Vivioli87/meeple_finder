@@ -111,6 +111,13 @@ def edit_game(game_id):
                            themes=themes)
 
 
+@app.route("/delete_game/<game_id>")
+def delete_game(game_id):
+    mongo.db.games.remove({"_id": ObjectId(game_id)})
+    flash("Game Successfully Deleted")
+    return redirect(url_for("get_games"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
