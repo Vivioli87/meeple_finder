@@ -24,9 +24,10 @@
                             <div class="card-image">
                                 <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
                             </div>
-                            <div class="card-content custom-teal-text">
+                            <div class="card-content">
                                 <span class="card-title">{{game.name}}</span>
-                                <a href="{{ url_for('edit_game', game_id=game._id) }}"> Update game information</a>
+                                <a href="{{ url_for('edit_game', game_id=game._id) }}"> Update game information</a><br>
+                                <a class="red-text" href="{{ url_for('delete_game', game_id=game._id) }}"> Delete game</a>
                             </div>
                         </div>
                     </div>
