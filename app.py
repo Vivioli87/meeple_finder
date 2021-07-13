@@ -22,14 +22,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_games")
 def get_games():
-    # grab the session user's profile from db...
-    profile = mongo.db.users.find_one({"username": session["user"]})
-    # ...and immediately drop password from result object for security
-    del profile["password"]
-
     games = mongo.db.games.find()
-    return render_template("games.html", games=games,
-                           username=profile["username"])
+    return render_template("games.html", games=games)
 
 
 @app.route("/get_game_detail/<game_id>")
