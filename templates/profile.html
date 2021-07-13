@@ -38,7 +38,7 @@
         <div class="row custom-teal-text">
             <h4 class="underline padding">My Collection:</h4>
             <!--checks if collection array has values-->
-            {% if collection is defined %}
+            {% if collection|length > 0 %}
                 {% for game in collection %}
                     <div class="col s12 m6 l4">
                         <div class="card profile-size">
@@ -61,7 +61,7 @@
         <div class="row custom-teal-text">
             <h4 class="underline padding">My Wishlist:</h4>
             <!--checks if wishlist array has values-->
-            {% if wishlist is defined %}
+            {% if wishlist|length > 0 %}
                 {% for game in wishlist %}
                     <div class="col s12 m6 l4">
                         <div class="card profile-size">
