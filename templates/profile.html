@@ -18,24 +18,26 @@
         <div class="row custom-teal-text">
             <h4 class="underline padding">New games recently added:</h4>
             {% for game in games %}
-                <div class="col s12 m6 l4">
-                    <div class="card profile-size">
-                        <div class="card-image">
-                            <img src="{{game.image}}">
-                        </div>
-                        <div class="card-content custom-teal-text">
-                            <span class="card-title">{{game.name}}</span>
-                            <a href="{{ url_for('edit_game', game_id=game._id) }}"> Update game information</a>
+                {% if game.image == "" %}
+                    <div class="col s12 m6 l4">
+                        <div class="card profile-size">
+                            <div class="card-image">
+                                <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                            </div>
+                            <div class="card-content custom-teal-text">
+                                <span class="card-title">{{game.name}}</span>
+                                <a href="{{ url_for('edit_game', game_id=game._id) }}"> Update game information</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     {% else %}
         <div class="row custom-teal-text">
             <h4 class="underline padding">My Collection:</h4>
             <!--checks if collection array has values-->
-            {% if game is defined %}
+            {% if collection is defined %}
                 {% for game in collection %}
                     <div class="col s12 m6 l4">
                         <div class="card profile-size">
@@ -58,7 +60,7 @@
         <div class="row custom-teal-text">
             <h4 class="underline padding">My Wishlist:</h4>
             <!--checks if wishlist array has values-->
-            {% if game is defined %}
+            {% if wishlist is defined %}
                 {% for game in wishlist %}
                     <div class="col s12 m6 l4">
                         <div class="card profile-size">

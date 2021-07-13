@@ -37,7 +37,11 @@
             <div class="col s12 m4 l3">
                 <div class="card game-list-size">
                     <div class="card-image">
-                        <img src="{{game.image}}">
+                        {% if game.image == "" %}
+                            <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                        {% else %}
+                            <img src="{{game.image}}">
+                        {% endif %}
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
