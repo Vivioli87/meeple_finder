@@ -26,7 +26,10 @@ TODAY = date.today().strftime("%d/%m/%y")
 @app.route("/get_games")
 def get_games():
     games = mongo.db.games.find()
-    return render_template("games.html", games=games)
+    username = session["user"]
+    return render_template("games.html", 
+                           games=games,
+                           username=username)
 
 
 @app.route("/get_game_detail/<game_id>")
@@ -86,6 +89,7 @@ def edit_game(game_id):
         flash("Game Succesfully Updated")
         return redirect(url_for("get_games"))
 
+    username = session["user"]
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     mechanisms = list(mongo.db.tags.find(
                                         {"use": "mechanisms"}).sort("name", 1))
@@ -105,7 +109,8 @@ def edit_game(game_id):
 
     return render_template("edit_game.html", game=game,
                            mechanisms=mechanisms,
-                           themes=themes)
+                           themes=themes,
+                           username=username)
 
 
 @app.route("/delete_game/<game_id>")

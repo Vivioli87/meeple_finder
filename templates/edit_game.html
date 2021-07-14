@@ -124,12 +124,36 @@
                 {% endfor %}
             </div>
             <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
-            <!--submit button -->
+            
             <div class="row">
+                <!-- cancel button-->
                 <div class="col s12 center-align">
+                    <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                        Cancel<i class="fas fa-undo right"></i>
+                    </a>
+                    <!--Delete button with "are you sure?" modal - admin only -->
+                    {% if username == "admin" %}
+                        <a href="#modal1" class="btn-large red accent-2 text-shadow modal-trigger">
+                            Delete<i class="fas fa-trash right"></i>
+                        </a>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content custom-teal-text">
+                                <h4>Delete {{game.name|capitalize}}?</h4>
+                                <p class="center-align">Are you sure you want to delete <strong>{{game.name|capitalize}}</strong>?<br>
+                                    <em>*This cannot be undone!!</em>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
+                                <a href="{{ url_for('delete_game', game_id=game._id) }}" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <!--submit button -->
                     <button type="submit" class="btn-large teal text-shadow">
-                        Edit Game <i class="fas fa-plus-square right"></i>
+                        Update<i class="fas fa-edit right"></i>
                     </button>
+                    <!--Delete button with "are you sure?" modal - admin only -->
                 </div>
             </div>
         </form>

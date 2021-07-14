@@ -37,9 +37,11 @@
             <ul>
                 <li>Publisher: {{game.publisher|capitalize}}</li>
                 <li>Type: {{game.type|capitalize}}</li>
-                <li>Age: {{game.age}} +</li>
+                <li>Age: {{game.age}} and up</li>
                     {% if game.min_player == game.max_player %}
                         <li>Number of players: {{game.min_player}}</li>
+                    {% elif game.max_player == "+" %}
+                        <li>Number of players: {{game.min_player}} or more</li>
                     {% else %}
                         <li>Number of players: {{game.min_player}} to {{game.max_player}}</li>
                     {% endif %}

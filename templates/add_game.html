@@ -117,9 +117,12 @@
                 {% endfor %}
             </div>
             <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
-            <!--submit button -->
+            <!--submit/cancel buttons -->
             <div class="row">
                 <div class="col s12 center-align">
+                    <a href="{{ url_for('get_games') }}" class="btn-large red accent-2 text-shadow">
+                        Cancel<i class="fas fa-times-circle right"></i>
+                    </a>
                     <button type="submit" class="btn-large teal text-shadow">
                         Add Game <i class="fas fa-plus-square right"></i>
                     </button>
