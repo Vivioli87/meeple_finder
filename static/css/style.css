@@ -2,7 +2,7 @@
 
 /* base template/general styling*/
 body {
-    background-color: #0d636b24;
+    background-color: #dce8ea;
     font-family: 'Lato', sans-serif;
 }
 
@@ -32,6 +32,14 @@ a.brand-logo {
     font-size: 2rem;
     font-family: 'Merriweather', serif;
     letter-spacing: 1.5px;
+}
+
+a.brand-logo > img {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    vertical-align: middle;
+    padding: 8px;
 }
 
 .card-panel {
