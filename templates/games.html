@@ -5,31 +5,15 @@
 {% endblock %}
 
 {% block content %}
-
-<!--Home page message, more detailed if not logged in-->
-    {% if session.user %}
-        <div class="row">
-            <div class="col s12">
-                <div class="card-panel custom-teal-text center-align">
-                    <h2 class="welcome-text">Welcome to Meeple Finder</h2>
-                    <h4 class="welcome-text">Where meeting Meeples is easy....</h4>
-                </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel custom-teal-text center-align">
+                <h2 class="welcome-text">Welcome to Meeple Finder</h2>
+                <h4 class="welcome-text">Where meeting Meeples is easy....</h4>
+                <p>Add games to your collection, leave reviews on your favourties or find new games to add to your board game wishlist!</p>
             </div>
         </div>
-    {% else %}
-        <div class="row">
-            <div class="col s12">
-                <div class="card-panel custom-teal-text center-align">
-                    <h2 class="welcome-text">Welcome to Meeple Finder</h2>
-                    <h4 class="welcome-text">Where meeting Meeples is easy....</h4>
-                    <br>    
-                    <p>Meeple finder is an online community for board game enthusiasts</p>
-                    <p><a href="{{ url_for('register') }}" class="custom-teal-text underline"><strong>Register</strong></a> to be able to join the community and review your favourtie games, add your favourite games to your own personalised collection or add games you would like to purchase to a wishlist.</p>
-                    <p>Already Registered? <a href="{{ url_for('login') }}" class="custom-teal-text underline"><strong>Log In</strong></a></p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+    </div>
 
     <h3 class="custom-teal-text padding underline">Games List:</h3>
     <div class="row">

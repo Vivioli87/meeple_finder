@@ -21,8 +21,15 @@ mongo = PyMongo(app)
 TODAY = date.today().strftime("%d/%m/%y")
 
 
-# create a new landing page but for now use games list page
+# home/game page for users not logged in
 @app.route("/")
+@app.route("/games_non_user")
+def games_non_user():
+    games = mongo.db.games.find()
+    return render_template("games_non_user.html", games=games)
+
+
+# home/game page for users logged in
 @app.route("/get_games")
 def get_games():
     games = mongo.db.games.find()
