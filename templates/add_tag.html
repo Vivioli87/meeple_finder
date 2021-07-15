@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h4 class="custom-teal-text underline padding">Add a Tag:</h4>
+
+    <div class="row custom-form-container">
+        <form class="col s8 offset-s2" method="POST" action="{{url_for('add_tag') }}">
+            <!--tag name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="name" name="name" type="text" 
+                        maxlength="50" class="validate" required></input>
+                    <label for="name">Tag name:</label>
+                </div>
+            </div>
+            <!--tag use -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="use" name="use">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="mechanisms">Mechanisms</option>
+                        <option value="themes">Themes</option>
+                    </select>
+                    <label for="use">Tag use:</label>
+                </div>
+            </div>
+            <!--tag description -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="description" name="description" minlength="5" 
+                        maxlength="300" class="materialize-textarea validate" required></textarea>
+                    <label for="description">Description:</label>
+                </div>
+            </div>
+        
+    
+                <div class="col s12 center-align">
+                     <!--cancel button -->
+                     <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                        Cancel<i class="fas fa-arrow-circle-left right"></i>
+                    </a>
+                     <!--Reset form-->
+                     <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                        Reset<i class="fas fa-undo right"></i>
+                    </a>
+                     <!--submit button -->
+                    <button type="submit" class="btn-large teal text-shadow">
+                        Add Tag<i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

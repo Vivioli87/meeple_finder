@@ -27,7 +27,7 @@ TODAY = date.today().strftime("%d/%m/%y")
 def get_games():
     games = mongo.db.games.find()
     username = session["user"]
-    return render_template("games.html", 
+    return render_template("games.html",
                            games=games,
                            username=username)
 
@@ -120,6 +120,22 @@ def delete_game(game_id):
     return redirect(url_for("get_games"))
 
 
+@app.route("/add_tag", methods=["GET", "POST"])
+def add_tag():
+    if request.method == "POST":
+        tag = {
+            "name": request.form.get("name"),
+            "use": request.form.get("use"),
+            "description": request.form.get("description")
+            }
+
+        mongo.db.tags.insert_one(tag)
+        flash("Tag Successfully Added")
+        return redirect(url_for("get_games"))
+
+    return render_template("add_tag.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -208,7 +224,7 @@ def add_to_collection(game_id):
         }
 
     mongo.db.users.update_one({"username": session["user"]},
-                            {"$push": {"my_collection": details}})
+                              {"$push": {"my_collection": details}})
     flash("Game successfully added to your collection")
     return redirect(url_for("get_games"))
 
@@ -225,7 +241,7 @@ def add_to_wishlist(game_id):
         }
 
     mongo.db.users.update_one({"username": session["user"]},
-                            {"$push": {"my_wishlist": details}})
+                              {"$push": {"my_wishlist": details}})
     flash("Game successfully added to your wishlist")
     return redirect(url_for("get_games"))
 
