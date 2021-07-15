@@ -126,10 +126,14 @@
             <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
             
             <div class="row">
-                <!-- cancel button-->
                 <div class="col s12 center-align">
+                    <!-- cancel button-->
                     <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
-                        Cancel<i class="fas fa-undo right"></i>
+                        Cancel<i class="fas fa-arrow-circle-left right"></i>
+                    </a>
+                    <!--Reset form-->
+                    <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                        Reset<i class="fas fa-undo right"></i>
                     </a>
                     <!--Delete button with "are you sure?" modal - admin only -->
                     {% if username == "admin" %}

@@ -9,6 +9,10 @@ function goBack() {
   window.history.back();
 };
 
+/* function to reset forms/refresh page */
+function refreshPage() {
+  window.location.reload();
+};
 
 $(document).ready(function(){
   /*mobile side nav bar */

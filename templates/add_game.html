@@ -4,7 +4,7 @@
     <h4 class="custom-teal-text underline padding">Add Game:</h4>
     <div class="custom-teal-text padding center-align">
         <p>Please include as much detail as possible, the board game box should provide all this detail itself.</p>
-        <p><em>*Any games added will be reviewd and may be edited by admin to include an image and more detail or to correct any inaccurate detail.</em></p>
+        <p><em>*Any games added will be reviewed and may be edited by admin to include an image and more detail or to correct any inaccurate detail.</em></p>
     </div>
 
     <div class="row custom-form-container">
@@ -117,14 +117,19 @@
                 {% endfor %}
             </div>
             <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
-            <!--submit/cancel buttons -->
             <div class="row">
                 <div class="col s12 center-align">
-                    <a href="{{ url_for('get_games') }}" class="btn-large red accent-2 text-shadow">
-                        Cancel<i class="fas fa-times-circle right"></i>
+                     <!--cancel button -->
+                     <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                        Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
+                     <!--Reset form-->
+                     <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                        Reset<i class="fas fa-undo right"></i>
+                    </a>
+                     <!--submit button -->
                     <button type="submit" class="btn-large teal text-shadow">
-                        Add Game <i class="fas fa-plus-square right"></i>
+                        Add Game<i class="fas fa-plus-square right"></i>
                     </button>
                 </div>
             </div>
