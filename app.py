@@ -140,7 +140,11 @@ def add_tag():
         flash("Tag Successfully Added")
         return redirect(url_for("get_games"))
 
-    return render_template("add_tag.html")
+    mechanisms = mongo.db.tags.find({"use": "mechanisms"})
+    themes = mongo.db.tags.find({"use": "themes"})
+    return render_template("add_tag.html",
+                           mechanisms=mechanisms,
+                           themes=themes)
 
 
 @app.route("/register", methods=["GET", "POST"])
