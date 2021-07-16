@@ -46,7 +46,7 @@ def get_game_detail(game_id):
     reviews = mongo.db.reviews.find({"id_of_game": str(game["_id"])})
     if reviews.count() == 0:
         reviews = []
-    return render_template("game_detail.html", 
+    return render_template("game_detail.html",
                            game=game,
                            reviews=reviews)
 
