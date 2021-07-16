@@ -94,6 +94,14 @@ def edit_review(game_id, review_id):
                            review=review)
 
 
+@app.route("/delete_review/<game_id>/<review_id>")
+def delete_review(game_id, review_id):
+    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
+    flash("Review Successfully Deleted")
+    return redirect(url_for('get_game_detail', game_id=game_id))
+
+
+
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
