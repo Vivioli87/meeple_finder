@@ -49,55 +49,40 @@
         <div class="col s12 l6 offset-l1 center-align review">
             <h4 class="underline">Reviews:</h4>
             <div class="row">
+                <div class="col s10 offset-s1">
+                    <a href="{{ url_for('add_review', game_id=game._id) }}" class="btn-large teal text-shadow modal-trigger">
+                        Write a Review<i class="fas fa-pen right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
                 {% if reviews == [] %}
                     <div class="col s10 offset-s1">
                         <p>No reviews have been left yet. Leave your review below!</p>
                     </div>
                 {% else %}
                     {% for review in reviews %}
-                        <div class="col s10 offset-s1">
+                        <div class="col s10 offset-s1 review-border">
                             <p>{{review.review_comments}}</p>
-                            <p>Reviewed by: {{review.created_by|capitalize}} on {{review.created_date}}</p>
+                            <p><strong>Reviewed by: {{review.created_by|capitalize}} on {{review.created_date}}</strong></p>
+                            <!--Edit/Delete Review only by user who created it-->
+                            {% if session["user"] == review.created_by %}
+                            <div class="row">
+                                <div class="col s12">
+                                    <a href="{{url_for('edit_review', game_id=game._id, review_id=review._id) }}" class="btn-small amber text-shadow modal-trigger">
+                                        Edit Review<i class="fas fa-edit right"></i>
+                                    </a>
+                                    <a href="" class="btn-small red accent-2 text-shadow modal-trigger">
+                                        Delete Review<i class="fas fa-trash right"></i>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
-        <!--Add a review-->
-        <div class="col s12 l6 offset-l1 center-align review">
-            <h4 class="underline">Leave a Review for {{game.name|capitalize}}:</h4>
-            <div class="row ">
-                <form action="{{url_for('add_review', game_id=game._id) }}" method="POST">
-                    <!--board game name - prepopulated-->
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                            <input id="name" name="name" type="text" 
-                                 class="validate" value="{{game.name|capitalize}}" required></input>
-                            <label for="name">Name of Board Game:</label>
-                        </div>
-                    </div>
-                    <!--review comments-->
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                        <textarea id="review_comments" name="review_comments" class="materialize-textarea" required></textarea>
-                        <label for="review_comments">Review Comments:</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <!--Reset form-->
-                            <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
-                                Reset<i class="fas fa-undo right"></i>
-                            </a>
-                            <!--submit button -->
-                            <button type="submit" class="btn-large teal text-shadow">
-                                Submit review<i class="fas fa-plus-square right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/games.css') }}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="row custom-teal-text padding">
+        <div class="col s12">
+            <h4 class="underline" >Add a Review for:</h4>
+        </div>
+    </div>
+    <!--Add a review-->
+    <div class="col s12 l6 offset-l1 center-align review">
+        <h4 class="underline">Leave a Review for {{game.name|capitalize}}:</h4>
+        <div class="row ">
+            <form action="{{url_for('add_review', game_id=game._id) }}" method="POST">
+                <!--board game name - prepopulated-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input id="name" name="name" type="text" 
+                                class="validate" value="{{game.name|capitalize}}" required></input>
+                        <label for="name">Name of Board Game:</label>
+                    </div>
+                </div>
+                <!--review comments-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <textarea id="review_comments" name="review_comments" class="materialize-textarea" required></textarea>
+                    <label for="review_comments">Review Comments:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <!--Reset form-->
+                        <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                            Reset<i class="fas fa-undo right"></i>
+                        </a>
+                        <!--submit button -->
+                        <button type="submit" class="btn-large teal text-shadow">
+                            Submit review<i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   
+            
+{% endblock %}

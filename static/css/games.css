@@ -39,6 +39,12 @@ ul.tag-list > li{
     margin-top: 40px;
 }
 
+.review-border{
+    border: 2px solid #006d77;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 #rating{
     align-items: flex-start;
 }
