@@ -60,8 +60,8 @@
                     <!--review comments-->
                     <div class="row">
                         <div class="input-field col s10 offset-s1">
-                        <textarea id="review" name="review" class="materialize-textarea" required></textarea>
-                        <label for="review">Review Comments:</label>
+                        <textarea id="review_comments" name="review_comments" class="materialize-textarea" required></textarea>
+                        <label for="review_comments">Review Comments:</label>
                         </div>
                     </div>
                     <div class="row">
@@ -82,9 +82,18 @@
         <div class="col s12 l6 offset-l1 center-align review">
             <h4 class="underline">Reviews:</h4>
             <div class="row">
-                <div class="col s10 offset-s1">
-
-                </div>
+                {% if reviews|length > 0%}
+                    {% for rev in reviews %}
+                        <div class="col s10 offset-s1">
+                            <p>{{rev.review_comments}}</p>
+                            <p>Reviewed by: {{rev.created_by}} on {{rev.created_date}}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col s10 offset-s1">
+                        <p>No reviews have been left yet. Leave your review!</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
