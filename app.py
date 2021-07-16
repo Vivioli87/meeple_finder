@@ -46,6 +46,25 @@ def get_game_detail(game_id):
     return render_template("game_detail.html", game=game)
 
 
+@app.route("/add_review/<game_id>", methods=["GET", "POST"])
+def add_review(game_id):
+
+    if request.method == "POST":
+        game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+
+        review = {
+            "game_id": game["_id"],
+            "name": request.form.get("name"),
+            "review": request.form.get("review"),
+            "created_by": session["user"],
+            "created_date": TODAY
+        }
+
+        mongo.db.reviews.insert_one(review)
+        flash("Review Successfully Added")
+        return render_template("game_detail.html", game=game)
+
+
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
@@ -138,7 +157,7 @@ def add_tag():
 
         mongo.db.tags.insert_one(tag)
         flash("Tag Successfully Added")
-        return redirect(url_for("get_games"))
+        return redirect(url_for("add_tag"))
 
     mechanisms = mongo.db.tags.find({"use": "mechanisms"})
     themes = mongo.db.tags.find({"use": "themes"})

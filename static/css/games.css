@@ -34,3 +34,16 @@ ul.tag-list > li{
     overflow: hidden;
 }
 
+.review{
+    background-color: #f9e4de;
+    margin-top: 40px;
+}
+
+#rating{
+    align-items: flex-start;
+}
+
+.checked {
+    color: orange;
+}
+
