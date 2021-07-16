@@ -43,7 +43,12 @@ def get_games():
 def get_game_detail(game_id):
 
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    return render_template("game_detail.html", game=game)
+    reviews = mongo.db.reviews.find({"id_of_game": str(game["_id"])})
+    if reviews.count() == 0:
+        reviews = []
+    return render_template("game_detail.html", 
+                           game=game,
+                           reviews=reviews)
 
 
 @app.route("/add_review/<game_id>", methods=["GET", "POST"])
@@ -62,11 +67,6 @@ def add_review(game_id):
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
         return render_template("game_detail.html", game=game)
-
-    reviews = mongo.db.reviews.find({"id_of_game": game._id})
-    return render_template("game_detail.html",
-                           game=game,
-                           reviews=reviews)
 
 
 @app.route("/add_game", methods=["GET", "POST"])

@@ -45,6 +45,25 @@
             </ul>
         </div>
 
+        <!--Reviews-->
+        <div class="col s12 l6 offset-l1 center-align review">
+            <h4 class="underline">Reviews:</h4>
+            <div class="row">
+                {% if reviews|length == 0 %}
+                    <div class="col s10 offset-s1">
+                        <p>No reviews have been left yet. Leave your review below!</p>
+                    </div>
+                {% else %}
+                    {% for review in reviews %}
+                        <div class="col s10 offset-s1">
+                            <p>{{review.review_comments}}</p>
+                            <p>Reviewed by: {{review.created_by|capitalize}} on {{review.created_date}}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <!--Add a review-->
         <div class="col s12 l6 offset-l1 center-align review">
             <h4 class="underline">Leave a Review for {{game.name|capitalize}}:</h4>
             <div class="row ">
@@ -53,7 +72,7 @@
                     <div class="row">
                         <div class="input-field col s10 offset-s1">
                             <input id="name" name="name" type="text" 
-                                 class="validate" value="{{game.name}}" required></input>
+                                 class="validate" value="{{game.name|capitalize}}" required></input>
                             <label for="name">Name of Board Game:</label>
                         </div>
                     </div>
@@ -77,23 +96,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="col s12 l6 offset-l1 center-align review">
-            <h4 class="underline">Reviews:</h4>
-            <div class="row">
-                {% if reviews|length > 0%}
-                    {% for rev in reviews %}
-                        <div class="col s10 offset-s1">
-                            <p>{{rev.review_comments}}</p>
-                            <p>Reviewed by: {{rev.created_by}} on {{rev.created_date}}</p>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="col s10 offset-s1">
-                        <p>No reviews have been left yet. Leave your review!</p>
-                    </div>
-                {% endif %}
             </div>
         </div>
     </div>
