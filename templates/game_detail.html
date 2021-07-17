@@ -30,19 +30,27 @@
             </ul>
             <br>
             <h4 class="underline">Game Mechanisms:</h4>
-            <ul class="tag-list">
-                {% for mech in game.mechanisms %}
-                    <li> {{mech|capitalize}} </li>
-                {% endfor %}
-            </ul>
+            {% if game.mechanisms|count > 0 %}
+                <ul class="tag-list">
+                    {% for mech in game.mechanisms %}
+                        <li> {{mech|capitalize}} </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No tags have been defined for {{game.name|capitalize}}</p>
+            {% endif %}
             <br>
             <br>
             <h4 class="underline">Game Themes:</h4>
-            <ul class="tag-list">
-                {% for theme in game.themes %}
-                    <li> {{theme|capitalize}} </li>
-                {% endfor %}
-            </ul>
+                {% if game.themes|count > 0 %}
+                    <ul class="tag-list">
+                    {% for theme in game.themes %}
+                        <li> {{theme|capitalize}} </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No tags have been defined for {{game.name|capitalize}}</p>
+                {% endif %}
         </div>
 
         <!--Reviews-->
