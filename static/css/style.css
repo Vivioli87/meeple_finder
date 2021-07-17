@@ -64,6 +64,23 @@ a.brand-logo > img {
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);
 }
 
+.table-container-header{
+    background-color: #83c5be;
+    color: #ffffff;
+}
+
+th.table-name{
+    width: 10%;
+}
+
+th.table-desc{
+    width: 75%;
+}
+
+th.table-actions{
+    width: 7.5%;
+}
+
 .custom-form-container{
     background-color: #f9e4de;
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);

@@ -184,8 +184,11 @@ def delete_game(game_id):
 
 @app.route("/tag_list")
 def tag_list():
-    tags = mongo.db.tags.find().sort("use", 1)
-    return render_template("tags.html", tags=tags)
+    mechanisms = mongo.db.tags.find({"use": "mechanisms"})
+    themes = mongo.db.tags.find({"use": "themes"})    
+    return render_template("tags.html",
+                           mechanisms=mechanisms, 
+                           themes=themes)
 
 
 @app.route("/add_tag", methods=["GET", "POST"])
@@ -199,13 +202,33 @@ def add_tag():
 
         mongo.db.tags.insert_one(tag)
         flash("Tag Successfully Added")
-        return redirect(url_for("add_tag"))
+        return redirect(url_for("tag_list"))
 
     mechanisms = mongo.db.tags.find({"use": "mechanisms"})
     themes = mongo.db.tags.find({"use": "themes"})
     return render_template("add_tag.html",
                            mechanisms=mechanisms,
                            themes=themes)
+
+
+@app.route("/edit_tag/<tag_id>", methods=["GET", "POST"])
+def edit_tag(tag_id):
+    tag = mongo.db.tags.find_one({"_id": ObjectId(tag_id)})
+
+    if request.method == "POST":
+        submit = {
+            "name": request.form.get("name"),
+            "use": request.form.get("use"),
+            "description": request.form.get("description")
+        }
+
+        mongo.db.tags.update({"_id": ObjectId(tag_id)}, submit)
+        flash("Tag Successfully Updated")
+        return redirect(url_for('tag_list'))
+
+    return render_template("edit_tag.html", tag=tag)
+
+
 
 
 @app.route("/register", methods=["GET", "POST"])

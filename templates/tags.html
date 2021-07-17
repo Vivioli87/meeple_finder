@@ -8,52 +8,57 @@
     <div class="row custom-teal-text padding">
         <div class="col s12">
             <h4 class="underline" >Tag List:</h4>
-            <p>Glossary of tags</p>
+            <p>Glossary of tags by use</p>
         </div>
     </div>
     <div class="row">
         <div class="col s10 offset-s1">
-            <table class="responsive-table custom-teal-text table-container">
-                <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Use</th>
-                      <th>Description</th>
-                  </tr>
+            <h4 class="underline custom-teal-text">Mechanism Tags:</h4>
+            <table class="custom-teal-text table-container">
+                <thead class="table-container-header text-shadow">
+                    <tr>
+                        <th class="table-name">Name</th>
+                        <th class="table-desc">Description</th>
+                        {% if session["user"] == "admin" %}
+                            <th class="table-actions">Edit Tag</th>
+                            <th class="table-actions">Delete Tag</th>
+                        {% endif %}
+                    </tr>
                 </thead>
         
                 <tbody>
-                    {% for tag in tags %}
+                    {% for tag in mechanisms %}
                         <tr>
-                            <td>{{tag.name|capitalize}}</td>
-                            <td>{{tag.use|capitalize}}</td>
+                            <td><strong>{{tag.name|capitalize}}</strong></td>
                             <td>{{tag.description|capitalize}}</td>
-                            <td> 
-                            <a href="" class="btn-small amber text-shadow">
-                                Edit Tag<i class="fas fa-edit right"></i>
-                            </a>
-                            </td>
-                            <td> 
-                                <a href="#delete-tag-{{loop.index}}" class="btn-small red accent-2 text-shadow modal-trigger">
-                                    Delete Tag<i class="fas fa-trash right"></i>
+                            {% if session["user"] == "admin" %}
+                                <td> 
+                                <a href="" class="btn-small amber text-shadow">
+                                    Edit Tag<i class="fas fa-edit right"></i>
                                 </a>
-                                <div id="delete-tag-{{loop.index}}" class="modal">
-                                    <div class="modal-content custom-teal-text">
-                                        <h4>Delete your review for {{tag.name|capitalize}}?</h4>
-                                        <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
-                                            <strong>{{tag.use|capitalize}}:</strong><br>
-                                            <strong>{{tag.name|capitalize}}</strong><br>
-                                            <strong>{{tag.description|capitalize}}</strong><br>
-                                            <em>*This cannot be undone!!</em>
-                                        </p>
-                                        <img src="/static/img/Meeples-Icon-Teal.png">
+                                </td>
+                                <td> 
+                                    <a href="#delete-tag-{{loop.index}}" class="btn-small red accent-2 text-shadow modal-trigger">
+                                        Delete Tag<i class="fas fa-trash right"></i>
+                                    </a>
+                                    <div id="delete-tag-{{loop.index}}" class="modal">
+                                        <div class="modal-content custom-teal-text">
+                                            <h4>Delete your review for {{tag.name|capitalize}}?</h4>
+                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
+                                                <strong>{{tag.use|capitalize}}:</strong><br>
+                                                <strong>{{tag.name|capitalize}}</strong><br>
+                                                <strong>{{tag.description|capitalize}}</strong><br>
+                                                <em>*This cannot be undone!!</em>
+                                            </p>
+                                            <img src="/static/img/Meeples-Icon-Teal.png">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
+                                            <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
-                                        <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
-                                    </div>
-                                </div>
-                            </td>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -61,11 +66,65 @@
         </div>
     </div>
     <div class="row">
+        <div class="col s10 offset-s1">
+            <h4 class="underline custom-teal-text">Theme Tags:</h4>
+            <table class="custom-teal-text table-container">
+                <thead class="table-container-header text-shadow">
+                    <tr>
+                        <th class="table-name">Name</th>
+                        <th class="table-desc">Description</th>
+                        {% if session["user"] == "admin" %}
+                            <th class="table-actions">Edit Tag</th>
+                            <th class="table-actions">Delete Tag</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    {% for tag in themes %}
+                        <tr>
+                            <td><strong>{{tag.name|capitalize}}</strong></td>
+                            <td>{{tag.description|capitalize}}</td>
+                            {% if session["user"] == "admin" %}
+                                <td> 
+                                <a href="{{ url_for('edit_tag', tag_id=tag._id) }}" class="btn-small amber text-shadow">
+                                    Edit Tag<i class="fas fa-edit right"></i>
+                                </a>
+                                </td>
+                                <td> 
+                                    <a href="#delete-tag-{{loop.index}}" class="btn-small red accent-2 text-shadow modal-trigger">
+                                        Delete Tag<i class="fas fa-trash right"></i>
+                                    </a>
+                                    <div id="delete-tag-{{loop.index}}" class="modal">
+                                        <div class="modal-content custom-teal-text">
+                                            <h4>Delete your review for {{tag.name|capitalize}}?</h4>
+                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
+                                                <strong>{{tag.use|capitalize}}:</strong><br>
+                                                <strong>{{tag.name|capitalize}}</strong><br>
+                                                <strong>{{tag.description|capitalize}}</strong><br>
+                                                <em>*This cannot be undone!!</em>
+                                            </p>
+                                            <img src="/static/img/Meeples-Icon-Teal.png">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
+                                            <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row center-align">
         <div class="col s12">
-            <h4 class="underline">Can't see the tag you want?</h4>
+            <h4 class="underline custom-teal-text">Can't see the tag you want?</h4>
             <div class="row">
                 <div class="col s12">
-                    <a href="" class="btn-large teal text-shadow modal-trigger">
+                    <a href="{{url_for('add_tag') }}" class="btn-large teal text-shadow modal-trigger">
                         Add a Tag<i class="fas fa-pen right"></i>
                     </a>
             </div>
