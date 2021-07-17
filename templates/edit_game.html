@@ -137,10 +137,10 @@
                     </a>
                     <!--Delete button with "are you sure?" modal - admin only -->
                     {% if username == "admin" %}
-                        <a href="#modal1" class="btn-large red accent-2 text-shadow modal-trigger">
+                        <a href="#delete-game" class="btn-large red accent-2 text-shadow modal-trigger">
                             Delete<i class="fas fa-trash right"></i>
                         </a>
-                        <div id="modal1" class="modal">
+                        <div id="delete-game" class="modal">
                             <div class="modal-content custom-teal-text">
                                 <h4>Delete {{game.name|capitalize}}?</h4>
                                 <p class="center-align">Are you sure you want to delete <strong>{{game.name|capitalize}}</strong>?<br>
@@ -158,7 +158,6 @@
                     <button type="submit" class="btn-large teal text-shadow">
                         Update<i class="fas fa-edit right"></i>
                     </button>
-                    <!--Delete button with "are you sure?" modal - admin only -->
                 </div>
             </div>
         </form>
