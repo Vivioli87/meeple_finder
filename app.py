@@ -101,7 +101,6 @@ def delete_review(game_id, review_id):
     return redirect(url_for('get_game_detail', game_id=game_id))
 
 
-
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
@@ -279,8 +278,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-@app.route("/add_to_collection/<game_id>")
-def add_to_collection(game_id):
+def add_to_list(list_name, game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
 
     details = {
@@ -291,26 +289,47 @@ def add_to_collection(game_id):
         }
 
     mongo.db.users.update_one({"username": session["user"]},
-                              {"$push": {"my_collection": details}})
+                              {"$push": {list_name: details}})
+
+
+def remove_from_list(list_name, game_id):
+    mongo.db.users.update_many({"username": session["user"]},
+                          {"$pull": {list_name: {"id": ObjectId(game_id)}}})
+
+
+@app.route("/add_to_collection/<game_id>")
+def add_to_collection(game_id):
+    add_to_list("my_collection", game_id)
     flash("Game successfully added to your collection")
     return redirect(url_for("get_games"))
 
 
+@app.route("/remove_from_collection/<game_id>")
+def remove_from_collection(game_id):
+    remove_from_list("my_collection", game_id)
+    return redirect(url_for('profile', username=session['user']))
+
+
 @app.route("/add_to_wishlist/<game_id>")
 def add_to_wishlist(game_id):
-    game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-
-    details = {
-        "id": game["_id"],
-        "image": game["image"],
-        "name": game["name"],
-        "date_added": TODAY
-        }
-
-    mongo.db.users.update_one({"username": session["user"]},
-                              {"$push": {"my_wishlist": details}})
+    add_to_list("my_wishlist", game_id)
     flash("Game successfully added to your wishlist")
     return redirect(url_for("get_games"))
+
+
+@app.route("/remove_from_wishlist/<game_id>")
+def remove_from_wishlist(game_id):
+    remove_from_list("my_wishlist", game_id)
+    return redirect(url_for('profile', username=session['user']))
+
+
+@app.route("/move_to_collection/<game_id>")
+def move_to_collection(game_id):
+    add_to_list("my_collection", game_id)
+    remove_from_list("my_wishlist", game_id)
+    flash("Game successfully moved to your collection")
+
+    return redirect(url_for('profile', username=session['user']))
 
 
 @app.route("/logout")

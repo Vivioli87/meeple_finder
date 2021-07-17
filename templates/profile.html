@@ -47,8 +47,9 @@
                                 <img src="{{game.image}}">
                             </div>
                             <div class="card-content custom-teal-text">
-                                <span class="card-title">{{game.name}}</span>
+                                <span class="card-title">{{game.name|capitalize}}</span>
                                 <p>Added to Collection: {{game.date_added}}</p>
+                                <a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-minus-circle"></i>  Remove from Collection</a>
                             </div>
                         </div>
                     </div>
@@ -70,8 +71,10 @@
                                 <img src="{{game.image}}">
                             </div>
                             <div class="card-content custom-teal-text">
-                                <span class="card-title">{{game.name}}</span>
+                                <span class="card-title">{{game.name|capitalize}}</span>
                                 <p>Added to Wishlist: {{game.date_added}}</p>
+                                <a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Move to Collection</a><br>
+                                <a href="{{ url_for('remove_from_wishlist', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-minus-circle"></i>  Remove from Wishlist</a>
                             </div>
                         </div>
                     </div>
