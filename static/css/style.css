@@ -59,6 +59,11 @@ a.brand-logo > img {
     text-decoration: underline;
 }
 
+.table-container{
+    background-color: #f9e4de;
+    box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);
+}
+
 .custom-form-container{
     background-color: #f9e4de;
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);

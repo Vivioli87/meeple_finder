@@ -182,6 +182,12 @@ def delete_game(game_id):
     return redirect(url_for("get_games"))
 
 
+@app.route("/tag_list")
+def tag_list():
+    tags = mongo.db.tags.find().sort("use", 1)
+    return render_template("tags.html", tags=tags)
+
+
 @app.route("/add_tag", methods=["GET", "POST"])
 def add_tag():
     if request.method == "POST":

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/games.css') }}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="row custom-teal-text padding">
+        <div class="col s12">
+            <h4 class="underline" >Tag List:</h4>
+            <p>Glossary of tags</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <table class="responsive-table custom-teal-text table-container">
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Use</th>
+                      <th>Description</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                    {% for tag in tags %}
+                        <tr>
+                            <td>{{tag.name|capitalize}}</td>
+                            <td>{{tag.use|capitalize}}</td>
+                            <td>{{tag.description|capitalize}}</td>
+                            <td> 
+                            <a href="" class="btn-small amber text-shadow">
+                                Edit Tag<i class="fas fa-edit right"></i>
+                            </a>
+                            </td>
+                            <td> 
+                                <a href="#delete-tag-{{loop.index}}" class="btn-small red accent-2 text-shadow modal-trigger">
+                                    Delete Tag<i class="fas fa-trash right"></i>
+                                </a>
+                                <div id="delete-tag-{{loop.index}}" class="modal">
+                                    <div class="modal-content custom-teal-text">
+                                        <h4>Delete your review for {{tag.name|capitalize}}?</h4>
+                                        <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
+                                            <strong>{{tag.use|capitalize}}:</strong><br>
+                                            <strong>{{tag.name|capitalize}}</strong><br>
+                                            <strong>{{tag.description|capitalize}}</strong><br>
+                                            <em>*This cannot be undone!!</em>
+                                        </p>
+                                        <img src="/static/img/Meeples-Icon-Teal.png">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
+                                        <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <h4 class="underline">Can't see the tag you want?</h4>
+            <div class="row">
+                <div class="col s12">
+                    <a href="" class="btn-large teal text-shadow modal-trigger">
+                        Add a Tag<i class="fas fa-pen right"></i>
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}
