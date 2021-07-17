@@ -229,6 +229,11 @@ def edit_tag(tag_id):
     return render_template("edit_tag.html", tag=tag)
 
 
+@app.route("/delete_tag/<tag_id>")
+def delete_tag(tag_id):
+    mongo.db.tags.remove({"_id": ObjectId(tag_id)})
+    flash("Tag Successfully Deleted")
+    return redirect(url_for("tag_list"))
 
 
 @app.route("/register", methods=["GET", "POST"])

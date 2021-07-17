@@ -33,7 +33,7 @@
                             <td>{{tag.description|capitalize}}</td>
                             {% if session["user"] == "admin" %}
                                 <td> 
-                                <a href="" class="btn-small amber text-shadow">
+                                <a href="{{ url_for('edit_tag', tag_id=tag._id) }}" class="btn-small amber text-shadow">
                                     Edit Tag<i class="fas fa-edit right"></i>
                                 </a>
                                 </td>
@@ -42,19 +42,31 @@
                                         Delete Tag<i class="fas fa-trash right"></i>
                                     </a>
                                     <div id="delete-tag-{{loop.index}}" class="modal">
-                                        <div class="modal-content custom-teal-text">
+                                        <div class="modal-content custom-teal-text center-align">
                                             <h4>Delete your review for {{tag.name|capitalize}}?</h4>
-                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
-                                                <strong>{{tag.use|capitalize}}:</strong><br>
-                                                <strong>{{tag.name|capitalize}}</strong><br>
-                                                <strong>{{tag.description|capitalize}}</strong><br>
-                                                <em>*This cannot be undone!!</em>
-                                            </p>
+                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?</p><br>
+                                            <table class="custom-teal-text table-container">
+                                                <thead class="table-container-header text-shadow">
+                                                    <tr>
+                                                        <th>Use</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{tag.use|capitalize}}</td>
+                                                        <td><strong>{{tag.name|capitalize}}</strong></td>
+                                                        <td>{{tag.description|capitalize}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p><em>*This cannot be undone!!</em></p>                                           
                                             <img src="/static/img/Meeples-Icon-Teal.png">
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
-                                            <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                                            <a href="{{ url_for('delete_tag', tag_id=tag._id) }}" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -96,19 +108,31 @@
                                         Delete Tag<i class="fas fa-trash right"></i>
                                     </a>
                                     <div id="delete-tag-{{loop.index}}" class="modal">
-                                        <div class="modal-content custom-teal-text">
+                                        <div class="modal-content custom-teal-text center-align">
                                             <h4>Delete your review for {{tag.name|capitalize}}?</h4>
-                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?<br>
-                                                <strong>{{tag.use|capitalize}}:</strong><br>
-                                                <strong>{{tag.name|capitalize}}</strong><br>
-                                                <strong>{{tag.description|capitalize}}</strong><br>
-                                                <em>*This cannot be undone!!</em>
-                                            </p>
+                                            <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?</p><br>
+                                            <table class="custom-teal-text table-container">
+                                                <thead class="table-container-header text-shadow">
+                                                    <tr>
+                                                        <th>Use</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{tag.use|capitalize}}</td>
+                                                        <td><strong>{{tag.name|capitalize}}</strong></td>
+                                                        <td>{{tag.description|capitalize}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p><em>*This cannot be undone!!</em></p>                                           
                                             <img src="/static/img/Meeples-Icon-Teal.png">
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
-                                            <a href="" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
+                                            <a href="{{ url_for('delete_tag', tag_id=tag._id) }}" class="modal-close waves-effect red accent-2 btn-small">Delete<i class="fas fa-trash right"></i></a>
                                         </div>
                                     </div>
                                 </td>
