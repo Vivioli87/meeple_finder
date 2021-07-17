@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h4 class="custom-teal-text underline padding">Add Game:</h4>
-    <div class="custom-teal-text padding center-align">
-        <p>Please include as much detail as possible, the board game box should provide all this detail itself.</p>
-        <p><em>*Any games added will be reviewed and may be edited by admin to include an image and more detail or to correct any inaccurate detail.</em></p>
+    <h4 class="custom-teal-text underline padding"><i class="fas fa-dice"></i> Add Game:</h4>
+    <div class="custom-teal-text padding center-align bigger-p-text">
+        <p>Please include as much detail as possible, you may be able to find the information on the box of the game or online.</p>
+        <p><em>*Any games added will be reviewed and may be edited by admin to include an image/more detail or to correct any inaccurate detail.</em></p>
     </div>
 
-    <div class="row custom-form-container">
-        <form class="col s8 offset-s2" method="POST" action="{{url_for('add_game') }}">
+    <div class="row">
+        <form class="col s12 m8 offset-m2 custom-form-container" method="POST" action="{{url_for('add_game') }}">
             <!--game name -->
             <div class="row">
                 <div class="input-field col s12">
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="type" name="type">
-                      <option value="" disabled selected>Choose your option</option>
+                      <option value="" disabled selected></option>
                       <option value="base game">Base Game</option>
                       <option value="base expansion">Expansion (requires base game to play)</option>
                       <option value="standalone expansion">Standalone Expansion</option>
@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="input-field col s5">
                     <select id="min_player" name="min_player">
-                      <option value="" disabled selected>Choose your option</option>
+                      <option value="" disabled selected></option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="input-field col s6">
                     <select id="max_player" name="max_player">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="playing_time" name="playing_time">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected></option>
                         <option value="short">Short: Less than 1 hour</option>
                         <option value="medium">Medium: 1-2 hours</option>
                         <option value="long">Long: More than 2 hours</option>
@@ -98,7 +98,7 @@
             </div>
             <!--mechanisms - tags -->
             <div class="custom-teal-text tags">
-                <h6 class="underline">Mechanisms:</h6>
+                <h6 class="underline"><i class="fas fa-cogs"></i> Mechanisms:</h6>
                 {% for mech in mechanisms %}
                     <label for="mech{{loop.index}}">
                         <input type="checkbox" class="filled-in" id="mech{{loop.index}}" name="mechanisms" value="{{mech.name}}"/>
@@ -108,15 +108,15 @@
             </div>
             <!--themes - tags -->
             <div class="custom-teal-text tags">
-                <h6 class="underline">Themes:</h6>
+                <h6 class="underline"><i class="fas fa-palette"></i> Themes:</h6>
                 {% for theme in themes %}
                 <label for="theme{{loop.index}}">
                     <input type="checkbox" class="filled-in" id="theme{{loop.index}}" name="themes" value="{{theme.name}}"/>
                     <span>{{theme.name|capitalize}}</span>
                 </label>
                 {% endfor %}
+                <p class="center-align"><em>*Click all game mechanisms and themes that appply</em></p>
             </div>
-            <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
             <div class="row">
                 <div class="col s12 center-align">
                      <!--cancel button -->

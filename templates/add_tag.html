@@ -7,12 +7,12 @@
 {% block content %}
     <div class="row custom-teal-text padding">
         <div class="col s12">
-            <h4 class="underline" >Add a Tag:</h4>
-            <p>*Please check that the tag doesn't already exist before adding. The full list of tags can be found below:</p>
+            <h4 class="underline"><i class="fas fa-tag"></i> Add a Tag:</h4>
+            <p>*Please check that the tag doesn't already exist before adding. The full list of existing tags can be found below:</p>
         </div>
     </div>
-    <div class="row custom-form-container custom-teal-text">
-        <form class="col s8 offset-s2" method="POST" action="{{url_for('add_tag') }}">
+    <div class="row custom-teal-text">
+        <form class="col s8 offset-s2 custom-form-container" method="POST" action="{{url_for('add_tag') }}">
             <!--tag use -->
             <div class="row">
                 <div class="input-field col s12">
@@ -58,17 +58,17 @@
             </div>
         </form>
     </div>
-    <div class="row custom-teal-text center-align">
-        <div class="col s8 offset-s2">
-            <h4 class="underline">Game Mechanisms:</h4>
+    <div class="row custom-teal-text padding">
+        <div class="col s12 m6 padding">
+            <h4 class="underline"><i class="fas fa-cogs"></i> Game Mechanisms:</h4>
             <ul class="tag-list">
                 {% for mech in mechanisms|sort(attribute='name') %}
                     <li> {{mech.name|capitalize}} </li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="col s8 offset-s2">
-            <h4 class="underline">Game Themes:</h4>
+        <div class="col s12 m6 padding">
+            <h4 class="underline"><i class="fas fa-palette"></i> Game Themes:</h4>
             <ul class="tag-list">
                 {% for theme in themes|sort(attribute='name') %}
                     <li> {{theme.name|capitalize}} </li>

@@ -7,17 +7,17 @@
 {% block content %}
     <div class="row custom-teal-text padding">
         <div class="col s12">
-            <h4 class="underline" >Tag List:</h4>
+            <h4 class="underline"><i class="fas fa-tags"></i> Tag List:</h4>
             <p>Glossary of tags by use</p>
         </div>
     </div>
     <div class="row">
         <div class="col s10 offset-s1">
-            <h4 class="underline custom-teal-text">Mechanism Tags:</h4>
+            <h4 class="underline custom-teal-text"><i class="fas fa-cogs"></i> Mechanism Tags:</h4>
             <table class="custom-teal-text table-container">
                 <thead class="table-container-header text-shadow">
                     <tr>
-                        <th class="table-name">Name</th>
+                        <th class="table-name padding">Name</th>
                         <th class="table-desc">Description</th>
                         {% if session["user"] == "admin" %}
                             <th class="table-actions">Edit Tag</th>
@@ -29,7 +29,7 @@
                 <tbody>
                     {% for tag in mechanisms %}
                         <tr>
-                            <td><strong>{{tag.name|capitalize}}</strong></td>
+                            <td class="padding"><strong>{{tag.name|capitalize}}</strong></td>
                             <td>{{tag.description|capitalize}}</td>
                             {% if session["user"] == "admin" %}
                                 <td> 
@@ -79,11 +79,11 @@
     </div>
     <div class="row">
         <div class="col s10 offset-s1">
-            <h4 class="underline custom-teal-text">Theme Tags:</h4>
+            <h4 class="underline custom-teal-text"><i class="fas fa-palette"></i> Theme Tags:</h4>
             <table class="custom-teal-text table-container">
                 <thead class="table-container-header text-shadow">
                     <tr>
-                        <th class="table-name">Name</th>
+                        <th class="table-name padding">Name</th>
                         <th class="table-desc">Description</th>
                         {% if session["user"] == "admin" %}
                             <th class="table-actions">Edit Tag</th>
@@ -95,7 +95,7 @@
                 <tbody>
                     {% for tag in themes %}
                         <tr>
-                            <td><strong>{{tag.name|capitalize}}</strong></td>
+                            <td class="padding"><strong>{{tag.name|capitalize}}</strong></td>
                             <td>{{tag.description|capitalize}}</td>
                             {% if session["user"] == "admin" %}
                                 <td> 

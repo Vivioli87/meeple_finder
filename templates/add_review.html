@@ -11,9 +11,8 @@
         </div>
     </div>
     <!--Add a review-->
-    <div class="col s12 l6 offset-l1 center-align review">
-        <h4 class="underline">Leave a Review for {{game.name|capitalize}}:</h4>
-        <div class="row ">
+    <div class="row">
+        <div class="col s12 l8 offset-l2 center-align review">
             <form action="{{url_for('add_review', game_id=game._id) }}" method="POST">
                 <!--board game name - prepopulated-->
                 <div class="row">
@@ -32,6 +31,10 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
+                        <!--cancel button -->
+                        <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                            Cancel<i class="fas fa-arrow-circle-left right"></i>
+                        </a>
                         <!--Reset form-->
                         <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
                             Reset<i class="fas fa-undo right"></i>
