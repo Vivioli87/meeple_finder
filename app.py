@@ -3,6 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
@@ -18,25 +19,54 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# Pagination game limit
+PER_PAGE = 8
+
 TODAY = date.today().strftime("%d/%m/%y")
+
+# Pagination functions
+
+
+# Pagination - see code credit in readme
+def paginated(games):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+
+    return games[offset: offset + PER_PAGE]
+
+
+def pagination_args(games):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(games)
+
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
 # home/game page for users not logged in
 @app.route("/")
 @app.route("/games_non_user")
 def games_non_user():
-    games = mongo.db.games.find()
-    return render_template("games_non_user.html", games=games)
+    games = list(mongo.db.games.find())
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
+    return render_template("games_non_user.html",
+                           games=games_paginated,
+                           pagination=pagination)
 
 
 # home/game page for users logged in
 @app.route("/get_games")
 def get_games():
-    games = mongo.db.games.find()
+    games = list(mongo.db.games.find())
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
     username = session["user"]
     return render_template("games.html",
-                           games=games,
-                           username=username)
+                           games=games_paginated,
+                           username=username,
+                           pagination=pagination)
 
 
 # game detail page
