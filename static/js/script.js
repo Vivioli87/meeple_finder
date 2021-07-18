@@ -14,6 +14,7 @@ function refreshPage() {
   window.location.reload();
 };
 
+/* jquery from Materialize function */
 $(document).ready(function(){
   /*mobile side nav bar */
     $('.sidenav').sidenav({edge: "right"});
