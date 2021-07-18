@@ -74,10 +74,15 @@ def get_games():
     games = list(mongo.db.games.find())
     games_paginated = paginated(games)
     pagination = pagination_args(games)
+
+    tags = list(mongo.db.tags.find().sort("use", 1))
+
     username = session["user"]
+
     return render_template("games.html",
                            games=games_paginated,
                            username=username,
+                           tags=tags,
                            pagination=pagination)
 
 
@@ -92,6 +97,42 @@ def search():
     flash("Showing results for search: '" + query + "'")
     return render_template("games.html",
                            games=games_paginated,
+                           username=username,
+                           pagination=pagination)
+
+
+# Filter function
+@app.route("/filter_tags", methods=["GET", "POST"])
+def filter_tags():
+    themes = request.form.getlist("themes")
+    mechanisms = request.form.getlist("mechanisms")
+
+    # puts all selected themes and mechanisms into an array
+    search_expressions = []
+
+    if len(themes) > 0:
+        search_expressions.append({"themes": {"$all": themes}})
+    if len(mechanisms) > 0:
+        search_expressions.append({"mechanisms": {"$all": mechanisms}})
+
+    # filter games by search expressions if search expressions array is > 0
+    # if no search expression return all games
+    games = list(mongo.db.games.find({"$and": search_expressions})
+                 if len(search_expressions) > 0 else mongo.db.games.find())
+
+    tags = list(mongo.db.tags.find().sort("use", 1))
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
+    username = session["user"]
+
+    # different flash message if no games found with filters set
+    if len(games) > 0:
+        flash(f"Showing results for {mechanisms} + {themes}")
+    else:
+        flash("There are no results with your criteria!")
+    return render_template("games.html",
+                           games=games_paginated,
+                           tags=tags,
                            username=username,
                            pagination=pagination)
 

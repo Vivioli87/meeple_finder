@@ -25,6 +25,8 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
   /*modal to confirm deletions*/
     $('.modal').modal();
+  /*collapsible for search bar*/
+    $('.collapsible').collapsible();
 });
 
   
