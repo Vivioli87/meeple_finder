@@ -55,6 +55,19 @@ def games_non_user():
                            pagination=pagination)
 
 
+# Search function for users not logged in
+@app.route("/search_non_user", methods=["GET", "POST"])
+def search_non_user():
+    query = request.form.get("query")
+    games = list(mongo.db.games.find({"$text": {"$search": query}}))
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
+    flash("Showing results for search: '" + query + "'")
+    return render_template("games_non_user.html",
+                           games=games_paginated,
+                           pagination=pagination)
+
+
 # home/game page for users logged in
 @app.route("/get_games")
 def get_games():
@@ -72,10 +85,11 @@ def get_games():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    games = list(mongo.db.games.find({"$text":{"$search": query}}))
+    games = list(mongo.db.games.find({"$text": {"$search": query}}))
     games_paginated = paginated(games)
     pagination = pagination_args(games)
     username = session["user"]
+    flash("Showing results for search: '" + query + "'")
     return render_template("games.html",
                            games=games_paginated,
                            username=username,
