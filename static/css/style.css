@@ -63,6 +63,11 @@ a.brand-logo > img {
     text-decoration: underline;
 }
 
+/* Search bar */
+.search-bar{
+    background-color: #f9e4de;
+}
+
 /* pagination styling*/
 
 .pagination{

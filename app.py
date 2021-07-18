@@ -19,29 +19,28 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-# Pagination game limit
-PER_PAGE = 8
+# Pagination limits
+GAMES_PER_PAGE = 8
 
 TODAY = date.today().strftime("%d/%m/%y")
 
-# Pagination functions
 
-
-# Pagination - see code credit in readme
+# Pagination functions - see code credit in readme
+# Games page and admin profile specific
 def paginated(games):
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    offset = page * PER_PAGE - PER_PAGE
+    page, games_per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='games_per_page')
+    offset = page * GAMES_PER_PAGE - GAMES_PER_PAGE
 
-    return games[offset: offset + PER_PAGE]
+    return games[offset: offset + GAMES_PER_PAGE]
 
 
 def pagination_args(games):
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
+    page, games_per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='games_per_page')
     total = len(games)
 
-    return Pagination(page=page, per_page=PER_PAGE, total=total)
+    return Pagination(page=page, per_page=GAMES_PER_PAGE, total=total)
 
 
 # home/game page for users not logged in
@@ -60,6 +59,20 @@ def games_non_user():
 @app.route("/get_games")
 def get_games():
     games = list(mongo.db.games.find())
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
+    username = session["user"]
+    return render_template("games.html",
+                           games=games_paginated,
+                           username=username,
+                           pagination=pagination)
+
+
+# Search function
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    games = list(mongo.db.games.find({"$text":{"$search": query}}))
     games_paginated = paginated(games)
     pagination = pagination_args(games)
     username = session["user"]
@@ -352,14 +365,17 @@ def profile(username):
 
     # finds all games with no explicit image
     # (the 'coming soon' image) for admin profile
-    games = mongo.db.games.find({"image": ""})
+    games = list(mongo.db.games.find({"image": ""}))
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
 
     if session["user"]:
         return render_template("profile.html",
                                username=profile["username"],
                                collection=profile["my_collection"],
                                wishlist=profile["my_wishlist"],
-                               games=games)
+                               games=games_paginated,
+                               pagination=pagination)
 
     return redirect(url_for("login"))
 

@@ -35,6 +35,8 @@
                 {% endif %}
             {% endfor %}
         </div>
+        <!--Pagination links-->
+        {{ pagination.links }}
     {% else %}
         <div class="row custom-teal-text">
             <h4 class="padding"><i class="fas fa-folder-open"></i> <span class="underline">My Collection:</span></h4>
@@ -54,6 +56,8 @@
                         </div>
                     </div>
                 {% endfor %}
+                <!--Pagination links-->
+                {{ pagination.links }}
             <!--Message to appear of collection array is empty-->
             {% else %}
                 <h6 class="center-align">Oh dear, your games collection is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your collection</h6>
@@ -79,6 +83,8 @@
                         </div>
                     </div>
                 {% endfor %}
+                <!--Pagination links-->
+                {{ pagination.links }}
              <!--Message to appear if wishlist array is empty-->
             {% else %}
                 <h6 class="center-align">Oh dear, your games wishlist is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your wishlist</h6>
