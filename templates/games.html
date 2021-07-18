@@ -28,13 +28,13 @@
                         {% endif %}
                     </div>
                     <div class="card-stacked">
-                        <div class="card-content">
-                            <h5 class="custom-teal-text underline">{{game.name|upper}}</h5>
-                            <p>{{game.description|truncate(120)}}</p>
-                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
+                        <div class="card-content center-align">
+                            <h6 class="custom-teal-text underline"><strong>{{game.name|upper}}</strong></h6>
+                            <p>{{game.description|truncate(100)}}</p><br>
+                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal">More Info / Leave a Review</a>
                         </div>
                         {% if session.user %}
-                            <div class="card-action">
+                            <div class="card-action center-align">
                                 {% if username == "admin" %}
                                     <a  class="btn-small teal text-shadow" href="{{ url_for('edit_game', game_id=game._id) }}"> 
                                         Update/Delete Game<i class="fas fa-edit right"></i>
