@@ -37,7 +37,7 @@
         </div>
     {% else %}
         <div class="row custom-teal-text">
-            <h4 class="underline padding">My Collection:</h4>
+            <h4 class="padding"><i class="fas fa-folder-open"></i> <span class="underline">My Collection:</span></h4>
             <!--checks if collection array has values-->
             {% if collection|length > 0 %}
                 {% for game in collection %}
@@ -47,9 +47,9 @@
                                 <img src="{{game.image}}">
                             </div>
                             <div class="card-content custom-teal-text">
-                                <span class="card-title">{{game.name|capitalize}}</span>
+                                <span class="card-title underline">{{game.name|upper}}</span>
                                 <p>Added to Collection: {{game.date_added}}</p>
-                                <a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-minus-circle"></i>  Remove from Collection</a>
+                                <a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="red-text accent-3"><i class="fas fa-minus-circle"></i>  Remove from Collection</a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
         </div>   
         <br>
         <div class="row custom-teal-text">
-            <h4 class="underline padding">My Wishlist:</h4>
+            <h4 class="padding"><i class="fas fa-heart"></i> <span class="underline">My Wishlist:</span></h4>
             <!--checks if wishlist array has values-->
             {% if wishlist|length > 0 %}
                 {% for game in wishlist %}
@@ -71,10 +71,10 @@
                                 <img src="{{game.image}}">
                             </div>
                             <div class="card-content custom-teal-text">
-                                <span class="card-title">{{game.name|capitalize}}</span>
+                                <span class="card-title underline">{{game.name|upper}}</span>
                                 <p>Added to Wishlist: {{game.date_added}}</p>
-                                <a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Move to Collection</a><br>
-                                <a href="{{ url_for('remove_from_wishlist', game_id=game.id) }}" class="teal-text darken-2"><i class="fas fa-minus-circle"></i>  Remove from Wishlist</a>
+                                <a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="custom-teal-text"><i class="fas fa-plus-circle"></i>  Move to Collection</a><br>
+                                <a href="{{ url_for('remove_from_wishlist', game_id=game.id) }}" class="red-text accent-3"><i class="fas fa-minus-circle"></i>  Remove from Wishlist</a>
                             </div>
                         </div>
                     </div>
