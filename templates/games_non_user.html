@@ -34,10 +34,10 @@
                     {% endif %}
                 </div>
                 <div class="card-stacked">
-                    <div class="card-content">
+                    <div class="card-content center-align">
                         <h5 class="custom-teal-text underline">{{game.name|upper}}</h5>
-                        <p>{{game.description|truncate(120)}}</p>
-                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text underline">More Info</a>
+                        <p>{{game.description|truncate(150)}}</p><br>
+                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal">More Info</a>
                     </div>
                 </div>
             </div>

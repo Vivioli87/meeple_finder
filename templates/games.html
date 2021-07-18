@@ -10,13 +10,14 @@
             <div class="card-panel custom-teal-text center-align">
                 <h2 class="welcome-text">Welcome to Meeple Finder</h2>
                 <h4 class="welcome-text">Where meeting Meeples is easy....</h4>
-                <p class="bigger-p-text">Add games to your collection, leave reviews on your favourties or find new games to add to your board game wishlist!</p>
+                <p class="bigger-p-text">Add games to your collection, leave reviews on your favourites or find new games to add to your wishlist!</p>
             </div>
         </div>
     </div>
 
     <h3 class="custom-teal-text padding"><i class="fas fa-dice"></i> <span class="underline">Games List:</span></h3>
     <div class="row">
+        <!--populates games in game list-->
         {% for game in games %}
             <div class="col s12 m4 l3">
                 <div class="card game-list-size">
@@ -33,6 +34,7 @@
                             <p>{{game.description|truncate(100)}}</p><br>
                             <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal">More Info / Leave a Review</a>
                         </div>
+                        <!--different actions on game card if logged in or not-->
                         {% if session.user %}
                             <div class="card-action center-align">
                                 {% if username == "admin" %}
@@ -49,6 +51,6 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
+        {% endfor %}
     </div>
 {% endblock %}
