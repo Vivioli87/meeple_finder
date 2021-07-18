@@ -39,6 +39,7 @@ def get_games():
                            username=username)
 
 
+# game detail page
 @app.route("/get_game_detail/<game_id>")
 def get_game_detail(game_id):
 
@@ -51,6 +52,7 @@ def get_game_detail(game_id):
                            reviews=reviews)
 
 
+# add/edit/delete review functions
 @app.route("/add_review/<game_id>", methods=["GET", "POST"])
 def add_review(game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
@@ -101,6 +103,7 @@ def delete_review(game_id, review_id):
     return redirect(url_for('get_game_detail', game_id=game_id))
 
 
+# add/edit/delete game functions
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
@@ -197,12 +200,13 @@ def delete_game(game_id):
     return redirect(url_for("get_games"))
 
 
+# tag list and add/edit/delete tag functions
 @app.route("/tag_list")
 def tag_list():
     mechanisms = mongo.db.tags.find({"use": "mechanisms"})
-    themes = mongo.db.tags.find({"use": "themes"})    
+    themes = mongo.db.tags.find({"use": "themes"})
     return render_template("tags.html",
-                           mechanisms=mechanisms, 
+                           mechanisms=mechanisms,
                            themes=themes)
 
 
@@ -251,6 +255,7 @@ def delete_tag(tag_id):
     return redirect(url_for("tag_list"))
 
 
+# register an account
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -277,6 +282,7 @@ def register():
     return render_template("register.html")
 
 
+# log in
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -305,6 +311,7 @@ def login():
     return render_template("login.html")
 
 
+# profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
 
@@ -327,6 +334,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# generic functions for collection and wishlist actions to call on
 def add_to_list(list_name, game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
 
@@ -343,7 +351,8 @@ def add_to_list(list_name, game_id):
 
 def remove_from_list(list_name, game_id):
     mongo.db.users.update_many({"username": session["user"]},
-                          {"$pull": {list_name: {"id": ObjectId(game_id)}}})
+                               {"$pull": {list_name:
+                                {"id": ObjectId(game_id)}}})
 
 
 @app.route("/add_to_collection/<game_id>")
@@ -381,6 +390,7 @@ def move_to_collection(game_id):
     return redirect(url_for('profile', username=session['user']))
 
 
+# log out
 @app.route("/logout")
 def logout():
     # remove user from session cookies
