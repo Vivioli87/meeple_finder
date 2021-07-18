@@ -25,6 +25,16 @@
                     <label for="description">Description:</label>
                 </div>
             </div>
+            {% if session["user"] == "admin"%}
+                <!-- image URL - stock image won't be populated on form just URL -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="image" name="image" minlength="5" 
+                            maxlength="300" class="materialize-textarea validate"></textarea>
+                        <label for="image">Image URL:</label>
+                    </div>
+                </div>
+            {% endif %}
             <!-- publisher -->
             <div class="row">
                 <div class="input-field col s12">

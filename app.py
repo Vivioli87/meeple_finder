@@ -104,19 +104,34 @@ def delete_review(game_id, review_id):
 @app.route("/add_game", methods=["GET", "POST"])
 def add_game():
     if request.method == "POST":
-        game = {
-            "name": request.form.get("name"),
-            "description": request.form.get("description"),
-            "image": "",
-            "publisher": request.form.get("publisher"),
-            "type": request.form.get("type"),
-            "min_player": request.form.get("min_player"),
-            "max_player": request.form.get("max_player"),
-            "age": request.form.get("age"),
-            "playing_time": request.form.get("playing_time"),
-            "mechanisms": request.form.getlist("mechanisms"),
-            "themes": request.form.getlist("themes")
-            }
+        if session["user"] == "admin":
+            game = {
+                "name": request.form.get("name"),
+                "description": request.form.get("description"),
+                "image": request.form.get("image"),
+                "publisher": request.form.get("publisher"),
+                "type": request.form.get("type"),
+                "min_player": request.form.get("min_player"),
+                "max_player": request.form.get("max_player"),
+                "age": request.form.get("age"),
+                "playing_time": request.form.get("playing_time"),
+                "mechanisms": request.form.getlist("mechanisms"),
+                "themes": request.form.getlist("themes")
+                }
+        else:
+            game = {
+                "name": request.form.get("name"),
+                "description": request.form.get("description"),
+                "image": "",
+                "publisher": request.form.get("publisher"),
+                "type": request.form.get("type"),
+                "min_player": request.form.get("min_player"),
+                "max_player": request.form.get("max_player"),
+                "age": request.form.get("age"),
+                "playing_time": request.form.get("playing_time"),
+                "mechanisms": request.form.getlist("mechanisms"),
+                "themes": request.form.getlist("themes")
+                }
 
         mongo.db.games.insert_one(game)
         flash("Game Successfully Added")
