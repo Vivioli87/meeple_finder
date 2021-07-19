@@ -43,7 +43,7 @@
                                     </a>
                                     <div id="delete-tag-{{loop.index}}" class="modal">
                                         <div class="modal-content custom-teal-text center-align">
-                                            <h4>Delete your review for {{tag.name|capitalize}}?</h4>
+                                            <h4>Delete tag {{tag.name|capitalize}}?</h4>
                                             <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?</p><br>
                                             <table class="custom-teal-text table-container">
                                                 <thead class="table-container-header text-shadow">
@@ -109,7 +109,7 @@
                                     </a>
                                     <div id="delete-tag-{{loop.index}}" class="modal">
                                         <div class="modal-content custom-teal-text center-align">
-                                            <h4>Delete your review for {{tag.name|capitalize}}?</h4>
+                                            <h4>Delete tag {{tag.name|capitalize}}?</h4>
                                             <p class="center-align">Are you sure you want to delete the tag <strong>{{tag.name|capitalize}}</strong>?</p><br>
                                             <table class="custom-teal-text table-container">
                                                 <thead class="table-container-header text-shadow">
@@ -123,12 +123,12 @@
                                                     <tr>
                                                         <td>{{tag.use|capitalize}}</td>
                                                         <td><strong>{{tag.name|capitalize}}</strong></td>
-                                                        <td>{{tag.description|capitalize}}</td>
+                                                        <td>{{tag.description|capitalize|truncate(50)}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <p><em>*This cannot be undone!!</em></p>                                           
-                                            <img src="/static/img/Meeples-Icon-Teal.png">
+                                            <img src="/static/img/Meeple-Teal-128.png">
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
