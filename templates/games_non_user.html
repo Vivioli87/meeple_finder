@@ -22,25 +22,77 @@
     </div>
 </div>
 <h3 class="custom-teal-text padding"><i class="fas fa-dice"></i> <span class="underline">Games List:</span></h3>
-<!--Search bar-->
-<div class="row card-panel search-bar custom-teal-text center-align">
-    <form action="{{ url_for('search_non_user') }}" method="POST" class="col s12">
-        <div class="row valign-wrapper">
-            <div class="input-field col s12 m8">
-                <i class="fas fa-search prefix"></i>
-                <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                <label for="query">Search Games</label>
-            </div>
-            <div class="col s12 m4">
-                <button type="submit" class=" btn-small teal text-shadow">
-                    <i class="fas fa-search left"></i> Search
-                </button>
-                <a href="{{ url_for('games_non_user') }}" class="blue accent-3 btn-small text-shadow">Show all Games</a>
+<div class="center-align">
+    <a href="{{ url_for('games_non_user') }}" class="blue accent-3 btn-small text-shadow">Show all Games</a>
+</div>
+<!--Search & filter bars in collapsibles-->
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header teal white-text"><i class="fas fa-search left"></i> Search</div>
+        <div class="collapsible-body">
+            <div class="row card-panel search-bar custom-teal-text center-align">
+                <form action="{{ url_for('search_non_user') }}" method="POST" class="col s12">
+                    <div class="row valign-wrapper">
+                        <div class="input-field col s12 m8">
+                            <i class="fas fa-search prefix"></i>
+                            <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                            <label for="query">Search Games</label>
+                        </div>
+                        <div class="col s12 m4">
+                            <button type="submit" class=" btn-small teal text-shadow">
+                                <i class="fas fa-search left"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p><em>*Searches text input across Name, Description, Game Mechanisms and Themes</em></p>
             </div>
         </div>
-    </form>
-    <p><em>*Searches across Name, Description, Game Mechanisms and Themes <br> Remember to click 'Show all Games' to see full list again!</em></p>
-</div>
+    </li>
+    <li>
+        <div class="collapsible-header teal white-text"><i class="fas fa-filter left"></i> Filter</div>
+        <div class="collapsible-body">
+            <div class="row card-panel search-bar custom-teal-text">
+                <form action="{{ url_for('filter_non_user') }}" method="POST">
+                    <div class="col s12">
+                        <h6><i class="fas fa-cogs"></i> <span class="underline">Mechanisms:</span></h6>
+                        <br>
+                        <div class="row valign-wrapper custom-teal-text tags center-align">
+                            {% for tag in tags %}
+                                {% if tag.use == "mechanisms" %}
+                                    <label for="mechanisms{{loop.index}}">
+                                        <input type="checkbox" class="filled-in" id="mechanisms{{loop.index}}" name="mechanisms" value="{{tag.name}}"/>
+                                        <span>{{tag.name|capitalize}}</span>
+                                    </label>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <h6><i class="fas fa-palette"></i> <span class="underline">Themes:</span></h6>
+                        <br>
+                        <div class="row valign-wrapper custom-teal-text tags center-align">
+                            {% for tag in tags %}
+                                {% if tag.use == "themes" %}
+                                    <label for="theme{{loop.index}}">
+                                        <input type="checkbox" class="filled-in" id="theme{{loop.index}}" name="themes" value="{{tag.name}}"/>
+                                        <span>{{tag.name|capitalize}}</span>
+                                    </label>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <button type="submit" class=" btn-small teal text-shadow">
+                            <i class="fas fa-filter left"></i> Filter
+                        </button>
+                    </div>
+                    </div>
+                </form>
+        </div>
+    </li>
+</ul>
+<!--populates games in game list-->
 <div class="row">
     {% for game in games %}
         <div class="col s12 m4 l3">
@@ -61,7 +113,7 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
 </div>
 <!--Pagination links-->
 {{ pagination.links }}

@@ -16,7 +16,10 @@
     </div>
 
     <h3 class="custom-teal-text padding"><i class="fas fa-dice"></i> <span class="underline">Games List:</span></h3>
-    <!--Search bar-->
+    <div class="center-align">
+        <a href="{{ url_for('get_games') }}" class="blue accent-3 btn-small text-shadow">Show all Games</a>
+    </div>
+    <!--Search & filter bars in collapsibles-->
     <ul class="collapsible">
         <li>
             <div class="collapsible-header teal white-text"><i class="fas fa-search left"></i> Search</div>
@@ -33,7 +36,6 @@
                                 <button type="submit" class=" btn-small teal text-shadow">
                                     <i class="fas fa-search left"></i> Search
                                 </button>
-                                <a href="{{ url_for('get_games') }}" class="blue accent-3 btn-small text-shadow">Show all Games</a>
                             </div>
                         </div>
                     </form>
@@ -42,7 +44,7 @@
             </div>
         </li>
         <li>
-            <div class="collapsible-header teal white-text"><i class="fas fa-search left"></i> Filter</div>
+            <div class="collapsible-header teal white-text"><i class="fas fa-filter left"></i> Filter</div>
             <div class="collapsible-body">
                 <div class="row card-panel search-bar custom-teal-text">
                     <form action="{{ url_for('filter_tags') }}" method="POST">
@@ -74,11 +76,10 @@
                                 {% endfor %}
                             </div>
                         </div>
-                            <div class="col s12 m4">
+                            <div class="col s12 center-align">
                                 <button type="submit" class=" btn-small teal text-shadow">
-                                    <i class="fas fa-search left"></i> Filter
+                                    <i class="fas fa-filter left"></i> Filter
                                 </button>
-                                <a href="{{ url_for('get_games') }}" class="blue accent-3 btn-small text-shadow">Show all Games</a>
                             </div>
                         </div>
                     </form>
@@ -86,8 +87,8 @@
             </div>
         </li>
     </ul>
+     <!--populates games in game list-->
     <div class="row">
-        <!--populates games in game list-->
         {% for game in games %}
             <div class="col s12 m4 l3">
                 <div class="card game-list-size">

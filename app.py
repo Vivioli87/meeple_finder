@@ -48,9 +48,11 @@ def pagination_args(games):
 @app.route("/games_non_user")
 def games_non_user():
     games = list(mongo.db.games.find())
+    tags = list(mongo.db.tags.find().sort("use", 1))
     games_paginated = paginated(games)
     pagination = pagination_args(games)
     return render_template("games_non_user.html",
+                           tags=tags,
                            games=games_paginated,
                            pagination=pagination)
 
@@ -66,6 +68,41 @@ def search_non_user():
     return render_template("games_non_user.html",
                            games=games_paginated,
                            pagination=pagination)
+
+
+# filter function for users not logged in
+@app.route("/filter_non_user", methods=["GET", "POST"])
+def filter_non_user():
+    themes = request.form.getlist("themes")
+    mechanisms = request.form.getlist("mechanisms")
+
+    # puts all selected themes and mechanisms into an array
+    search_expressions = []
+
+    if len(themes) > 0:
+        search_expressions.append({"themes": {"$all": themes}})
+    if len(mechanisms) > 0:
+        search_expressions.append({"mechanisms": {"$all": mechanisms}})
+
+    # filter games by search expressions if search expressions array is > 0
+    # if no search expression return all games
+    games = list(mongo.db.games.find({"$and": search_expressions})
+                 if len(search_expressions) > 0 else mongo.db.games.find())
+
+    tags = list(mongo.db.tags.find().sort("use", 1))
+    games_paginated = paginated(games)
+    pagination = pagination_args(games)
+
+    # different flash message if no games found with filters set
+    if len(games) > 0:
+        flash(f"Showing results that inclue {', '.join(mechanisms + themes)} tags")
+    else:
+        flash("There are no results with your criteria!")
+    return render_template("games_non_user.html",
+                           games=games_paginated,
+                           tags=tags,
+                           pagination=pagination)
+
 
 
 # home/game page for users logged in
@@ -94,7 +131,10 @@ def search():
     games_paginated = paginated(games)
     pagination = pagination_args(games)
     username = session["user"]
-    flash("Showing results for search: '" + query + "'")
+    if len(games) > 0:
+        flash(f"Showing results for search: '{query}'")
+    else:
+        flash("There are no results with your criteria!")
     return render_template("games.html",
                            games=games_paginated,
                            username=username,
@@ -127,7 +167,7 @@ def filter_tags():
 
     # different flash message if no games found with filters set
     if len(games) > 0:
-        flash(f"Showing results for {mechanisms} + {themes}")
+        flash(f"Showing results that include {', '.join(mechanisms + themes)} tags")
     else:
         flash("There are no results with your criteria!")
     return render_template("games.html",
