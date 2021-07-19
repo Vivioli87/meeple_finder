@@ -17,11 +17,16 @@ h1, h2, h3, h4, h5{
 
 .flashes h4 {
     line-height: 2;
+    font-size: 20px;
 }
+
+/* left padding for headers*/
 
 .padding{
     padding-left: 30px;
 }
+
+/* strong wasnt making font bold so corrected that*/
 
 strong {
     font-weight: bolder;
@@ -30,6 +35,25 @@ strong {
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5) ;
 }
+
+.card-panel {
+    background-color: #f9e4de;
+    padding: 10px 10px 20px;
+}
+
+.custom-teal{
+    background-color: #006d77 ;
+}
+
+.custom-teal-text{
+    color: #006d77;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+/* nav bar and image*/
 
 a.brand-logo {
     padding-left: 30px;
@@ -83,6 +107,8 @@ a.brand-logo > img {
     font-weight: bolder;
 }
 
+/* Table styling - Tags pages*/
+
 .table-container{
     background-color: #f9e4de;
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);
@@ -105,6 +131,8 @@ th.table-actions{
     width: 7.5%;
 }
 
+/* form styling*/
+
 .custom-form-container{
     background-color: #f9e4de;
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);
@@ -122,6 +150,8 @@ th.table-actions{
 .input-field>label, .select-wrapper input.select-dropdown{
     color: #006d77;
 }
+
+/* styling of the tags*/
 
 .tags > label{
 
@@ -144,27 +174,72 @@ th.table-actions{
     a.brand-logo{
         padding-left: 0;
     }
+
     h2.welcome-text{
-        font-size: 2.8rem;
+        font-size: 28px;
+        font-weight: bolder;
     }
+
     h4.welcome-text{
-        font-size: 1.8rem;
+        font-size: 18px;
     }
+
+    .bigger-p-text{
+        font-size: 16px;
+    }
+
+
 }
 
 @media only screen and (max-width: 600px) {
+    a.brand-logo {
+        font-size: 20px;
+    }
+
+    a.brand-logo > img {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        padding: 8px;
+    }
+
     h2.welcome-text{
-        font-size: 2rem;
+        font-size: 22px;
     }
+
     h4.welcome-text{
-        font-size: 1.2rem;
+        font-size: 16px;
     }
+
+    .bigger-p-text{
+        font-size: 14px;
+    }
+    
 }
 
 
 /*to sort out lack of responsiveness on materialize nav bar "brand-logo" on small screens*/
 @media only screen and (max-width: 450px) {
     a.brand-logo {
-        font-size: 1.2rem;
+        font-size: 18px;
+    }
+
+    a.brand-logo > img {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        padding: 4px;
+    }
+
+    h2.welcome-text{
+        font-size: 20px;
+    }
+
+    h4.welcome-text{
+        font-size: 14px;
+    }
+
+    .bigger-p-text{
+        font-size: 12px;
     }
 }
