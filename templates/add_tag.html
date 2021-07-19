@@ -8,16 +8,16 @@
     <div class="row custom-teal-text padding">
         <div class="col s12">
             <h4><i class="fas fa-tag"></i> <span class="underline">Add a Tag:</span></h4>
-            <p>*Please check that the tag doesn't already exist before adding. The full list of existing tags can be found below:</p>
+            <p class="bigger-p-text">*Please check that the tag doesn't already exist before adding. The full list of existing tags can be found below:</p>
         </div>
     </div>
     <div class="row custom-teal-text">
-        <form class="col s8 offset-s2 custom-form-container" method="POST" action="{{url_for('add_tag') }}">
+        <form class="col s10 offset-s1 custom-form-container" method="POST" action="{{url_for('add_tag') }}">
             <!--tag use -->
             <div class="row">
                 <div class="input-field col s12">
                     <select id="use" name="use">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected></option>
                         <option value="mechanisms">Mechanisms</option>
                         <option value="themes">Themes</option>
                     </select>
@@ -40,18 +40,22 @@
                     <label for="description">Description:</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12 center-align">
-                        <!--cancel button -->
-                        <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+            <div class="row center-align">
+                <div class="col s12 m4">
+                    <!--cancel button -->
+                    <a href="#" onclick="goBack()" class="btn-large amber text-shadow add-tag-button">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
-                        <!--Reset form-->
-                        <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                </div>
+                <div class="col s12 m4">
+                    <!--Reset form-->
+                    <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow add-tag-button">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
-                        <!--submit button -->
-                    <button type="submit" class="btn-large teal text-shadow">
+                </div>
+                <div class="col s12 m4">
+                    <!--submit button -->
+                    <button type="submit" class="btn-large teal text-shadow add-tag-button">
                         Add Tag<i class="fas fa-plus-square right"></i>
                     </button>
                 </div>
