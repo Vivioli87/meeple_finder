@@ -102,7 +102,7 @@
                         <div class="card-content center-align custom-padding">
                             <h6 class="custom-teal-text underline"><strong>{{game.name|upper}}</strong></h6>
                             <p>{{game.description|truncate(120)}}</p><br>
-                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size">More Info / Reviews</a>
+                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
                         </div>
                         <!--different actions on game card if logged in or not-->
                         {% if session.user %}

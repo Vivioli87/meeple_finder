@@ -18,10 +18,6 @@ ul.tag-list > li{
     margin: 5px;
 }
 
-.card.profile-size{
-    height: 30em;
-    width: 20em;
-}
 
 /* styling for cards to show games list*/
 
@@ -38,6 +34,7 @@ ul.tag-list > li{
     width: 250px;
     margin: 10px;
     position: relative;
+    border-radius: 5px;
     
 }
 
@@ -57,6 +54,35 @@ ul.tag-list > li{
     top: 40px;
 }
 
+/* slightly different styling for profile games cards*/
+
+.card.profile-size{
+    height: 500px;
+    width: 250px;
+    margin: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.card-image.profile-size{
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-content.profile-size{
+    height: 125px;
+    padding-top: 20px;
+}
+
+.card-action-area.profile-size{
+    height: 125px;
+    position: relative;
+}
+
+.profile-links{
+    padding: 5px;
+}
+
 /* reviews area on game detail page*/
 
 .review{
@@ -69,6 +95,8 @@ ul.tag-list > li{
     padding: 10px;
     margin-bottom: 10px;
 }
+
+ /*media queries for cards for games lists*/
 
 @media only screen and (max-width: 1220px) {
     .game-card-area {
