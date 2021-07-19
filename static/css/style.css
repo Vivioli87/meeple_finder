@@ -68,23 +68,7 @@ a.brand-logo > img {
     line-height: 64px;
     vertical-align: middle;
     padding: 8px;
-}
-
-.card-panel {
-    background-color: #f9e4de;
-    padding: 10px 10px 20px;
-}
-
-.custom-teal{
-    background-color: #006d77 ;
-}
-
-.custom-teal-text{
-    color: #006d77;
-}
-
-.underline{
-    text-decoration: underline;
+    margin-right: 4px;
 }
 
 /* Search bar */
@@ -157,6 +141,10 @@ th.table-actions{
 
     color: #006d77;
     margin-right: 40px;
+}
+
+.row .col.tags{
+    float: none;
 }
 
 .tags > h6 {
