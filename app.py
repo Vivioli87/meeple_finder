@@ -95,14 +95,13 @@ def filter_non_user():
 
     # different flash message if no games found with filters set
     if len(games) > 0:
-        flash(f"Showing results that inclue {', '.join(mechanisms + themes)} tags")
+        flash(f"Showing results that include {', '.join(mechanisms + themes)}")
     else:
         flash("There are no results with your criteria!")
     return render_template("games_non_user.html",
                            games=games_paginated,
                            tags=tags,
                            pagination=pagination)
-
 
 
 # home/game page for users logged in
@@ -123,7 +122,7 @@ def get_games():
                            pagination=pagination)
 
 
-# Search function
+# Search function for users logged in
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -141,7 +140,7 @@ def search():
                            pagination=pagination)
 
 
-# Filter function
+# Filter function for users logged in
 @app.route("/filter_tags", methods=["GET", "POST"])
 def filter_tags():
     themes = request.form.getlist("themes")
@@ -167,7 +166,7 @@ def filter_tags():
 
     # different flash message if no games found with filters set
     if len(games) > 0:
-        flash(f"Showing results that include {', '.join(mechanisms + themes)} tags")
+        flash(f"Showing results that include {', '.join(mechanisms + themes)}")
     else:
         flash("There are no results with your criteria!")
     return render_template("games.html",
@@ -475,7 +474,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-# generic functions for collection and wishlist actions to call on
+# 2 generic functions for collection and wishlist actions to call on
 def add_to_list(list_name, game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
 
@@ -496,6 +495,7 @@ def remove_from_list(list_name, game_id):
                                 {"id": ObjectId(game_id)}}})
 
 
+# add a game to profile's collection
 @app.route("/add_to_collection/<game_id>")
 def add_to_collection(game_id):
     add_to_list("my_collection", game_id)
@@ -503,12 +503,14 @@ def add_to_collection(game_id):
     return redirect(url_for("get_games"))
 
 
+# remove a game from profile's collection
 @app.route("/remove_from_collection/<game_id>")
 def remove_from_collection(game_id):
     remove_from_list("my_collection", game_id)
     return redirect(url_for('profile', username=session['user']))
 
 
+# add a game to profile's wishlist
 @app.route("/add_to_wishlist/<game_id>")
 def add_to_wishlist(game_id):
     add_to_list("my_wishlist", game_id)
@@ -516,12 +518,14 @@ def add_to_wishlist(game_id):
     return redirect(url_for("get_games"))
 
 
+# remove a game from profile's wishlist
 @app.route("/remove_from_wishlist/<game_id>")
 def remove_from_wishlist(game_id):
     remove_from_list("my_wishlist", game_id)
     return redirect(url_for('profile', username=session['user']))
 
 
+# move a game from profile's wishlist to collection
 @app.route("/move_to_collection/<game_id>")
 def move_to_collection(game_id):
     add_to_list("my_collection", game_id)
