@@ -23,17 +23,41 @@ ul.tag-list > li{
     width: 20em;
 }
 
+/* styling for cards to show games list*/
+
+.game-card-area{
+    display: grid;
+    grid-template-columns: repeat(4, 275px);
+    grid-gap: 30px;
+    justify-content: center;
+    justify-items: center;
+}
+
 .card.game-list-size{
-    height: 40em;
-    width: 20em;
-    margin-left: 15px;
+    height: 550px;
+    width: 250px;
+    margin: 10px;
+    position: relative;
     
 }
 
 .card .card-image{
-    height: 20em;
+    height: 250px;
     overflow: hidden;
 }
+
+.card-content{
+    height: 200px;
+    padding-top: 5px;
+}
+
+.card-action-area{
+    height: 100px;
+    position: relative;
+    top: 40px;
+}
+
+/* reviews area on game detail page*/
 
 .review{
     background-color: #f9e4de;
@@ -46,11 +70,104 @@ ul.tag-list > li{
     margin-bottom: 10px;
 }
 
-#rating{
-    align-items: flex-start;
+@media only screen and (max-width: 1220px) {
+    .game-card-area {
+      grid-template-columns: repeat(3, 275px);
+      grid-gap: 20px;
+    }
+
 }
 
-.checked {
-    color: orange;
+@media only screen and (max-width: 900px) {
+    .game-card-area {
+      grid-template-columns: repeat(2, 275px);
+      grid-gap: 20px;
+    }
 }
 
+@media only screen and (max-width: 600px) {
+    .game-card-area {
+      grid-template-columns: repeat(2, 200px);
+      grid-gap: 10px;
+    }
+
+    .card.game-list-size{
+        height: 400px;
+        width: 180px;
+    }
+
+    .card .card-image{
+        height: 175px;
+    }
+
+    .card-content.custom-padding{
+        padding: 5px;
+        height: 150px;
+    }
+
+    .card-action-area{
+        height: 50px;
+        position: relative;
+
+    }
+
+    .card-content p{
+        font-size: 12px;
+    }
+
+    .card-content h5{
+        font-size: 16px
+    }
+
+    .btn-small.teal.mobile-size{
+        height: 25px;
+        line-height: 25px;
+        font-size: 10px;
+        top: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .game-card-area {
+        grid-template-columns: repeat(1, 275px);
+        grid-gap: 10px;
+    }
+    .card.game-list-size{
+        height: 550px;
+        width: 250px;
+        margin: 10px;
+        position: relative;
+        
+    }
+    
+    .card .card-image{
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .card-content.custom-padding{
+        height: 200px;
+        padding: 10px;
+    }
+    
+    .card-action-area{
+        height: 100px;
+        position: relative;
+        top: 40px;
+    }
+    /* reset font sizing back to what it was as more room with 1 card width*/
+    .card-content p{
+        font-size: 14px;
+    }
+
+    .card-content h5{
+        font-size: 1.64rem
+    }
+
+    .btn-small.teal.mobile-size{
+        height: 32px;
+        line-height: 32px;
+        font-size: 13px;
+        top: 40px;
+    }
+}

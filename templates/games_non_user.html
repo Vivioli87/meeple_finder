@@ -93,9 +93,8 @@
     </li>
 </ul>
 <!--populates games in game list-->
-<div class="row">
+<div class=" game-card-area">
     {% for game in games %}
-        <div class="col s12 m4 l3">
             <div class="card game-list-size">
                 <div class="card-image">
                     {% if game.image == "" %}
@@ -104,15 +103,16 @@
                         <img src="{{game.image}}">
                     {% endif %}
                 </div>
-                <div class="card-stacked">
-                    <div class="card-content center-align">
+                <div class="card-stacked center-align">
+                    <div class="card-content custom-padding">
                         <h5 class="custom-teal-text underline">{{game.name|upper}}</h5>
-                        <p>{{game.description|truncate(150)}}</p><br>
-                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal">More Info</a>
+                        <p>{{game.description|truncate(150)}}</p>
+                    </div>
+                    <div class="card-action-area">
+                        <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size">More Info</a>
                     </div>
                 </div>
             </div>
-        </div>
     {% endfor %}
 </div>
 <!--Pagination links-->

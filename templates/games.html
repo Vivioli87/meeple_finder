@@ -88,9 +88,8 @@
         </li>
     </ul>
      <!--populates games in game list-->
-    <div class="row">
+    <div class="game-card-area">
         {% for game in games %}
-            <div class="col s12 m4 l3">
                 <div class="card game-list-size">
                     <div class="card-image">
                         {% if game.image == "" %}
@@ -100,28 +99,27 @@
                         {% endif %}
                     </div>
                     <div class="card-stacked">
-                        <div class="card-content center-align">
+                        <div class="card-content center-align custom-padding">
                             <h6 class="custom-teal-text underline"><strong>{{game.name|upper}}</strong></h6>
-                            <p>{{game.description|truncate(100)}}</p><br>
-                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal">More Info / Leave a Review</a>
+                            <p>{{game.description|truncate(120)}}</p><br>
+                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size">More Info / Reviews</a>
                         </div>
                         <!--different actions on game card if logged in or not-->
                         {% if session.user %}
-                            <div class="card-action center-align">
+                            <div class="card-action-area center-align">
                                 {% if username == "admin" %}
-                                    <a  class="btn-small teal text-shadow" href="{{ url_for('edit_game', game_id=game._id) }}"> 
+                                    <a  class="btn-small teal text-shadow mobile-size" href="{{ url_for('edit_game', game_id=game._id) }}"> 
                                         Update/Delete Game<i class="fas fa-edit right"></i>
                                     </a>
                                 {% else %}
                                     <a href="{{ url_for('add_to_collection', game_id=game._id) }}" class="teal-text darken-2"><i class="fas fa-plus-circle"></i>  Add to Collection</a>
                                     <br>
-                                    <a href="{{ url_for('add_to_wishlist', game_id=game._id) }}" class="teal-text darken-2"><i class="fas fa-heart"></i>  Add to Wishlist</a>
+                                    <a href="{{ url_for('add_to_wishlist', game_id=game._id) }}" class="teal-text darken-2"><i class="fas fa-heart"></i>  Add to Wishlist</a><br>
                                 {% endif %}
                             </div>
                         {% endif %}
                     </div>
                 </div>
-            </div>
         {% endfor %}
     </div>
     <!--Pagination links-->
