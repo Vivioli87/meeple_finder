@@ -2,8 +2,8 @@
 {% block content %}
 
     <h4 class="custom-teal-text padding"><i class="fas fa-edit"></i> <span class="underline">Edit Game: {{game.name}}</span></h4>
-    <div class="row custom-form-container">
-        <form class="col s8 offset-s2" method="POST" action="{{ url_for('edit_game', game_id=game._id) }}">
+    <div class="row">
+        <form class="col s12 m10 offset-m1 custom-form-container" method="POST" action="{{ url_for('edit_game', game_id=game._id) }}">
             <!--game name -->
             <div class="row">
                 <div class="input-field col s12">
@@ -54,7 +54,7 @@
             </div>
             <!--player count - 2 dropdowns: min-player & max_player -->
             <div class="row">
-                <div class="input-field col s5">
+                <div class="input-field col s12 m6">
                     <select id="min_player" name="min_player">
                       <!-- <option value="" disabled selected>Choose your option</option> -->
                       <option value="1">1</option>
@@ -65,7 +65,7 @@
                     </select>
                     <label for="min_player">Minimun Player(s):</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <select id="max_player" name="max_player">
                         <!-- <option value="" disabled selected>Choose your option</option> -->
                         <option value="1">1</option>
@@ -101,7 +101,7 @@
                     <input id="age" name="age" type="number" class="validate" value="{{game.age}}" required></input>
                     <label for="age">Age:</label>
                 </div>
-                <p class="custom-teal-text"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
+                <p class="custom-teal-text center-align"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
             </div>
             <!--mechanisms - tags -->
             <div class="custom-teal-text tags">
@@ -123,21 +123,23 @@
                 </label>
                 {% endfor %}
             </div>
-            <p class="custom-teal-text"><em>*Click all game mechanisms and themes that appply</em></p>
+            <p class="custom-teal-text center-align"><em>*Click all game mechanisms and themes that appply</em></p>
             
             <div class="row">
-                <div class="col s12 center-align">
+                <div class="col s12 m6 center-align">
                     <!-- cancel button-->
-                    <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                    <a href="#" onclick="goBack()" class="btn-large update-game-button amber text-shadow">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
                     <!--Reset form-->
-                    <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                    <a href="#" onclick="refreshPage()" class="btn-large update-game-button blue accent-3 text-shadow">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
+                </div>
+                <div class="col s12 m6 center-align">
                     <!--Delete button with "are you sure?" modal - admin only -->
                     {% if username == "admin" %}
-                        <a href="#delete-game" class="btn-large red accent-2 text-shadow modal-trigger">
+                        <a href="#delete-game" class="btn-large update-game-button red accent-2 text-shadow modal-trigger">
                             Delete<i class="fas fa-trash right"></i>
                         </a>
                         <div id="delete-game" class="modal">
@@ -155,7 +157,7 @@
                         </div>
                     {% endif %}
                     <!--submit button -->
-                    <button type="submit" class="btn-large teal text-shadow">
+                    <button type="submit" class="btn-large update-game-button teal text-shadow">
                         Update<i class="fas fa-edit right"></i>
                     </button>
                 </div>

@@ -130,10 +130,11 @@ th.table-actions{
     background-color: #f9e4de;
     box-shadow: 2px 2px 2px rgba(134, 133, 133, 0.5);
     margin: 30px 50px;
+    border-radius: 10px;
 }
 
 .custom-form-container > div{
-    padding: 20px 20px 10px;
+    padding: 20px
 }
 
 .input-field>label{
@@ -164,11 +165,25 @@ th.table-actions{
     margin-bottom: 20px;
 }
 
+/*buttons*/
+
 .add-tag-button{
     width: 155px;
     font-size: 14px;
 }
 
+.update-game-button{
+    width: 180px;
+    font-size: 14px;
+    height: 50px;
+    margin: 10px;
+}
+
+.form-button{
+    width: 150px;
+    font-size: 12px;
+    height: 50px;
+}
 
 /*media queries*/
 

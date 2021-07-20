@@ -59,7 +59,8 @@
                                 <div class="card-content profile-size">
                                     <span class="card-title underline">{{game.name|upper}}</span>
                                     <br>
-                                    <p>Added to Collection: <strong>{{game.date_added}}</strong></p>
+                                    <p>Added to Collection: <strong>{{game.date_added}}</strong></p><br>
+                                    <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
                                 </div>
                                 <div class="card-action-area profile-size center-align">
                                     <a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="red-text accent-3"><i class="fas fa-minus-circle"></i>  Remove from Collection</a>
@@ -92,7 +93,8 @@
                             <div class="card-content profile-size">
                                 <span class="card-title underline">{{game.name|upper}}</span>
                                 <br>
-                                <p>Added to Wishlist: <strong>{{game.date_added}}</strong></p>
+                                <p>Added to Wishlist: <strong>{{game.date_added}}</strong></p><br>
+                                <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
                             </div>
                             <div class="card-action-area profile-size center-align">
                                 <a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="custom-teal-text profile-links"><i class="fas fa-plus-circle"></i>  Move to Collection</a>

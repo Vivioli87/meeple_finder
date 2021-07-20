@@ -74,9 +74,12 @@ ul.tag-list > li{
     padding-top: 20px;
 }
 
+.card .card-title{
+    font-size: 18px;
+}
+
 .card-action-area.profile-size{
-    height: 125px;
-    position: relative;
+    height: 75px;
 }
 
 .profile-links{

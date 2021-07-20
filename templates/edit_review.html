@@ -10,45 +10,48 @@
             <h4><i class="fas fa-edit"></i> <span class="underline">Edit review for {{game.name|capitalize}}:</span></h4>
         </div>
     </div>
-    <!--Add a review-->
-    <div class="col s12 l6 offset-l1 center-align review">
-        <div class="row ">
-            <form action="{{url_for('edit_review', game_id=game._id, review_id=review._id) }}" method="POST">
-                <!--board game name - prepopulated-->
-                <div class="row">
-                    <div class="input-field col s10 offset-s1">
-                        <input id="name" name="name" type="text" 
-                                class="validate" value="{{game.name|capitalize}}" disabled></input>
-                        <label for="name">Name of Board Game:</label>
-                    </div>
+    <!--Edit review-->
+    <div class="row custom-teal-text">
+        <form class="col s12 m10 offset-m1 custom-form-container center-align" 
+            action="{{url_for('edit_review', game_id=game._id, review_id=review._id) }}" method="POST">
+            <!--board game name - prepopulated-->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="name" name="name" type="text" 
+                            class="validate" value="{{game.name|capitalize}}" disabled></input>
+                    <label for="name">Name of Board Game:</label>
                 </div>
-                <!--review comments-->
-                <div class="row">
-                    <div class="input-field col s10 offset-s1">
-                    <textarea id="review_comments" name="review_comments" class="materialize-textarea" required>
-                        {{- review.review_comments -}}
-                    </textarea>
-                    <label for="review_comments">Review Comments:</label>
-                    </div>
+            </div>
+            <!--review comments-->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                <textarea id="review_comments" name="review_comments" class="materialize-textarea" required>
+                    {{- review.review_comments -}}
+                </textarea>
+                <label for="review_comments">Review Comments:</label>
                 </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                         <!-- cancel button-->
-                        <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
-                            Cancel<i class="fas fa-arrow-circle-left right"></i>
-                        </a>
-                        <!--Reset form-->
-                        <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
-                            Reset<i class="fas fa-undo right"></i>
-                        </a>
-                        <!--submit button -->
-                        <button type="submit" class="btn-large teal text-shadow">
-                            Submit Edit<i class="fas fa-check-circle right"></i>
-                        </button>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                    <!-- cancel button-->
+                    <a href="#" onclick="goBack()" class="btn-large form-button amber text-shadow">
+                        Cancel<i class="fas fa-arrow-circle-left right"></i>
+                    </a>
                 </div>
-            </form>
-        </div>
+                <div class="col s12 m4">
+                    <!--Reset form-->
+                    <a href="#" onclick="refreshPage()" class="btn-large form-button blue accent-3 text-shadow">
+                        Reset<i class="fas fa-undo right"></i>
+                    </a>
+                </div>
+                <div class="col s12 m4">
+                    <!--submit button -->
+                    <button type="submit" class="btn-large form-button teal text-shadow">
+                        Submit<i class="fas fa-check-circle right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 
    

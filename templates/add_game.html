@@ -8,7 +8,7 @@
     </div>
 
     <div class="row">
-        <form class="col s12 m8 offset-m2 custom-form-container" method="POST" action="{{url_for('add_game') }}">
+        <form class="col s12 m10 offset-m1 custom-form-container" method="POST" action="{{url_for('add_game') }}">
             <!--game name -->
             <div class="row">
                 <div class="input-field col s12">
@@ -57,7 +57,7 @@
             </div>
             <!--player count - 2 dropdowns: min-player & max_player -->
             <div class="row">
-                <div class="input-field col s5">
+                <div class="input-field col s12 m6">
                     <select id="min_player" name="min_player">
                       <option value="" disabled selected></option>
                       <option value="1">1</option>
@@ -68,7 +68,7 @@
                     </select>
                     <label for="min_player">Minimun Player(s):</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <select id="max_player" name="max_player">
                         <option value="" disabled selected></option>
                         <option value="1">1</option>
@@ -135,19 +135,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12 center-align">
+            <div class="row center-align">
+                <div class="col s12 m4">
                      <!--cancel button -->
-                     <a href="#" onclick="goBack()" class="btn-large amber text-shadow">
+                     <a href="#" onclick="goBack()" class="btn-large form-button amber text-shadow">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
+                </div>
+                <div class="col s12 m4">
                      <!--Reset form-->
-                     <a href="#" onclick="refreshPage()" class="btn-large blue accent-3 text-shadow">
+                     <a href="#" onclick="refreshPage()" class="btn-large form-button blue accent-3 text-shadow">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
+                </div>
+                <div class="col s12 m4">
                      <!--submit button -->
-                    <button type="submit" class="btn-large teal text-shadow">
-                        Add Game<i class="fas fa-plus-square right"></i>
+                    <button type="submit" class="btn-large form-button teal text-shadow">
+                        Add<i class="fas fa-plus-square right"></i>
                     </button>
                 </div>
             </div>
