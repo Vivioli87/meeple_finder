@@ -263,4 +263,8 @@ th.table-actions{
     .modal-image{
         height: 50px;
     }
+
+    img.error-meeple{
+        height: 65px;
+    }
 }

@@ -1,13 +1,23 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>404 - No meeples here...</title>
+{% endblock %}
 {% block content %}
-    <div class="custom-teal-text">
-        <h1>Hello? Is it meeples you're looking for?!</h1>
-        <h4>Ooops! Something went wrong or this page no longer exists!</h4>
-        {% if session.user %}
-            <a href="{{ url_for('get_games') }}" class="btn-large teal text-shadow">Click Here to go back to the home page</a>
-        {% else %}
-            <a href="{{ url_for('games_non_user') }}" class="btn-large teal text-shadow">Click Here to go back to the home page</a>
-        {% endif %}
-        <img src="/static/img/Meeple-Teal-128.png" alt="teal meeple">
-    </div>
+    <div class="row center-align custom-teal-text error-page">
+        <div class="col s12">
+            <h2>Hello? Is it meeples you're looking for?!</h2>
+            <h4>Ooops! Something went wrong or this page no longer exists!</h4>
+        </div>
+        <div class="col s12">
+            {% if session.user %}
+                <a href="{{ url_for('get_games') }}" class="btn-large teal text-shadow">Click Here to go back to the home page</a>
+            {% else %}
+                <a href="{{ url_for('games_non_user') }}" class="btn-large teal text-shadow">Click Here to go back to the home page</a>
+            {% endif %}
+        </div>
+        <div class="col s12 center-align">
+            <img class="error-meeple" src="/static/img/Meeple-Teal-128.png" alt="teal meeple">        
+            <img class="error-meeple" src="/static/img/Meeple-White-128.png" alt="white meeple">
+            <img class="error-meeple" src="/static/img/Meeple-Teal-128.png" alt="teal meeple">
+        </div>
 {% endblock %}

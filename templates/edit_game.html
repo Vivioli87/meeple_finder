@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>Meeple Finder - Edit {{game.name|capitalize}}</title>
+{% endblock %}
 {% block content %}
 
     <h4 class="custom-teal-text padding"><i class="fas fa-edit"></i> <span class="underline">Edit Game: {{game.name}}</span></h4>
