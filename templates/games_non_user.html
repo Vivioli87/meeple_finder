@@ -35,7 +35,7 @@
             Search
         </div>
         <div class="collapsible-body card-panel search-bar custom-teal-text center-align">
-                <form action="{{ url_for('search') }}" method="POST" class="col s12">
+                <form action="{{ url_for('search_non_user') }}" method="POST" class="col s12">
                     <div class="row">
 
                         <div class="input-field col s12">
@@ -58,7 +58,7 @@
              Filter
         </div>
         <div class="collapsible-body card-panel search-bar custom-teal-text">
-            <form action="{{ url_for('filter_tags') }}" method="POST">
+            <form action="{{ url_for('filter_non_user') }}" method="POST">
                 <div class="row">
                     <h6 class="col s12"><i class="fas fa-cogs"></i> <span class="underline">Mechanisms:</span></h6>
                 </div>
