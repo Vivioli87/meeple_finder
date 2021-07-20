@@ -259,4 +259,8 @@ th.table-actions{
     .bigger-p-text{
         font-size: 12px;
     }
+    /*Meeple image on modals*/
+    .modal-image{
+        height: 50px;
+    }
 }

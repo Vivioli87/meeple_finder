@@ -27,7 +27,7 @@
                         {% else %}
                             <li><strong>Number of players:</strong> {{game.min_player}} to {{game.max_player}}</li>
                         {% endif %}
-                    <li class="tooltipped" data-position="bottom" data-tooltip="Short = less than 1 hour.  Medium = 1-2 hours.  Long = 2+ hours."><strong>Playing time:</strong> {{game.playing_time|capitalize}}</li>
+                    <li class="tooltipped" data-position="right" data-tooltip="Short: 60 mins or less. Medium = 1-2 hours. Long = 2+ hours."><strong>Playing time:</strong> {{game.playing_time|capitalize}}</li>
                 </ul>
                 <br>
             </div>
@@ -122,10 +122,10 @@
                                         <div class="modal-content custom-teal-text">
                                             <h4>Delete your review for {{review.name|capitalize}}?</h4>
                                             <p class="center-align">Are you sure you want to delete your review for <strong>{{review.name|capitalize}}</strong>?<br>
-                                                <strong>"{{review.review_comments}}"</strong><br>
+                                                <strong>"{{review.review_comments|truncate(50)}}"</strong><br>
                                                 <em>*This cannot be undone!!</em>
                                             </p>
-                                            <img src="/static/img/Meeple-Teal-128.png">
+                                            <img class="modal-image" src="/static/img/Meeple-Teal-128.png">
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#!" class="modal-close amber waves-effect btn-small">Cancel<i class="fas fa-undo right"></i></a>
