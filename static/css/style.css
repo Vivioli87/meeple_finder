@@ -185,6 +185,11 @@ th.table-actions{
     height: 50px;
 }
 
+/* 404 page*/
+.error-page > div{
+    margin: 20px 0px;
+}
+
 /*media queries*/
 
 @media only screen and (max-width: 992px){
