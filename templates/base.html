@@ -35,10 +35,10 @@
                             <li><a href="{{ url_for('get_games') }}">Home / Games</a></li>
                             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                             <li><a href="{{ url_for('add_game') }}">Add Game</a></li>
-                            <li><a href="{{ url_for('tag_list') }}">Game Tags</a></li>
                             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
                             <li><a href="{{ url_for('games_non_user') }}">Home / Games</a></li>
+                            <li><a href="{{ url_for('tag_list') }}">Game Tags</a></li>
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
                             <li><a href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
