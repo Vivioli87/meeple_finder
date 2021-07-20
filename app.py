@@ -198,7 +198,7 @@ def add_review(game_id):
         review = {
             "id_of_game": str(game["_id"]),
             "name": request.form.get("name"),
-            "review_comments": request.form.get("review_comments"),
+            "review_comments": request.form.get("review_comments").lower(),
             "created_by": session["user"],
             "created_date": TODAY
         }
@@ -219,7 +219,7 @@ def edit_review(game_id, review_id):
         submit = {
             "id_of_game": review["id_of_game"],
             "name": review["name"],
-            "review_comments": request.form.get("review_comments"),
+            "review_comments": request.form.get("review_comments").lower(),
             "created_by": review["created_by"],
             "created_date": review["created_date"]
         }
@@ -246,10 +246,10 @@ def add_game():
     if request.method == "POST":
         if session["user"] == "admin":
             game = {
-                "name": request.form.get("name"),
-                "description": request.form.get("description"),
+                "name": request.form.get("name").lower(),
+                "description": request.form.get("description").lower(),
                 "image": request.form.get("image"),
-                "publisher": request.form.get("publisher"),
+                "publisher": request.form.get("publisher").lower(),
                 "type": request.form.get("type"),
                 "min_player": request.form.get("min_player"),
                 "max_player": request.form.get("max_player"),
@@ -260,10 +260,10 @@ def add_game():
                 }
         else:
             game = {
-                "name": request.form.get("name"),
-                "description": request.form.get("description"),
+                "name": request.form.get("name").lower(),
+                "description": request.form.get("description").lower(),
                 "image": "",
-                "publisher": request.form.get("publisher"),
+                "publisher": request.form.get("publisher").lower(),
                 "type": request.form.get("type"),
                 "min_player": request.form.get("min_player"),
                 "max_player": request.form.get("max_player"),
@@ -289,10 +289,10 @@ def edit_game(game_id):
 
     if request.method == "POST":
         submit = {
-            "name": request.form.get("name"),
-            "description": request.form.get("description"),
+            "name": request.form.get("name").lower(),
+            "description": request.form.get("description").lower(),
             "image": request.form.get("image"),
-            "publisher": request.form.get("publisher"),
+            "publisher": request.form.get("publisher").lower(),
             "type": request.form.get("type"),
             "min_player": request.form.get("min_player"),
             "max_player": request.form.get("max_player"),
@@ -340,8 +340,8 @@ def delete_game(game_id):
 # tag list and add/edit/delete tag functions
 @app.route("/tag_list")
 def tag_list():
-    mechanisms = mongo.db.tags.find({"use": "mechanisms"})
-    themes = mongo.db.tags.find({"use": "themes"})
+    mechanisms = list(mongo.db.tags.find({"use": "mechanisms"}))
+    themes = list(mongo.db.tags.find({"use": "themes"}))
     return render_template("tags.html",
                            mechanisms=mechanisms,
                            themes=themes)
@@ -351,17 +351,17 @@ def tag_list():
 def add_tag():
     if request.method == "POST":
         tag = {
-            "name": request.form.get("name"),
-            "use": request.form.get("use"),
-            "description": request.form.get("description")
+            "name": request.form.get("name").lower(),
+            "use": request.form.get("use").lower(),
+            "description": request.form.get("description").lower()
             }
 
         mongo.db.tags.insert_one(tag)
         flash("Tag Successfully Added")
         return redirect(url_for("tag_list"))
 
-    mechanisms = mongo.db.tags.find({"use": "mechanisms"})
-    themes = mongo.db.tags.find({"use": "themes"})
+    mechanisms = list(mongo.db.tags.find({"use": "mechanisms"}))
+    themes = list(mongo.db.tags.find({"use": "themes"}))
     return render_template("add_tag.html",
                            mechanisms=mechanisms,
                            themes=themes)
@@ -373,9 +373,9 @@ def edit_tag(tag_id):
 
     if request.method == "POST":
         submit = {
-            "name": request.form.get("name"),
+            "name": request.form.get("name").lower(),
             "use": request.form.get("use"),
-            "description": request.form.get("description")
+            "description": request.form.get("description").lower()
         }
 
         mongo.db.tags.update({"_id": ObjectId(tag_id)}, submit)
