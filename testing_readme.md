@@ -32,31 +32,36 @@ Every page of the project was validated by the [W3C Markup Validation Service](h
 
 [jshint.com](https://jshint.com/) was used to check JS code.
 
+[Python syntax checker](https://extendsclass.com/python-tester.html)
+
 ### W3C Markup Validation Service
 
-Checked using both validate by direct input and validate by URI options.
+Checked using validate by URI options.
 
-#### Home page
+Have checked all pages, a few issues noted regarding incorrect placement of title on 2 pages and an unclosed div on 2 other pages. Both issues now fixed.
+The validation also reminded me to add alt tags to the images which I had previously forgotten to include.
 
-JavaScript script link warning.
+Only warning now showing is regarding a section without a heading. This is relating to the flashes section on the base page.
+This does have a heading but is wrapped in a divs so have ignored this warning.
 
-![home page - validation]()
-
-#### Game page
-
-Initally there was an error with the arialabelledby attribute for the bootstrap modal used where the modal title id had been deleted in error, this was rectified.
-
-Same JavaScript script link warning.
-
-![Game page - validation]()
 
 ### W3C CSS Validation Service
 
-![CSS - validation]()
+Checked using direct input.
+Entered both style.css and games.css and no errors were found.
 
 ### jshint.com
 
 When using jshint ensue to enable the "New JavaScript features (ES6)" in the configure tab. 
+
+As a result of this check I've added missing semi colons and removed unneccessary ones.
+The checker advised of unused 3 unused variables (dropdownValue, goBack, refreshPage) however these are used within the websites pages as explained in the javascript comments.
+
+### Python syntax checker
+
+checked syntax using [Python syntax checker](https://extendsclass.com/python-tester.html) as week as the "Problems" tab in gitpod. No Pep8 issues seen in final code, these have been fixed along the way.
+
+There are warnings regarding the pagination code, this code was taken from an online source and works in its current format. I tried to alter it based off the warnings however this made the code not function, therefore I have left the code as it was and ignored the warnings.
 
 
 ## Functionality Testing
