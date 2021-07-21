@@ -90,9 +90,77 @@ The Meeple finder website is designed to be effective, consistent and user frien
     - Buttons when hovered over and clicked will provide a visual indication to the site visitors what they are selecting.
     - Consistent colour scheme will be used throughout the site.
     - Links to external pages, if applicable, will open in a new tab so the user is not taken away from the game website.
+    - Links to glossary page, will open in a new tab so the user is not taken away from the page they were on. Helper text next to the button will indicate these buttons on the page.
+    - All pages with forms on will have a reset button to reset the information on that form (more useful for editing forms) and will have a cancel/go back button to take the user back to the previous page.
 
 - Information Architecture (IA)
-    - 
+    Website:
+    - Logged in users:
+        - Consists of a home page/games list page, profile page, add game page, tags list page and logout page.
+        - The home page has a search and filter functionality
+        - From the home page/games list page and profile page you can access more detail about a game - games detail page.
+            - From the games detail page you can add a review and edit/delete your own reviews. You can also access the tag list/glossary page from here.
+        - From the tag list/glossary page you can add a new tag.
+    - Admin user:
+        - Same as logged in users with a few differences.
+        - From the home page/games list page and profile page admin can also access the edit game page to update information/delete game record from the database.
+        - From the tag list/glossary page admin can also edit or delete an existing tag.
+    - Non logged in users (similar to logged in users but with no ability to add/edit/delete functionality - can only view information):
+        - Consists of a home page/games list page, tags list page, register and login pages.
+        - The home page has a search and filter functionality and has links to login/register pages.
+        - From the games detail page you can only view information and reviews. You can access the tag list/glossary page from here as well as login/register pages.
+        - The tag list has the add tag functionality removed.
+    
+    Database:
+    - Information on my mongodb database is stored in the following 4 collections:
+        - Games:
+            - _id (created by mongodb. ObjectId).
+            - name (string)
+            - description (string)
+            - image (string - of image URL)
+            - publisher (string)
+            - type (string)
+            - min_player (string)
+            - max_player (string)
+            - age (string)
+            - playing_time (string)
+            - mechanisms (An array of mechanism names)
+            - themes (An array of theme names)
+        - Reviews:
+            - _id (created by mongodb. ObjectId).
+            - id_of_game (string - taken from game _id above)
+            - name (string)
+            - review_comments (string)
+            - created_by (string - pulled from session user)
+            - created_date (string - pulled from datetime python function)
+        - Tags:
+            - _id (created by mongodb. ObjectId).
+            - name (string)
+            - use (string - either mechanisms or themes)
+            - description
+        - Users:
+            - _id (created by mongodb. ObjectId).
+            - username (string)
+            - password (hashed so password information is safe)
+            - my_collection (an array of objects). Each object (a game) has the following fields:
+                - id (object id of the game)
+                - name (string)
+                - image (string - of image URL)
+                - date_added (string - pulled from datetime python function)
+            - my_wishlist (an array of objects). Each object (a game) has the following fields:
+                - id (object id of the game)
+                - name (string)
+                - image (string - of image URL)
+                - date_added (string - pulled from datetime python function)
+
+    - An index has been created on the games collection (to enable search functionality) for the followingfields:
+        - Name
+        - Description
+        - Mechanisms
+        - Themes
+
+        - ** Add player count and playing time? **
+
 
 [Back to table of contents](#table-of-contents)
 
