@@ -7,6 +7,7 @@ from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
+from functools import wraps
 
 if os.path.exists("env.py"):
     import env
@@ -23,6 +24,19 @@ mongo = PyMongo(app)
 GAMES_PER_PAGE = 8
 
 TODAY = date.today().strftime("%d/%m/%y")
+
+
+# wrapper to enforce pages available to active users only
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'user' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("You need to be logged in to access this!")
+            return redirect(url_for("login"))
+
+    return wrap
 
 
 # Pagination functions - see code credit in readme
@@ -106,6 +120,7 @@ def filter_non_user():
 
 # home/game page for users logged in
 @app.route("/get_games")
+@login_required
 def get_games():
     games = list(mongo.db.games.find())
     games_paginated = paginated(games)
@@ -124,6 +139,7 @@ def get_games():
 
 # Search function for users logged in
 @app.route("/search", methods=["GET", "POST"])
+@login_required
 def search():
     query = request.form.get("query")
     games = list(mongo.db.games.find({"$text": {"$search": query}}))
@@ -142,6 +158,7 @@ def search():
 
 # Filter function for users logged in
 @app.route("/filter_tags", methods=["GET", "POST"])
+@login_required
 def filter_tags():
     themes = request.form.getlist("themes")
     mechanisms = request.form.getlist("mechanisms")
@@ -191,6 +208,7 @@ def get_game_detail(game_id):
 
 # add/edit/delete review functions
 @app.route("/add_review/<game_id>", methods=["GET", "POST"])
+@login_required
 def add_review(game_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
 
@@ -211,6 +229,7 @@ def add_review(game_id):
 
 
 @app.route("/edit_review/<game_id>/<review_id>", methods=["GET", "POST"])
+@login_required
 def edit_review(game_id, review_id):
     game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
@@ -234,6 +253,7 @@ def edit_review(game_id, review_id):
 
 
 @app.route("/delete_review/<game_id>/<review_id>")
+@login_required
 def delete_review(game_id, review_id):
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
@@ -242,6 +262,7 @@ def delete_review(game_id, review_id):
 
 # add/edit/delete game functions
 @app.route("/add_game", methods=["GET", "POST"])
+@login_required
 def add_game():
     if request.method == "POST":
         if session["user"] == "admin":
@@ -285,6 +306,7 @@ def add_game():
 
 
 @app.route("/edit_game/<game_id>", methods=["GET", "POST"])
+@login_required
 def edit_game(game_id):
 
     if request.method == "POST":
@@ -331,6 +353,7 @@ def edit_game(game_id):
 
 
 @app.route("/delete_game/<game_id>")
+@login_required
 def delete_game(game_id):
     mongo.db.games.remove({"_id": ObjectId(game_id)})
     flash("Game Successfully Deleted")
@@ -348,6 +371,7 @@ def tag_list():
 
 
 @app.route("/add_tag", methods=["GET", "POST"])
+@login_required
 def add_tag():
     if request.method == "POST":
         tag = {
@@ -368,6 +392,7 @@ def add_tag():
 
 
 @app.route("/edit_tag/<tag_id>", methods=["GET", "POST"])
+@login_required
 def edit_tag(tag_id):
     tag = mongo.db.tags.find_one({"_id": ObjectId(tag_id)})
 
@@ -386,6 +411,7 @@ def edit_tag(tag_id):
 
 
 @app.route("/delete_tag/<tag_id>")
+@login_required
 def delete_tag(tag_id):
     mongo.db.tags.remove({"_id": ObjectId(tag_id)})
     flash("Tag Successfully Deleted")
@@ -450,6 +476,7 @@ def login():
 
 # profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
 def profile(username):
 
     # grab the session user's profile from db...
@@ -497,6 +524,7 @@ def remove_from_list(list_name, game_id):
 
 # add a game to profile's collection
 @app.route("/add_to_collection/<game_id>")
+@login_required
 def add_to_collection(game_id):
     add_to_list("my_collection", game_id)
     flash("Game successfully added to your collection")
@@ -505,6 +533,7 @@ def add_to_collection(game_id):
 
 # remove a game from profile's collection
 @app.route("/remove_from_collection/<game_id>")
+@login_required
 def remove_from_collection(game_id):
     remove_from_list("my_collection", game_id)
     return redirect(url_for('profile', username=session['user']))
@@ -512,6 +541,7 @@ def remove_from_collection(game_id):
 
 # add a game to profile's wishlist
 @app.route("/add_to_wishlist/<game_id>")
+@login_required
 def add_to_wishlist(game_id):
     add_to_list("my_wishlist", game_id)
     flash("Game successfully added to your wishlist")
@@ -520,6 +550,7 @@ def add_to_wishlist(game_id):
 
 # remove a game from profile's wishlist
 @app.route("/remove_from_wishlist/<game_id>")
+@login_required
 def remove_from_wishlist(game_id):
     remove_from_list("my_wishlist", game_id)
     return redirect(url_for('profile', username=session['user']))
@@ -527,6 +558,7 @@ def remove_from_wishlist(game_id):
 
 # move a game from profile's wishlist to collection
 @app.route("/move_to_collection/<game_id>")
+@login_required
 def move_to_collection(game_id):
     add_to_list("my_collection", game_id)
     remove_from_list("my_wishlist", game_id)
@@ -537,6 +569,7 @@ def move_to_collection(game_id):
 
 # log out
 @app.route("/logout")
+@login_required
 def logout():
     # remove user from session cookies
     flash("You have been logged out")
