@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
+from flask_talisman import Talisman
 from bson.objectid import ObjectId
 from werkzeug.security import (
     generate_password_hash, check_password_hash)
@@ -16,6 +17,7 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
+Talisman(app)
 
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
