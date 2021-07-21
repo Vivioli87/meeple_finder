@@ -24,7 +24,7 @@
                 {% if game.image == "" %}
                         <div class="card profile-size">
                             <div class="card-image profile-size">
-                                <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                                <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg" alt="'Awaiting image' placeholder image">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content profile-size">
@@ -54,9 +54,9 @@
                             <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
                                 <div class="card-image profile-size">
                                     {% if game.image == "" %}
-                                        <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                                        <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg" alt="'Awaiting image' placeholder image">
                                     {% else %}
-                                        <img src="{{game.image}}">
+                                        <img src="{{game.image}}" alt="Image or artwork for {{game.image}} board game">
                                     {% endif %}
                                 </div>
                             </a>

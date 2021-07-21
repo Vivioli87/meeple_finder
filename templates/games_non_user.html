@@ -107,9 +107,9 @@
                 <a href="{{ url_for('get_game_detail', game_id=game._id) }}">
                     <div class="card-image">
                         {% if game.image == "" %}
-                            <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                            <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg" alt="'Awaiting image' placeholder image">
                         {% else %}
-                            <img src="{{game.image}}">
+                            <img src="{{game.image}}" alt="Image or artwork for {{game.image}} board game">
                         {% endif %}
                     </div>
                 </a>
