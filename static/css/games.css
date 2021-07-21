@@ -38,19 +38,11 @@ div.material-tooltip {
     margin: 10px;
     position: relative;
     border-radius: 5px;
-    
 }
 
 .card .card-image{
     height: 250px;
-    width: 250px;
     overflow: hidden;
-}
-
-.card .card-image > img{
-    height: inherit;
-    width: inherit;
-
 }
 
 .card-content{
@@ -179,7 +171,6 @@ div.material-tooltip {
         width: 250px;
         margin: 10px;
         position: relative;
-        
     }
     
     .card .card-image{
