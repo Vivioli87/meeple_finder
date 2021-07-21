@@ -15,28 +15,22 @@ from functools import wraps
 if os.path.exists("env.py"):
     import env
 
+app_csp = {
+            'default-src': '\'self\'',
+            'img-src': '*',
+            'script-src': ['\'self\'',
+                           'cdnjs.cloudflare.com',
+                           'code.jquery.com'
+                           ],
+            'style-src': ['\'self\'',
+                          'cdnjs.cloudflare.com',
+                          'fonts.googleapis.com'
+                          ]
+          }
 
-SELF = "'self'"
 
 app = Flask(__name__)
-talisman = Talisman(
-    app,
-    content_security_policy={
-        'default-src': SELF,
-        'img-src': '*',
-        'script-src': [
-            SELF,
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
-            'https://fonts.googleapis.com/icon?family=Material+Icons',
-            'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
-        ],
-        'style-src': [
-            SELF,
-            'https://code.jquery.com/jquery-3.6.0.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'
-        ],
-    }
-)
+Talisman(app, content_security_policy=app_csp)
 
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
