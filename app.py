@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
+from flask_talisman import Talisman
 from bson.objectid import ObjectId
 from werkzeug.security import (
     generate_password_hash, check_password_hash)
@@ -15,7 +16,27 @@ if os.path.exists("env.py"):
     import env
 
 
+SELF = "'self'"
+
 app = Flask(__name__)
+talisman = Talisman(
+    app,
+    content_security_policy={
+        'default-src': SELF,
+        'img-src': '*',
+        'script-src': [
+            SELF,
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',
+            'https://fonts.googleapis.com/icon?family=Material+Icons',
+            'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+        ],
+        'style-src': [
+            SELF,
+            'https://code.jquery.com/jquery-3.6.0.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'
+        ],
+    }
+)
 
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -591,4 +612,4 @@ def not_found(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
