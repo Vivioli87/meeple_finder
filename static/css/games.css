@@ -43,7 +43,14 @@ div.material-tooltip {
 
 .card .card-image{
     height: 250px;
+    width: 250px;
     overflow: hidden;
+}
+
+.card .card-image > img{
+    height: inherit;
+    width: inherit;
+
 }
 
 .card-content{
