@@ -70,6 +70,11 @@
             <div class="row">
                 <div class="center-align col s12">
                     {% if session["user"] %}
+                        {% if session["user"] == "admin" %}
+                            <a  class="btn-large red accent-3 text-shadow" href="{{ url_for('edit_game', game_id=game._id) }}"> 
+                                Update / Delete Game<i class="fas fa-edit right"></i>
+                            </a>
+                        {% endif %}
                         <a href="{{ url_for('get_games') }}" class="btn-large blue accent-3 text-shadow">
                             Return to Games List<i class="fas fa-arrow-circle-left right"></i>
                         </a>
@@ -81,7 +86,6 @@
                 </div>
             </div>
         </div>
-        
 
         <!--Reviews-->
         <div class="col s12 l6 offset-l1 center-align review">
@@ -143,4 +147,5 @@
                 {% endif %}
             </div>
         </div>
+    </div>
 {% endblock %}
