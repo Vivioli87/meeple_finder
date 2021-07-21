@@ -51,16 +51,18 @@
             {% if collection|length > 0 %}
                 {% for game in collection %}
                         <div class="card profile-size">
-                            <div class="card-image profile-size">
-                                {% if game.image == "" %}
-                                    <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
-                                {% else %}
-                                    <img src="{{game.image}}">
-                                {% endif %}
-                            </div>
+                            <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
+                                <div class="card-image profile-size">
+                                    {% if game.image == "" %}
+                                        <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                                    {% else %}
+                                        <img src="{{game.image}}">
+                                    {% endif %}
+                                </div>
+                            </a>
                             <div class="card-stacked">
                                 <div class="card-content profile-size">
-                                    <span class="card-title underline">{{game.name|upper}}</span>
+                                    <a href="{{ url_for('get_game_detail', game_id=game.id) }}"><span class="card-title underline custom-teal-text">{{game.name|upper}}</span></a>
                                     <br>
                                     <p>Added to Collection: <strong>{{game.date_added}}</strong></p><br>
                                     <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
@@ -85,16 +87,20 @@
             {% if wishlist|length > 0 %}
                 {% for game in wishlist %}
                     <div class="card profile-size">
-                        <div class="card-image profile-size">
-                            {% if game.image == "" %}
-                                <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
-                            {% else %}
-                                <img src="{{game.image}}">
-                            {% endif %}
-                        </div>
+                        <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
+                            <div class="card-image profile-size">
+                                {% if game.image == "" %}
+                                    <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                                {% else %}
+                                    <img src="{{game.image}}">
+                                {% endif %}
+                            </div>
+                        </a>
                         <div class="card-stacked">
                             <div class="card-content profile-size">
-                                <span class="card-title underline">{{game.name|upper}}</span>
+                                <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
+                                    <span class="card-title underline custom-teal-text">{{game.name|upper}}</span>
+                                </a>
                                 <br>
                                 <p>Added to Wishlist: <strong>{{game.date_added}}</strong></p><br>
                                 <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>

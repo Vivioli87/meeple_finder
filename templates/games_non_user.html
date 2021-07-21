@@ -104,16 +104,20 @@
 <div class=" game-card-area">
     {% for game in games %}
             <div class="card game-list-size">
-                <div class="card-image">
-                    {% if game.image == "" %}
-                        <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
-                    {% else %}
-                        <img src="{{game.image}}">
-                    {% endif %}
-                </div>
+                <a href="{{ url_for('get_game_detail', game_id=game._id) }}">
+                    <div class="card-image">
+                        {% if game.image == "" %}
+                            <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                        {% else %}
+                            <img src="{{game.image}}">
+                        {% endif %}
+                    </div>
+                </a>
                 <div class="card-stacked center-align">
                     <div class="card-content custom-padding">
-                        <h5 class="custom-teal-text underline">{{game.name|upper}}</h5>
+                        <h6 class="underline"><strong>
+                            <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="custom-teal-text">{{game.name|upper}}</a>
+                        </strong></h6>
                         <p>{{game.description|truncate(150)}}</p>
                     </div>
                     <div class="card-action-area">
