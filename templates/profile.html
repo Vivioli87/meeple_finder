@@ -28,7 +28,7 @@
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content profile-size">
-                                    <span class="card-title underline">{{game.name|upper}}</span>
+                                </strong><span class="card-title underline">{{game.name|upper}}</span><strong>
                                     <br>
                                     <a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size text-shadow">Game detail page</a>
                                 </div>
@@ -62,13 +62,18 @@
                             </a>
                             <div class="card-stacked">
                                 <div class="card-content profile-size">
-                                    <a href="{{ url_for('get_game_detail', game_id=game.id) }}"><span class="card-title underline custom-teal-text">{{game.name|upper}}</span></a>
+                                    <h6 class="underline"><strong>
+                                        <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="custom-teal-text">{{game.name|upper}}</a>
+                                    </strong></h6>
                                     <br>
                                     <p>Added to Collection: <strong>{{game.date_added}}</strong></p><br>
-                                    <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
+                                    <strong><a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">
+                                        More Info / Reviews</a></strong>
                                 </div>
                                 <div class="card-action-area profile-size center-align">
-                                    <a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="red-text accent-3"><i class="fas fa-minus-circle"></i>  Remove from Collection</a>
+                                    <strong><a href="{{ url_for('remove_from_collection', game_id=game.id) }}" class="red-text accent-3">
+                                        <i class="fas fa-minus-circle"></i>  Remove from Collection
+                                    </a></strong>
                                 </div>
                             </div>
                         </div>
@@ -90,25 +95,31 @@
                         <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
                             <div class="card-image profile-size">
                                 {% if game.image == "" %}
-                                    <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg">
+                                    <img src="https://www.logolynx.com/images/logolynx/s_33/33d3b4fb44abf51ee337cff414cbaecd.jpeg" alt="'Awaiting image' placeholder image">
                                 {% else %}
-                                    <img src="{{game.image}}">
+                                    <img src="{{game.image}}" alt="Image or artwork for {{game.image}} board game">
                                 {% endif %}
                             </div>
                         </a>
                         <div class="card-stacked">
                             <div class="card-content profile-size">
-                                <a href="{{ url_for('get_game_detail', game_id=game.id) }}">
-                                    <span class="card-title underline custom-teal-text">{{game.name|upper}}</span>
-                                </a>
+                                <h6 class="underline"><strong>
+                                    <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="custom-teal-text">{{game.name|upper}}</a>
+                                </strong></h6>
                                 <br>
                                 <p>Added to Wishlist: <strong>{{game.date_added}}</strong></p><br>
-                                <a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">More Info / Reviews</a>
+                                <strong><a href="{{ url_for('get_game_detail', game_id=game.id) }}" class="btn-small teal mobile-size text-shadow">
+                                    More Info / Reviews
+                                </a></strong>
                             </div>
                             <div class="card-action-area profile-size center-align">
-                                <a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="custom-teal-text profile-links"><i class="fas fa-plus-circle"></i>  Move to Collection</a>
+                                <strong><a href="{{ url_for('move_to_collection', game_id=game.id) }}" class="custom-teal-text profile-links">
+                                    <i class="fas fa-plus-circle"></i>  Move to Collection
+                                </a></strong>
                                 <br>
-                                <a href="{{ url_for('remove_from_wishlist', game_id=game.id) }}" class="red-text accent-3 profile-links"><i class="fas fa-minus-circle"></i>  Remove from Wishlist</a>
+                                <strong><a href="{{ url_for('remove_from_wishlist', game_id=game.id) }}" class="red-text accent-3 profile-links">
+                                    <i class="fas fa-minus-circle"></i>  Remove from Wishlist
+                                </a></strong>
                             </div>
                         </div>
                     </div>
