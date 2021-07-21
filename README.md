@@ -54,12 +54,13 @@ The user types for this website would be for Board Game Fans (entry level or est
 ### Visitor Stories
 1. As a site visitor, I would like to search a list of board games based on different criteria e.g. number of players, game type, game manufactorer, age level etc.
 2. As a site visitor, I would like to register an account that is secure and private.
-3. As a site visitor, I would like a personalised dashboard to show board games I have in my collection, a wishlist for games I would like to have in my collection and reviews that I have made.
+3. As a site visitor, I would like a personalised dashboard to show board games I have in my collection, a wishlist for games I would like to have in my collection which I can easily add to when searching for games.
 4. As a site visitor, I would like to be able to add reviews but also to edit and delete the reviews if required. I should also be the only user who can edit or delete my reviews, other users can only view them.
 5. As a site visitor, I would like to be able to add or request to add a game to the board game list if it is not currently listed on the site.
 6. As a site visitor, I would like to have games that are suggested to me based on the board games in my collection. (*potential future*)
 7. As a site visitor, I would like to find board game retailers or cafe's where I can buy or try out new board games on my wishlist.  (*potential future*)
 8. As a site visitor, I would like a website that is intuitive, easy to navigate and provides clear feedback on any actions I make (e.g when adding reviews, games etc)
+9. As a site visitor, I would like a glossary of board game terms used if I am unfamiliar with the terminology.
 
 
 ### Business Stories
@@ -69,7 +70,7 @@ The user types for this website would be for Board Game Fans (entry level or est
 4. As a site owner, I would like adding reviews to be accessed by registered users only. Non registered users can only view board game listings and their reviews.
 5. As a site owner, I would like users to be able to edit and/or delete their own reviews only.
 6. As a site owner, I would like users to be able to add or request to add a game to the board game list if it is not currently listed on the site.
-7. As a site owner, I would like to have admin access to be able to view, edit and delete any records that may be inappropriate for the website.
+7. As a site owner, I would like to have admin access to be able to view, edit and delete any records that may be inaccurate or inappropriate for the website.
 8. As a site owner, I would like to support local board games shops and cafes by having a google maps API for users to find shops/cafes local to them. (*potential future*)
 
 [Back to table of contents](#table-of-contents)
