@@ -46,7 +46,7 @@
             <!-- board game type -->
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="type" name="type">
+                    <select id="type" name="type" initval="{{game.type}}">
                       <option value="" disabled selected>Choose your option</option>
                       <option value="base game">Base Game</option>
                       <option value="base expansion">Expansion (requires base game to play)</option>
@@ -58,8 +58,8 @@
             <!--player count - 2 dropdowns: min-player & max_player -->
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <select id="min_player" name="min_player">
-                      <!-- <option value="" disabled selected>Choose your option</option> -->
+                    <select id="min_player" name="min_player" initval="{{game.min_player}}">
+                      <option value="" disabled selected>Choose your option</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -69,8 +69,8 @@
                     <label for="min_player">Minimun Player(s):</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <select id="max_player" name="max_player">
-                        <!-- <option value="" disabled selected>Choose your option</option> -->
+                    <select id="max_player" name="max_player"  initval="{{game.max_player}}">
+                        <option value="" disabled selected>Choose your option</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -89,7 +89,7 @@
             <!--playing time -->
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="playing_time" name="playing_time">
+                    <select id="playing_time" name="playing_time"  initval="{{game.playing_time}}">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="short">Short: Less than 1 hour</option>
                         <option value="medium">Medium: 1-2 hours</option>
@@ -131,11 +131,11 @@
             <div class="row">
                 <div class="col s12 m6 center-align">
                     <!-- cancel button-->
-                    <a href="#" onclick="goBack()" class="btn-large update-game-button amber text-shadow">
+                    <a href="#" class="btn-large back-button update-game-button amber text-shadow">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
                     <!--Reset form-->
-                    <a href="#" onclick="refreshPage()" class="btn-large update-game-button blue accent-3 text-shadow">
+                    <a href="#" class="btn-large reset-button update-game-button blue accent-3 text-shadow">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
                 </div>
@@ -169,12 +169,5 @@
     </div>
 {% endblock %}
 {% block scripts %}
-<script>  
-document.addEventListener('DOMContentLoaded', function() {
-    dropdownValue('min_player', '{{game.min_player}}');
-    dropdownValue('max_player', '{{game.max_player}}');
-    dropdownValue('playing_time', '{{game.playing_time}}');
-    dropdownValue('type', '{{game.type}}')
-});
-</script>
+<script src="{{ url_for('static', filename='js/forms.js') }}"></script>
 {% endblock %}
