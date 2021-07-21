@@ -22,6 +22,9 @@ app_csp = {
                            'cdnjs.cloudflare.com',
                            'code.jquery.com'
                            ],
+            'font-src': ['cdnjs.cloudflare.com',
+                         'fonts.gstatic.com'
+                         ],
             'style-src': ['\'self\'',
                           'cdnjs.cloudflare.com',
                           'fonts.googleapis.com'
