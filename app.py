@@ -96,6 +96,8 @@ def games_non_user():
                            pagination=pagination)
 
 
+# had to do separate search/filter functions...
+# for non users, "user" was causing errors.
 # Search function for users not logged in
 @app.route("/search_non_user", methods=["GET", "POST"])
 def search_non_user():
@@ -609,4 +611,4 @@ def not_found(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
