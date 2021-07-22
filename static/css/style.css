@@ -28,14 +28,14 @@ h1, h2, h3, h4, h5{
 /*ensures footer doesnt cover content + extra space*/
 
 main{
-    margin-bottom: 120px;
+    margin-bottom: 140px;
 }
 
 footer{
     width: 100%;
     position: absolute;
     bottom: 0;
-    height: 100px;    
+    height: 120px;    
 }
 
 /* left padding for headers*/
@@ -295,7 +295,6 @@ th.table-actions{
 @media only screen and (max-width: 390px) {
     a.brand-logo {
         font-size: 16px;
-        align-self: flex-start;
     }
 
     a.brand-logo > img {
