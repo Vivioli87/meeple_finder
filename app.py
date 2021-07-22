@@ -504,10 +504,8 @@ def login():
 @login_required
 def profile(username):
 
-    # grab the session user's profile from db...
-    profile = mongo.db.users.find_one({"username": session["user"]})
-    # ...and immediately drop password from result object for security
-    del profile["password"]
+    # grab the session user's profile from db minus the password
+    profile = mongo.db.users.find_one({"username": session["user"]}, {"password": 0})
 
     # finds all games with no explicit image
     # (the 'coming soon' image) for admin profile
