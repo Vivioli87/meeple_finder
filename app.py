@@ -33,6 +33,8 @@ app_csp = {
 
 
 app = Flask(__name__)
+app.jinja_options["trim_blocks"] = True
+app.jinja_options["lstrip_blocks"] = True
 Talisman(app, content_security_policy=app_csp)
 
 
