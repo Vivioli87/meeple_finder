@@ -5,7 +5,7 @@
 
 [Please view the live project here](http://meeple-finder.herokuapp.com/)
 
-![Mockups]()
+![Mockups](/static/img/Meeple-Mockup.png)
 
 ## Table of Contents
 
@@ -388,6 +388,10 @@ Testing process was written in a separate document [Testing document](https://gi
 
 - login required decorator
     - [Python programming](https://pythonprogramming.net/decorator-wrappers-flask-tutorial-login-required/?fbclid=IwAR2Lk2PIZVCXOlm5ARd-AQbPcB04LAfOOdXJU_ovfXJqhhfmnXbO4IVAzy8)
+
+- trimming white space out of rendered code left by jinja comments
+    - [resource 1](https://jinja.palletsprojects.com/en/3.0.x/templates/#whitespace-control)
+    - [resource 2](https://stackoverflow.com/questions/38508982/why-do-trim-blocks-and-lstrip-blocks-under-flask-openshift-produce-different-res)
 
 - Code Institute learning platform & mini projects, specifically the search/indexing lesson for the task manager mini project.
 
