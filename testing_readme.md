@@ -123,7 +123,6 @@ The website was tested on the following browser types. All browser versions were
 - Firefox
 - Safari
 - Edge
-- Opera (tested on ubuntu Linux)
 - Samsung Internet
 - Google chrome for Android 
 

@@ -168,7 +168,7 @@ The Meeple finder website is designed to be effective, consistent and user frien
 
 The initial webpage layouts were sketched on the paper. The wireframes were then created in Balsamiq. Please view the wireframes for desktop, tablet and mobile screens on the following pdf.
 
-[Wireframe PDF](#)
+![Wireframe PDF](/static/img/Wireframe.pdf)
 
 [Back to table of contents](#table-of-contents)
 
@@ -376,6 +376,7 @@ Testing process was written in a separate document [Testing document](https://gi
 
 - MongoDB documentation in general but more specifically:
     - [filter $and expressions](https://docs.mongodb.com/manual/reference/operator/query/and/)
+    - [mongoDB documentation]([mongoDB documentation](https://docs.mongodb.com/manual/))
 
 - Concatinating array items into a string for filter function's flash messages.
     - [Stack overflow](https://stackoverflow.com/questions/12453580/how-to-concatenate-items-in-a-list-to-a-single-string)
