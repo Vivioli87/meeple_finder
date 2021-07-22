@@ -362,8 +362,53 @@ Testing process was written in a separate document [Testing document](https://gi
 
 ## Deployment
 
-### Github/Heroku
-### How to run this project locally
+### Clone 
+To clone this project from its [GitHub repository](https://github.com/Vivioli87/meeple_finder):
+
+1. From the repository, click **Code**
+2. In the **Clone >> HTTPS** section, copy the clone URL for the repository
+3. In your local IDE open Git Bash
+4. Change the current working directory to the location where you want the cloned directory to be made
+5. Type `git clone`, and then paste the URL you copied in Step 2
+6. Press Enter. Your local clone will be created
+7. Create a file called env.py to hold your app's environment variables, which should contain the following:
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "<app secret key>")
+os.environ.setdefault("MONGO_URI", "mongodb+srv://<username>:<password>@<cluster_name>-ofgqg.mongodb.net/<database_name>?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DBNAME", "<database name>")
+
+8. **Make sure that env.py is listed in your .gitignore file to prevent your environment variables being pushed publicly**
+9. The app can now be run locally using python3 app.py in your console.
+
+### How to deploy to Heroku
+
+To deploy the app to Heroku from its [GitHub repository](https://github.com/Vivioli87/meeple_finder), the following steps were taken:
+
+1. From the GitPod terminal, create **requirements.txt** and **Procfile** using these commands in your console:
+- pip3 freeze --local > requirements.txt
+- echo web: python app.py > Procfile
+
+2. **Push** these files to GitHub
+3. **Log In** to [Heroku](https://id.heroku.com/login)
+4. Select **Create new app** from the dropdown in the Heroku dashboard
+5. Choose a unique name ('meeple-finder') for the app and the location nearest to you
+6. Go to the **Deploy** tab and under **Deployment method** choose GitHub
+7. In **Connect to GitHub** enter your GitHub repository details and once found, click **Connect**
+8. Go to the **Settings** tab and under **Config Vars** choose **Reveal Config Vars**
+9. Enter the following keys and values, which must match those in the env.py file created earlier:
+
+|**Key**|**Value**|
+|:-----|:-----|
+|IP|`0.0.0.0`|
+|PORT|`5000`|
+|SECRET_KEY|`<app secret key>`|
+|MONGO_URI|mongodb+srv://`<username>`:<password>@`<cluster_name>`-ofgqg.mongodb.net/`<database_name>`?retryWrites=true&w=majority|
+|MONGO_DBNAME|`<database name>`|
+
+10. Go back to the **Deploy** tab and under **Automatic deploys** choose **Enable Automatic Deploys**
+11. Under **Manual deploy**, select **master** and click **Deploy Branch**
+12. Once the app has finished building, click **Open app** from the header row of the dashboard
 
 [Back to table of contents](#table-of-contents)
 
