@@ -305,10 +305,11 @@ There are ideas and features for this project that I would have likes to impleme
     - Reviews, allowing a user to add a star rating on the reviews. One that is stylized to have clickable stars that fill in for the rating that is given.
         - This would then be translated to the filter function on the main games page to allow vistors to filter by highest rated games.
     - Have a session timeout for users who "forget" to log out.
-    - Amend the game card styling for mobile layouts as currently this view is not as user-friendly as it could be.
+     - Change password/forgotten password feature.
+    - Amend the game card styling for mobile layouts as currently this view is not as user-friendly as it could be i.e. too much scrolling.
     - Allow for multiple admins or different roles e.g. "moderator" for if the site grew and needed more support staff for it. User records on the database would have a "role" field, this would be set and updated by the current main admin account.
     - Have a page with a google maps API to allow users to find board games shops and board games cafes in their area.
-    - Change password/forgotten password feature.
+    - Game suggestions for users base on games already in their collection.
 
 [Back to table of contents](#table-of-contents)
 
@@ -330,7 +331,7 @@ There are ideas and features for this project that I would have likes to impleme
 
 - [flask](https://en.wikipedia.org/wiki/Flask_(web_framework))
     - [Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine)) a template engine which allows me to pull through python variables and extend pages from a base template.
-
+- [Materialize](https://materializecss.com/) for styling.
 - [Google Fonts](https://fonts.google.com/) was used to import the fonts to the website.
 - [Balsamiq](https://balsamiq.com/) was used to create the wireframes for the website.
 - [CSS Tricks](https://css-tricks.com/) was used as a general source.
@@ -355,7 +356,7 @@ See further information on results found during validation on the separate [Test
 
 ## Testing
 
-Testing process was written in a separate document [Testing document]()
+Testing process was written in a separate document [Testing document](https://github.com/Vivioli87/meeple_finder/blob/bb09064405218f1f648ff6223adf4e83bcb97020/testing_readme.md)
 
 [Back to table of contents](#table-of-contents)
 
