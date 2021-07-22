@@ -22,7 +22,7 @@
     <div class="center-align">
         <a href="{{ url_for('get_games') }}" class="blue accent-3 btn-small text-shadow">Clear search / filters</a>
     </div>
-    <!--Search & filter bars in collapsibles-->
+    {# Search & filter bars in collapsibles #}
     <ul class="collapsible row">
         <li class="s12">
             <div class="collapsible-header teal white-text text-shadow"><i class="fas fa-search left"></i> 
@@ -94,7 +94,7 @@
             </div>
         </li>
     </ul>
-     <!--populates games in game list-->
+     {# populates games in game list #}
     <div class="game-card-area">
         {% for game in games %}
                 <div class="card game-list-size">
@@ -116,7 +116,7 @@
                             <strong><a href="{{ url_for('get_game_detail', game_id=game._id) }}" class="btn-small teal mobile-size text-shadow">
                                 More Info / Reviews</a></strong>
                         </div>
-                        <!--different actions on game card if logged in or not-->
+                        {# different actions on game card if logged in or not #}
                         {% if session.user %}
                             <div class="card-action-area center-align">
                                 {% if username == "admin" %}
@@ -139,7 +139,7 @@
                 </div>
         {% endfor %}
     </div>
-    <!--Pagination links-->
+    {# Pagination links #}
 
     {{ pagination.links }}  
     

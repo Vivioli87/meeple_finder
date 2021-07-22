@@ -16,7 +16,7 @@
     </div>
     <div class="row custom-teal-text">
         <form class="col s12 m10 offset-m1 custom-form-container" method="POST" action="{{url_for('add_tag') }}">
-            <!--tag use -->
+            {# tag use  #}
             <div class="row">
                 <div class="input-field col s12">
                     <select id="use" name="use">
@@ -27,7 +27,7 @@
                     <label for="use">Tag use:</label>
                 </div>
             </div>
-            <!--tag name -->
+            {# tag name  #}
             <div class="row">
                 <div class="input-field col s12">
                     <input id="name" name="name" type="text" 
@@ -35,7 +35,7 @@
                     <label for="name">Tag name:</label>
                 </div>
             </div>
-            <!--tag description -->
+            {# tag description  #}
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="description" name="description" minlength="5" 
@@ -45,19 +45,19 @@
             </div>
             <div class="row center-align">
                 <div class="col s12 m4">
-                    <!--cancel button -->
+                    {# cancel button  #}
                     <a href="#" class="btn-large back-button amber text-shadow add-tag-button">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <!--Reset form-->
+                    {# Reset form #}
                     <a href="#" class="btn-large reset-button blue accent-3 text-shadow add-tag-button">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <!--submit button -->
+                    {# submit button  #}
                     <button type="submit" class="btn-large teal text-shadow add-tag-button">
                         Add Tag<i class="fas fa-plus-square right"></i>
                     </button>

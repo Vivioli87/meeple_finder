@@ -13,11 +13,11 @@
             <h4><i class="fas fa-edit"></i> <span class="underline">Edit review for {{game.name|capitalize}}:</span></h4>
         </div>
     </div>
-    <!--Edit review-->
+    {# Edit review #}
     <div class="row custom-teal-text">
         <form class="col s12 m10 offset-m1 custom-form-container center-align" 
             action="{{url_for('edit_review', game_id=game._id, review_id=review._id) }}" method="POST">
-            <!--board game name - prepopulated-->
+            {# board game name - prepopulated #}
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="name" name="name" type="text" 
@@ -25,7 +25,7 @@
                     <label for="name">Name of Board Game:</label>
                 </div>
             </div>
-            <!--review comments-->
+            {# review comments #}
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                 <textarea id="review_comments" name="review_comments" class="materialize-textarea" required>
@@ -36,19 +36,19 @@
             </div>
             <div class="row">
                 <div class="col s12 m4">
-                    <!-- cancel button-->
+                    {#  cancel button #}
                     <a href="#" class="btn-large back-button form-button amber text-shadow">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <!--Reset form-->
+                    {# Reset form #}
                     <a href="#" class="btn-large reset-button form-button blue accent-3 text-shadow">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
                 </div>
                 <div class="col s12 m4">
-                    <!--submit button -->
+                    {# submit button  #}
                     <button type="submit" class="btn-large form-button teal text-shadow">
                         Submit<i class="fas fa-check-circle right"></i>
                     </button>

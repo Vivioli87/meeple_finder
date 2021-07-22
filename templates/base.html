@@ -18,7 +18,7 @@
 </head>
 <body>
         <header>
-            <!--Nav bar-->
+            {# Nav bar #}
             <nav class="nav-extended text-shadow custom-teal"> 
                 <div class="nav-wrapper">
                     {% if session.user %}
@@ -48,7 +48,7 @@
                 </div>
             </nav>
             
-            <!--mobile sidenav-->
+            {# mobile sidenav #}
             <ul class="sidenav teal lighten-3" id="mobile-demo">
                
                     {% if session.user %}
@@ -67,7 +67,7 @@
         </header>
 
         <section>
-            <!--flash messages-->
+            {# flash messages #}
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}

@@ -13,10 +13,10 @@
             <h4 class="underline" >Add a Review for:</h4>
         </div>
     </div>
-    <!--Add a review-->
+    {# Add a review #}
     <div class="row">
             <form class="col s12 m10 offset-m1 center-align custom-form-container" action="{{url_for('add_review', game_id=game._id) }}" method="POST">
-                <!--board game name - prepopulated-->
+                {# board game name - prepopulated #}
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <input id="name" name="name" type="text" 
@@ -24,7 +24,7 @@
                         <label for="name">Name of Board Game:</label>
                     </div>
                 </div>
-                <!--review comments-->
+                {# review comments #}
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                     <textarea id="review_comments" name="review_comments" class="materialize-textarea" required></textarea>
@@ -33,19 +33,19 @@
                 </div>
                 <div class="row">
                     <div class="col s12 m4 center-align">
-                        <!--cancel button -->
+                        {# cancel button  #}
                         <a href="#" class="btn-large back-button form-button amber text-shadow">
                             Cancel<i class="fas fa-arrow-circle-left right"></i>
                         </a>
                     </div>
                     <div class="col s12 m4 center-align">
-                        <!--Reset form-->
+                        {# Reset form #}
                         <a href="#" class="btn-large reset-button form-button blue accent-3 text-shadow">
                             Reset<i class="fas fa-undo right"></i>
                         </a>
                     </div>
                     <div class="col s12 m4 center-align">
-                        <!--submit button -->
+                        {# submit button  #}
                         <button type="submit" class="btn-large form-button teal text-shadow">
                             Submit<i class="fas fa-plus-square right"></i>
                         </button>

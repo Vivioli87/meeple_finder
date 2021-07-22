@@ -7,7 +7,7 @@
     <h4 class="custom-teal-text padding"><i class="fas fa-edit"></i> <span class="underline">Edit Game: {{game.name}}</span></h4>
     <div class="row">
         <form class="col s12 m10 offset-m1 custom-form-container" method="POST" action="{{ url_for('edit_game', game_id=game._id) }}">
-            <!--game name -->
+            {# game name  #}
             <div class="row">
                 <div class="input-field col s12">
                     <input id="name" name="name" type="text" 
@@ -15,7 +15,7 @@
                     <label for="name">Name of Board Game:</label>
                 </div>
             </div>
-            <!--game description -->
+            {# game description  #}
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="description" name="description" minlength="5" 
@@ -25,7 +25,7 @@
                     <label for="description">Description:</label>
                 </div>
             </div>
-            <!-- image URL - stock image won't be populated on form just URL -->
+            {#  image URL - stock image won't be populated on form just URL  #}
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="image" name="image" minlength="5" 
@@ -35,7 +35,7 @@
                     <label for="image">Image URL:</label>
                 </div>
             </div>
-            <!-- publisher -->
+            {#  publisher  #}
             <div class="row">
                 <div class="input-field col s12">
                     <input id="publisher" name="publisher" type="text" 
@@ -43,7 +43,7 @@
                     <label for="publisher">Publisher:</label>
                 </div>
             </div>
-            <!-- board game type -->
+            {#  board game type  #}
             <div class="row">
                 <div class="input-field col s12">
                     <select id="type" name="type" initval="{{game.type}}">
@@ -55,7 +55,7 @@
                     <label for="type">Game Type:</label>
                 </div>
             </div>
-            <!--player count - 2 dropdowns: min-player & max_player -->
+            {# player count - 2 dropdowns: min-player & max_player  #}
             <div class="row">
                 <div class="input-field col s12 m6">
                     <select id="min_player" name="min_player" initval="{{game.min_player}}">
@@ -86,7 +86,7 @@
             </div>
                 <p class="custom-teal-text"><em>*if minimum & maximum player is the same, please select the same numbers for both 
                     (e.g. for a 2 player game, minimum and maximum players = 2 ) </em></p>
-            <!--playing time -->
+            {# playing time  #}
             <div class="row">
                 <div class="input-field col s12">
                     <select id="playing_time" name="playing_time"  initval="{{game.playing_time}}">
@@ -98,7 +98,7 @@
                     <label for="playing_time">Playing Time:</label>
                 </div>
             </div>
-            <!--playing age -->
+            {# playing age  #}
             <div class="row">
                 <div class="input-field col s12">
                     <input id="age" name="age" type="number" class="validate" value="{{game.age}}" required></input>
@@ -106,7 +106,7 @@
                 </div>
                 <p class="custom-teal-text center-align"><em>*Please enter a number indicating the minimum age the game is appropriate for.</em></p>
             </div>
-            <!--mechanisms - tags -->
+            {# mechanisms - tags  #}
             <div class="custom-teal-text tags">
                 <h6><i class="fas fa-cogs"></i> <span class="underline">Mechanisms:</span></h6>
                 {% for mech in mechanisms %}
@@ -116,7 +116,7 @@
                         </label>
                 {% endfor %}
             </div>
-            <!--themes - tags -->
+            {# themes - tags  #}
             <div class="custom-teal-text tags">
                 <h6><i class="fas fa-palette"></i> <span class="underline">Themes:</span></h6>
                 {% for theme in themes %}
@@ -130,17 +130,17 @@
             
             <div class="row">
                 <div class="col s12 m6 center-align">
-                    <!-- cancel button-->
+                    {#  cancel button #}
                     <a href="#" class="btn-large back-button update-game-button amber text-shadow">
                         Cancel<i class="fas fa-arrow-circle-left right"></i>
                     </a>
-                    <!--Reset form-->
+                    {# Reset form #}
                     <a href="#" class="btn-large reset-button update-game-button blue accent-3 text-shadow">
                         Reset<i class="fas fa-undo right"></i>
                     </a>
                 </div>
                 <div class="col s12 m6 center-align">
-                    <!--Delete button with "are you sure?" modal - admin only -->
+                    {# Delete button with "are you sure?" modal - admin only  #}
                     {% if username == "admin" %}
                         <a href="#delete-game" class="btn-large update-game-button red accent-2 text-shadow modal-trigger">
                             Delete<i class="fas fa-trash right"></i>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     {% endif %}
-                    <!--submit button -->
+                    {# submit button  #}
                     <button type="submit" class="btn-large update-game-button teal text-shadow">
                         Update<i class="fas fa-edit right"></i>
                     </button>

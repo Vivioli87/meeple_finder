@@ -28,7 +28,7 @@
 <div class="center-align">
     <a href="{{ url_for('games_non_user') }}" class="blue accent-3 btn-large text-shadow">Show all Games</a>
 </div>
-<!--Search & filter bars in collapsibles-->
+{# Search & filter bars in collapsibles #}
 <ul class="collapsible row">
     <li class="s12">
         <div class="collapsible-header teal white-text text-shadow"><i class="fas fa-search left"></i> 
@@ -100,7 +100,7 @@
         </div>
     </li>
 </ul>
-<!--populates games in game list-->
+{# populates games in game list #}
 <div class=" game-card-area">
     {% for game in games %}
             <div class="card game-list-size">
@@ -127,7 +127,7 @@
             </div>
     {% endfor %}
 </div>
-<!--Pagination links-->
+{# Pagination links #}
 {{ pagination.links }}
 
 {% endblock %}

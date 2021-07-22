@@ -16,7 +16,7 @@
             </h3>
         </div>
     </div>
-    <!--Checks if username is admin and loads new added games that need to checked-->
+    {# Checks if username is admin and loads new added games that need to checked #}
     {% if username == "admin" %}
         <h4 class="underline padding custom-teal-text">New games recently added:</h4>
         <div class="game-card-area custom-teal-text center-align">
@@ -42,12 +42,12 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <!--Pagination links-->
+        {# Pagination links #}
         {{ pagination.links }}
     {% else %}
         <h4 class="padding custom-teal-text"><i class="fas fa-folder-open"></i> <span class="underline">My Collection:</span></h4>
         <div class="game-card-area custom-teal-text center-align">
-            <!--checks if collection array has values-->
+            {# checks if collection array has values #}
             {% if collection|length > 0 %}
                 {% for game in collection %}
                         <div class="card profile-size">
@@ -78,9 +78,9 @@
                             </div>
                         </div>
                 {% endfor %}
-                <!--Pagination links-->
+                {# Pagination links #}
                 {{ pagination.links }}
-            <!--Message to appear of collection array is empty-->
+            {# Message to appear of collection array is empty #}
             {% else %}
                 <h6 class="center-align">Oh dear, your games collection is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your collection</h6>
             {% endif %}
@@ -88,7 +88,7 @@
         <br>
         <h4 class="padding custom-teal-text"><i class="fas fa-heart"></i> <span class="underline">My Wishlist:</span></h4>
         <div class="game-card-area custom-teal-text center-align">    
-            <!--checks if wishlist array has values-->
+            {# checks if wishlist array has values #}
             {% if wishlist|length > 0 %}
                 {% for game in wishlist %}
                     <div class="card profile-size">
@@ -124,9 +124,9 @@
                         </div>
                     </div>
                 {% endfor %}
-                <!--Pagination links-->
+                {# Pagination links #}
                 {{ pagination.links }}
-             <!--Message to appear if wishlist array is empty-->
+             {# Message to appear if wishlist array is empty #}
             {% else %}
                 <h6 class="center-align">Oh dear, your games wishlist is empty! Browse our <a href="{{ url_for('get_games') }}" class="underline custom-teal-text"><strong>games list</strong></a> to start adding games to your wishlist</h6>
             {% endif %}
