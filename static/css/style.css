@@ -291,3 +291,17 @@ th.table-actions{
         height: 65px;
     }
 }
+
+@media only screen and (max-width: 390px) {
+    a.brand-logo {
+        font-size: 16px;
+        align-self: flex-start;
+    }
+
+    a.brand-logo > img {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        padding: 4px;
+    }
+}
